@@ -1,6 +1,10 @@
 # Generating Order Variety
 
-Generate multiple supercells at once across the full disorder spectrum. Useful for building training sets for machine learning models.
+Generate a full spectrum of supercells - from fully disordered liquid to
+nanocrystalline - from a single reference crystal. The pattern below is a
+good starting point for building training sets for machine-learning
+potentials or for studying how the g3 distribution evolves as structural
+order increases.
 
 ## Setup
 
@@ -143,8 +147,14 @@ cell.plot_g3()
 
 ## SiC binary example
 
+The presets above are tuned for monatomic silicon, but the same workflow
+applies unchanged to binary and higher-species systems. Below is an MRO
+supercell of zincblende silicon carbide:
+
 ```python
-atoms_sic = bulk('SiC', 'zincblende', a=4.36)
+from ase.build import bulk
+
+atoms_sic = bulk("SiC", "zincblende", a=4.36)
 shell_target_sic = tc.CoordinationShellTarget.from_atoms(
     atoms_sic,
     phi_num_bins=90,
@@ -156,20 +166,12 @@ cell_sic = tc.Supercell.from_atoms(
     r_max=10,
     r_step=0.2,
     phi_num_bins=90,
-    relative_density=0.96,
     rng_seed=42,
 )
-cell_sic.generate(
-    shell_target_sic,
-    num_steps=150,
-    grain_size=13.0,
-    bond_weight=1.9,
-    angle_weight=0.9,
-    repulsion_weight=2.5,
-    hard_core_scale=0.95,
-    nonbond_push_scale=0.7,
-    displacement_sigma=0.04,
-)
+cell_sic.generate(shell_target_sic, **tc.Supercell.PRESETS["MRO"])
 cell_sic.measure_g3()
 cell_sic.plot_g3()
 ```
+
+The per-species-pair coordination targets (e.g. Si-C = 4, Si-Si = 0 in
+zincblende) are handled automatically by `CoordinationShellTarget`.

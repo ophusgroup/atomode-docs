@@ -8,12 +8,12 @@ tricor builds periodic supercells with controllable disorder - from fully liquid
 
 **Key features:**
 
-- Rapidly generate structures from liquid to nanocrystalline
+- Rapidly generate structures from liquid to nanocrystalline with a single call
 - Voronoi grain construction with per-species-pair bond topology
-- Interactive g3 distribution visualization (Jupyter widgets)
-- Interactive 3D structure viewer (Three.js)
-- Rotating MP4/GIF movie export
-- Works with any crystal structure (Si, SiC, metals, etc.)
+- Interactive g3 distribution widgets for Jupyter (Three.js + anywidget)
+- Self-contained HTML exporters for trajectories, g3 heatmaps, and multi-cell overviews
+- Rotating MP4 / GIF movie export for publication figures
+- Works with any crystal structure (Si, SiC, oxides, metals, etc.)
 
 ```{toctree}
 :maxdepth: 2

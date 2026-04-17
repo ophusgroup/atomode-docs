@@ -1,12 +1,13 @@
 # Examples
 
-Interactive case studies for real materials, in order of increasing structural complexity.
+Case studies for several materials. Each page embeds interactive
+trajectory and g3 viewers for every disorder regime covered.
 
 ```{toctree}
 :maxdepth: 1
 
-copper/index
 silicon/index
+copper/index
 carbon/index
 silicon_dioxide/index
 strontium_titanate/index
@@ -14,12 +15,17 @@ strontium_titanate/index
 
 ## Materials at a glance
 
-| Material | Structure | Coordination | Complexity |
-|----------|-----------|--------------|------------|
-| Copper (Cu) | FCC | 12 | Metallic close-packed |
-| Silicon (Si) | Diamond cubic | 4 | Covalent tetrahedral |
-| Carbon (C) | *coming soon* | - | Amorphous / glassy |
-| Silicon dioxide (SiO2) | alpha-quartz | Si: 4, O: 2 | Corner-sharing tetrahedra |
-| Strontium titanate (SrTiO3) | Perovskite | Sr: 12, Ti: 6, O: 6 | Ternary oxide |
+| Material | Structure | Coordination | Notes | Status |
+|---|---|---|---|---|
+| Silicon (Si) | Diamond cubic, *a* = 5.431 Å | 4 (tetrahedral, 109.5°) | Covalent reference; full 6-regime walkthrough. | Complete |
+| Copper (Cu) | FCC, *a* = 3.615 Å | 12 (close-packed) | Metallic; broad angular distribution. | Planned |
+| Carbon (C) | sp² / sp³ mixtures | 3 or 4 | Amorphous and glassy phases. | Planned |
+| Silicon dioxide (SiO₂) | α-quartz | Si: 4, O: 2 | Corner-sharing SiO₄ tetrahedra. | Planned |
+| Strontium titanate (SrTiO₃) | Cubic perovskite, *a* = 3.905 Å | Sr: 12, Ti: 6, O: 6 | Ternary oxide with distinct sublattices. | Planned |
 
-Each page shows a grid of the 7 disorder regimes with interactive 3D trajectory viewers and g3 distributions.
+The silicon case walks through the six standard disorder regimes in the
+`Supercell.PRESETS` dictionary (liquid, amorphous, SRO, MRO, MRO_more,
+nanocrystalline_10). The `nanocrystalline_20` preset exists in the package
+but is omitted from the silicon example because a 20 Å grain does not fit
+in a 20 × 20 × 20 Å cell - see
+[preset summary](silicon/index.md#preset-summary).

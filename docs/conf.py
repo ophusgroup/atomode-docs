@@ -21,6 +21,9 @@ myst_enable_extensions = [
     "dollarmath",
     "amsmath",
 ]
+# Auto-generate anchors for H1..H3 so cross-doc links like
+# ``[text](path.md#preset-summary)`` resolve.
+myst_heading_anchors = 3
 templates_path = ["_templates"]
 exclude_patterns = ["_build", "_static/README.md"]
 
