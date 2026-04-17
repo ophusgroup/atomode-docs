@@ -22,22 +22,24 @@ cell = tc.Supercell.from_atoms(
 )
 cell.generate(
     shell_target,
-    num_steps=100,
+    num_steps=120,
     grain_size=None,
-    bond_weight=0.4,
-    angle_weight=0.08,
-    repulsion_weight=0.5,
-    hard_core_scale=0.75,
-    nonbond_push_scale=0.7,
+    bond_weight=1.1,
+    angle_weight=0.12,
+    repulsion_weight=1.3,
+    hard_core_scale=0.90,
+    nonbond_push_scale=0.85,
 )
 ```
 
 The weak angle spring nudges local coordination toward FCC-like geometry
-without enforcing any of the four first-shell angles strictly.
+without enforcing any of the four first-shell angles strictly. A
+`nonbond_push_scale` of 0.85 places the effective first-shell radius close
+to, but still slightly inside, the reference `pair_peak`.
 
 ## Relaxation trajectory
 
-Interactive 3D viewer of the shell-relaxation trajectory (650 atoms, 101
+Interactive 3D viewer of the shell-relaxation trajectory (650 atoms, 121
 frames). Drag to rotate, scroll to zoom. Controls below the canvas play,
 scrub, and change playback speed.
 

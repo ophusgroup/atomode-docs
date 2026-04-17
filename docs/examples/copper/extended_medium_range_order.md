@@ -24,11 +24,11 @@ cell.generate(
     shell_target,
     num_steps=200,
     grain_size=None,
-    bond_weight=2.2,
-    angle_weight=0.22,
-    repulsion_weight=2.0,
-    hard_core_scale=0.94,
-    nonbond_push_scale=0.7,
+    bond_weight=2.8,
+    angle_weight=0.40,
+    repulsion_weight=2.2,
+    hard_core_scale=0.95,
+    nonbond_push_scale=1.0,
 )
 ```
 

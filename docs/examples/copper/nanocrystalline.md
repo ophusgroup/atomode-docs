@@ -25,19 +25,19 @@ cell = tc.Supercell.from_atoms(
 cell.generate(
     shell_target,
     num_steps=150,
-    grain_size=14.0,
-    bond_weight=2.2,
-    angle_weight=0.3,
+    grain_size=18.0,
+    bond_weight=2.4,
+    angle_weight=0.35,
     repulsion_weight=2.0,
     hard_core_scale=0.95,
-    nonbond_push_scale=0.8,
+    nonbond_push_scale=0.9,
     displacement_sigma=0.02,
 )
 ```
 
 ## Relaxation trajectory
 
-Interactive 3D viewer of the shell-relaxation trajectory (~420 atoms, 151
+Interactive 3D viewer of the shell-relaxation trajectory (~440 atoms, 151
 frames). Drag to rotate, scroll to zoom. Controls below the canvas play,
 scrub, and change playback speed.
 

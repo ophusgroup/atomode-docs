@@ -52,16 +52,19 @@ left blank use the default (`bond_weight=1.0`, `angle_weight=0.5`,
 | Regime | `num_steps` | `grain_size` (Å) | `bond_weight` | `angle_weight` | `repulsion_weight` | `hard_core_scale` | `nonbond_push_scale` | `displacement_sigma` |
 |---|---|---|---|---|---|---|---|---|
 | liquid                       | 30  | —    | 0.25 | 0.00 | 0.4 | 0.70 | 0.50 | —    |
-| amorphous                    | 80  | —    | 0.9  | 0.00 | 1.0 | 0.88 | 0.55 | —    |
-| short-range order            | 100 | —    | 0.4  | 0.08 | 0.5 | 0.75 | 0.70 | —    |
-| medium-range order           | 150 | —    | 1.6  | 0.15 | 1.8 | 0.92 | 0.65 | —    |
-| extended medium-range order  | 200 | —    | 2.2  | 0.22 | 2.0 | 0.94 | 0.70 | —    |
-| nanocrystalline              | 150 | 14.0 | 2.2  | 0.30 | 2.0 | 0.95 | 0.80 | 0.02 |
+| amorphous                    | 80  | —    | 0.7  | 0.00 | 1.0 | 0.85 | 0.70 | —    |
+| short-range order            | 120 | —    | 1.1  | 0.12 | 1.3 | 0.90 | 0.85 | —    |
+| medium-range order           | 150 | —    | 1.7  | 0.22 | 1.8 | 0.93 | 0.95 | —    |
+| extended medium-range order  | 200 | —    | 2.8  | 0.40 | 2.2 | 0.95 | 1.00 | —    |
+| nanocrystalline              | 150 | 18.0 | 2.4  | 0.35 | 2.0 | 0.95 | 0.90 | 0.02 |
 
 Angle springs are turned off in the liquid and amorphous regimes because
 the FCC first-shell angular distribution is multimodal (60°, 90°, 120°,
 180°) - a single-target angle spring would fight the natural geometry.
 SRO through extended MRO turn the angle spring back on at progressively
-higher weight. Only nanocrystalline uses explicit Voronoi grain
-construction; the others start from random positions and rely on the
-spring network alone.
+higher weight. The `nonbond_push_scale` value ramps from 0.5 (liquid) to
+1.0 (extended MRO) so the effective first-shell radius progressively
+approaches the reference `pair_peak` - this is what drives the increasing
+bond count visible across the overview panels.  Only nanocrystalline uses
+explicit Voronoi grain construction; the others start from random
+positions and rely on the spring network alone.
