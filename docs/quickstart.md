@@ -8,7 +8,7 @@ cd tricor
 uv sync
 ```
 
-## Single-species example (Si)
+## Minimal example
 
 ```python
 from ase.build import bulk
@@ -32,7 +32,7 @@ cell = tc.Supercell.from_atoms(
     rng_seed=42,
 )
 
-# 3. Generate structure (MRO example)
+# 3. Generate structure (medium-range order example)
 cell.generate(
     shell_target,
     num_steps=150,
@@ -56,53 +56,12 @@ cell.view_structure()
 cell.plot_structure(output='structure.mp4')
 ```
 
-## Binary example (SiC)
-
-```python
-atoms = bulk('SiC', 'zincblende', a=4.36)
-shell_target = tc.CoordinationShellTarget.from_atoms(
-    atoms,
-    phi_num_bins=90,
-)
-
-cell = tc.Supercell.from_atoms(
-    atoms,
-    cell_dim_angstroms=(40, 40, 40),
-    r_max=10,
-    r_step=0.1,
-    phi_num_bins=90,
-    relative_density=0.96,
-    rng_seed=42,
-)
-cell.generate(
-    shell_target,
-    num_steps=150,
-    grain_size=13.0,
-    bond_weight=1.9,
-    angle_weight=0.9,
-    repulsion_weight=2.5,
-    hard_core_scale=0.95,
-    nonbond_push_scale=0.7,
-    displacement_sigma=0.04,
-)
-
-cell.measure_g3()
-cell.plot_g3()  # browse Si | Si Si, C | C C, etc.
-```
-
 ## Using presets
 
 Recommended parameter sets for Si are available as `Supercell.PRESETS`:
 
 ```python
-import tricor as tc
-
-for name, params in tc.Supercell.PRESETS.items():
-    print(f"{name}: {params}")
-```
-
-```python
-preset = tc.Supercell.PRESETS["nanocrystalline_20"].copy()
+preset = tc.Supercell.PRESETS["MRO"].copy()
 density = preset.pop("relative_density", 1.0)
 
 cell = tc.Supercell.from_atoms(
@@ -113,3 +72,24 @@ cell = tc.Supercell.from_atoms(
 )
 cell.generate(shell_target, **preset)
 ```
+
+Available presets: `liquid`, `amorphous`, `SRO`, `MRO`, `MRO_more`, `nanocrystalline_10`, `nanocrystalline_20`.
+
+## Accessing the structure
+
+After `generate()`, the ASE Atoms object is available at `cell.atoms`:
+
+```python
+cell.atoms.write('supercell.cif')
+cell.atoms.write('supercell.xyz')
+
+positions = cell.atoms.positions      # (N, 3) array
+numbers = cell.atoms.numbers          # (N,) array of atomic numbers
+cell_matrix = cell.atoms.cell.array   # (3, 3) cell vectors
+```
+
+## Next steps
+
+- See [Examples](examples/index.md) for full case studies of 4 different materials.
+- See [Generating Order Variety](order_variety.md) for generating all 7 disorder regimes at once.
+- See [Algorithms](algorithms/index.md) for the mathematical details.

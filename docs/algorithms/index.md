@@ -1,4 +1,4 @@
-# Algorithm
+# Algorithms
 
 This section describes the mathematical details of tricor's structure generation pipeline.
 
@@ -8,4 +8,5 @@ This section describes the mathematical details of tricor's structure generation
 g3_distribution
 supercell_generation
 target_g3
+glossary
 ```

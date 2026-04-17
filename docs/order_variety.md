@@ -1,4 +1,6 @@
-# Examples
+# Generating Order Variety
+
+Generate multiple supercells at once across the full disorder spectrum. Useful for building training sets for machine learning models.
 
 ## Setup
 
