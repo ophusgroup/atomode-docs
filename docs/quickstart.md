@@ -61,16 +61,12 @@ cell.plot_structure(output='structure.mp4')
 Recommended parameter sets for Si are available as `Supercell.PRESETS`:
 
 ```python
-preset = tc.Supercell.PRESETS["MRO"].copy()
-density = preset.pop("relative_density", 1.0)
-
 cell = tc.Supercell.from_atoms(
     atoms,
     (40, 40, 40),
-    relative_density=density,
     rng_seed=42,
 )
-cell.generate(shell_target, **preset)
+cell.generate(shell_target, **tc.Supercell.PRESETS["MRO"])
 ```
 
 Available presets: `liquid`, `amorphous`, `SRO`, `MRO`, `MRO_more`, `nanocrystalline_10`, `nanocrystalline_20`.

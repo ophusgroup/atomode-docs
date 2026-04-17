@@ -27,7 +27,6 @@ shell_target = tc.CoordinationShellTarget.from_atoms(
 ```python
 cases = [
     ("liquid", dict(
-        relative_density=0.96,
         num_steps=100,
         grain_size=None,
         bond_weight=0.4,
@@ -37,7 +36,6 @@ cases = [
         nonbond_push_scale=0.7,
     )),
     ("amorphous", dict(
-        relative_density=0.96,
         num_steps=150,
         grain_size=6.0,
         bond_weight=1.2,
@@ -48,7 +46,6 @@ cases = [
         displacement_sigma=0.08,
     )),
     ("SRO", dict(
-        relative_density=0.96,
         num_steps=200,
         grain_size=10.0,
         bond_weight=2.2,
@@ -59,7 +56,6 @@ cases = [
         displacement_sigma=0.04,
     )),
     ("MRO", dict(
-        relative_density=0.96,
         num_steps=150,
         grain_size=13.0,
         bond_weight=1.9,
@@ -70,7 +66,6 @@ cases = [
         displacement_sigma=0.04,
     )),
     ("MRO_more", dict(
-        relative_density=0.96,
         num_steps=150,
         grain_size=18.0,
         bond_weight=2.0,
@@ -80,7 +75,6 @@ cases = [
         displacement_sigma=0.04,
     )),
     ("nanocrystalline_10", dict(
-        relative_density=0.96,
         num_steps=200,
         grain_size=15.0,
         bond_weight=2.8,
@@ -88,7 +82,6 @@ cases = [
         displacement_sigma=0.02,
     )),
     ("nanocrystalline_20", dict(
-        relative_density=0.96,
         num_steps=150,
         grain_size=20.0,
         bond_weight=3.0,
@@ -100,14 +93,12 @@ cases = [
 cells = {}
 for idx, (name, kw) in enumerate(cases, start=1):
     print(f"{idx:02d} - {name}")
-    density = kw.pop("relative_density", 1.0)
     cell = tc.Supercell.from_atoms(
         atoms,
         cell_dim_angstroms=cell_dim_angstroms,
         r_max=r_max,
         r_step=r_step,
         phi_num_bins=phi_num_bins,
-        relative_density=density,
         rng_seed=42,
     )
     cell.generate(shell_target, **kw)
@@ -140,16 +131,12 @@ for idx, (name, cell) in enumerate(cells.items(), start=1):
 ## Using presets
 
 ```python
-preset = tc.Supercell.PRESETS["MRO"].copy()
-density = preset.pop("relative_density", 1.0)
-
 cell = tc.Supercell.from_atoms(
     atoms,
     (40, 40, 40),
-    relative_density=density,
     rng_seed=42,
 )
-cell.generate(shell_target, **preset)
+cell.generate(shell_target, **tc.Supercell.PRESETS["MRO"])
 cell.measure_g3()
 cell.plot_g3()
 ```

@@ -24,6 +24,9 @@ myst_enable_extensions = [
 templates_path = ["_templates"]
 exclude_patterns = ["_build", "_static/README.md"]
 
+# Static assets (trajectory viewers, etc.)
+html_static_path = ["_static"]
+
 # Theme
 html_theme = "furo"
 html_title = "tricor"
