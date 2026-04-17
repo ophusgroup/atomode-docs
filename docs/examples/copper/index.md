@@ -52,10 +52,10 @@ left blank use the default (`bond_weight=1.0`, `angle_weight=0.5`,
 | Regime | `num_steps` | `grain_size` (Å) | `bond_weight` | `angle_weight` | `repulsion_weight` | `hard_core_scale` | `nonbond_push_scale` | `displacement_sigma` |
 |---|---|---|---|---|---|---|---|---|
 | liquid                       | 30  | —    | 0.25 | 0.00 | 0.4 | 0.70 | 0.50 | —    |
-| amorphous                    | 80  | —    | 0.7  | 0.00 | 1.0 | 0.85 | 0.70 | —    |
-| short-range order            | 120 | —    | 1.1  | 0.12 | 1.3 | 0.90 | 0.85 | —    |
-| medium-range order           | 150 | —    | 1.7  | 0.22 | 1.8 | 0.93 | 0.95 | —    |
-| extended medium-range order  | 200 | —    | 2.8  | 0.40 | 2.2 | 0.95 | 1.00 | —    |
+| amorphous                    | 80  | —    | 0.35 | 0.00 | 0.8 | 0.78 | 0.58 | —    |
+| short-range order            | 150 | —    | 1.3  | 0.10 | 1.5 | 0.90 | 0.80 | —    |
+| medium-range order           | 200 | —    | 2.0  | 0.20 | 1.9 | 0.94 | 0.95 | —    |
+| extended medium-range order  | 250 | —    | 2.8  | 0.35 | 2.2 | 0.96 | 1.00 | —    |
 | nanocrystalline              | 150 | 18.0 | 2.4  | 0.35 | 2.0 | 0.95 | 0.90 | 0.02 |
 
 Angle springs are turned off in the liquid and amorphous regimes because
