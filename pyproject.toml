@@ -4,7 +4,8 @@ version = "0.1.0"
 description = "Documentation and pre-rendered figures for tricor"
 requires-python = ">=3.10"
 dependencies = [
-    "tricor",
+    # tricor is installed from GitHub by .readthedocs.yaml post_install so it
+    # is intentionally NOT listed here (it is not published on PyPI).
     "sphinx>=7,<7.3",
     "furo",
     "myst-nb>=1.1,<1.2",
