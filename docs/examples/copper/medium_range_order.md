@@ -37,7 +37,7 @@ Interactive 3D viewer of the shell-relaxation trajectory (650 atoms, 151
 frames). Drag to rotate, scroll to zoom. Controls below the canvas play,
 scrub, and change playback speed.
 
-<iframe src="../../_static/trajectories/cu_MRO.html"
+<iframe src="../../_static/trajectories/cu_mro.html"
         width="100%" height="600"
         style="border: 1px solid rgba(0,0,0,0.1); border-radius: 6px;"
         loading="lazy"></iframe>
@@ -50,7 +50,7 @@ reduced three-body density in units of the uniform random reference - white
 profile g(r); the shaded amber band marks the first-neighbour shell used as
 the root-bond integration window for the g3 slice.
 
-<iframe src="../../_static/g3/cu_MRO.html"
+<iframe src="../../_static/g3/cu_mro.html"
         width="100%" height="520"
         style="border: 1px solid rgba(0,0,0,0.1); border-radius: 6px;"
         loading="lazy"></iframe>
