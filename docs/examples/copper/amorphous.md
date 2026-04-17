@@ -23,19 +23,24 @@ cell = tc.Supercell.from_atoms(
 )
 cell.generate(
     shell_target,
-    num_steps=120,
+    num_steps=80,
     grain_size=None,
-    bond_weight=1.3,
-    angle_weight=0.10,
-    repulsion_weight=1.5,
-    hard_core_scale=0.9,
-    nonbond_push_scale=0.6,
+    bond_weight=0.9,
+    angle_weight=0.0,
+    repulsion_weight=1.0,
+    hard_core_scale=0.88,
+    nonbond_push_scale=0.55,
 )
 ```
 
+Angle springs are turned off so the angular distribution is shaped entirely
+by the competition between bond springs and repulsion. The result is a
+well-defined first neighbour shell with no medium-range crystallinity -
+characteristic of a metallic glass.
+
 ## Relaxation trajectory
 
-Interactive 3D viewer of the shell-relaxation trajectory (650 atoms, 121
+Interactive 3D viewer of the shell-relaxation trajectory (650 atoms, 81
 frames). Drag to rotate, scroll to zoom. Controls below the canvas play,
 scrub, and change playback speed.
 

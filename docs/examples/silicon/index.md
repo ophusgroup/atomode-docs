@@ -21,7 +21,7 @@ amorphous
 short_range_order
 medium_range_order
 extended_medium_range_order
-nanocrystalline_10
+nanocrystalline
 ```
 
 ## Overview

@@ -21,19 +21,23 @@ cell = tc.Supercell.from_atoms(
 )
 cell.generate(
     shell_target,
-    num_steps=100,
+    num_steps=30,
     grain_size=None,
-    bond_weight=0.4,
-    angle_weight=0.08,
-    repulsion_weight=0.5,
-    hard_core_scale=0.75,
-    nonbond_push_scale=0.7,
+    bond_weight=0.25,
+    angle_weight=0.0,
+    repulsion_weight=0.4,
+    hard_core_scale=0.7,
+    nonbond_push_scale=0.5,
 )
 ```
 
+Angle springs are turned off entirely. A short relaxation with weak bond
+springs and a soft hard core keeps the structure genuinely liquid-like;
+longer runs would drive it into a close-packed configuration.
+
 ## Relaxation trajectory
 
-Interactive 3D viewer of the shell-relaxation trajectory (650 atoms, 101
+Interactive 3D viewer of the shell-relaxation trajectory (650 atoms, 31
 frames). Drag to rotate, scroll to zoom. Controls below the canvas play,
 scrub, and change playback speed.
 

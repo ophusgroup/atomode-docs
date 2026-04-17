@@ -16,25 +16,23 @@ atoms = bulk("Cu", "fcc", a=3.615)
 
 ## Regimes covered
 
-Three regimes are currently documented. Small-grain short- and
-medium-range-order configurations for close-packed systems need additional
-overlap-removal tuning and are deferred.
-
 ```{toctree}
 :maxdepth: 1
 
 liquid
 amorphous
+short_range_order
+medium_range_order
 nanocrystalline
 ```
 
 ## Overview
 
-All three regimes at 40 × 40 × 40 Å, rotating in sync. Drag any panel to
+All five regimes at 40 × 40 × 40 Å, rotating in sync. Drag any panel to
 orbit manually. The tetrahedral bond filter used in the silicon overview
 is disabled here - copper's first shell spans many angles, so bonds are
-drawn whenever they fall inside the radial tolerance (any of the 12 FCC
-neighbour distances).
+drawn whenever they fall inside the radial tolerance (any of the twelve
+FCC neighbour distances).
 
 <iframe src="../../_static/overview/copper.html"
         width="100%" height="640"
@@ -49,11 +47,15 @@ left blank use the default (`bond_weight=1.0`, `angle_weight=0.5`,
 
 | Regime | `num_steps` | `grain_size` (Å) | `bond_weight` | `angle_weight` | `repulsion_weight` | `hard_core_scale` | `nonbond_push_scale` | `displacement_sigma` |
 |---|---|---|---|---|---|---|---|---|
-| liquid          | 100 | —    | 0.4 | 0.08 | 0.5 | 0.75 | 0.7 | —    |
-| amorphous       | 120 | —    | 1.3 | 0.10 | 1.5 | 0.9  | 0.6 | —    |
-| nanocrystalline | 150 | 14.0 | 2.2 | 0.30 | 2.0 | 0.95 | 0.8 | 0.02 |
+| liquid          | 30  | —    | 0.25 | 0.00 | 0.4 | 0.70 | 0.50 | —    |
+| amorphous       | 80  | —    | 0.9  | 0.00 | 1.0 | 0.88 | 0.55 | —    |
+| SRO             | 100 | —    | 0.4  | 0.08 | 0.5 | 0.75 | 0.70 | —    |
+| MRO             | 150 | —    | 1.6  | 0.15 | 1.8 | 0.92 | 0.65 | —    |
+| nanocrystalline | 150 | 14.0 | 2.2  | 0.30 | 2.0 | 0.95 | 0.80 | 0.02 |
 
-Angle weights are roughly an order of magnitude smaller than the silicon
-presets because the FCC first-shell angular distribution is multimodal -
-forcing all triplets toward a single target angle would fight the natural
-geometry.
+Angle springs are turned off in the liquid and amorphous regimes because
+the FCC first-shell angular distribution is multimodal (60°, 90°, 120°,
+180°) - a single-target angle spring would fight the natural geometry.
+SRO, MRO, and nanocrystalline turn the angle spring back on at
+progressively higher weight. All regimes are built without explicit
+Voronoi grain construction except nanocrystalline.
