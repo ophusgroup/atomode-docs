@@ -20,7 +20,7 @@ strontium_titanate/index
 | Copper (Cu) | FCC, *a* = 3.615 Å | 12 (close-packed) | Metallic close-packed; first-shell angles 60°, 90°, 120°, 180°. | Complete |
 | Silicon (Si) | Diamond cubic, *a* = 5.431 Å | 4 (tetrahedral, 109.5°) | Covalent reference; full 6-regime walkthrough. | Complete |
 | Carbon (C) | sp² / sp³ mixtures | 3 or 4 | Amorphous and glassy phases. | Planned |
-| Silicon dioxide (SiO₂) | α-quartz | Si: 4, O: 2 | Corner-sharing SiO₄ tetrahedra. | Planned |
+| Silicon dioxide (SiO₂) | β-cristobalite reference | Si: 4, O: 2 | Corner-sharing SiO₄ tetrahedra; tetrahedra rendered as translucent polyhedra. | Initial release |
 | Strontium titanate (SrTiO₃) | Cubic perovskite, *a* = 3.905 Å | Sr: 12, Ti: 6, O: 6 | Ternary oxide with distinct sublattices. | Planned |
 
 The silicon case walks through the six standard disorder regimes in the

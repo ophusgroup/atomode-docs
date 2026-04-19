@@ -2,6 +2,16 @@
 
 Silicon (diamond cubic, a = 5.431 A). 4-fold tetrahedral coordination with Si-Si-Si bond angle of 109.5 degrees. The reference case for the 7 disorder regimes.
 
+## Overview
+
+All six regimes at 40 × 40 × 40 Å, rotating in sync. Drag any panel to orbit
+manually.
+
+<iframe src="../../_static/overview/silicon.html"
+        width="100%" height="640"
+        style="border: 1px solid rgba(0,0,0,0.1); border-radius: 6px;"
+        loading="lazy"></iframe>
+
 ## Reference crystal
 
 ```python
@@ -23,16 +33,6 @@ medium_range_order
 extended_medium_range_order
 nanocrystalline
 ```
-
-## Overview
-
-All six regimes at 40 × 40 × 40 Å, rotating in sync. Drag any panel to orbit
-manually.
-
-<iframe src="../../_static/overview/silicon.html"
-        width="100%" height="640"
-        style="border: 1px solid rgba(0,0,0,0.1); border-radius: 6px;"
-        loading="lazy"></iframe>
 
 ## Preset summary
 

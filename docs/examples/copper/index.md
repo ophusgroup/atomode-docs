@@ -7,6 +7,19 @@ first-shell bond angles (60°, 90°, 120°, 180°). The built-in
 run here with material-specific parameters that keep the angle springs
 weak and rely on bond + repulsion springs to shape the local environment.
 
+## Overview
+
+All six regimes at 40 × 40 × 40 Å, rotating in sync. Drag any panel to
+orbit manually. The tetrahedral bond filter used in the silicon overview
+is disabled here - copper's first shell spans many angles, so bonds are
+drawn whenever they fall inside the radial tolerance (any of the twelve
+FCC neighbour distances).
+
+<iframe src="../../_static/overview/copper.html"
+        width="100%" height="640"
+        style="border: 1px solid rgba(0,0,0,0.1); border-radius: 6px;"
+        loading="lazy"></iframe>
+
 ## Reference crystal
 
 ```python
@@ -29,19 +42,6 @@ medium_range_order
 extended_medium_range_order
 nanocrystalline
 ```
-
-## Overview
-
-All six regimes at 40 × 40 × 40 Å, rotating in sync. Drag any panel to
-orbit manually. The tetrahedral bond filter used in the silicon overview
-is disabled here - copper's first shell spans many angles, so bonds are
-drawn whenever they fall inside the radial tolerance (any of the twelve
-FCC neighbour distances).
-
-<iframe src="../../_static/overview/copper.html"
-        width="100%" height="640"
-        style="border: 1px solid rgba(0,0,0,0.1); border-radius: 6px;"
-        loading="lazy"></iframe>
 
 ## Preset summary
 
