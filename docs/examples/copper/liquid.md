@@ -21,13 +21,13 @@ cell = tc.Supercell.from_atoms(
 )
 cell.generate(
     shell_target,
-    num_steps=30,
+    num_steps=50,
     grain_size=None,
-    bond_weight=0.05,
+    bond_weight=0.15,
     angle_weight=0.0,
-    repulsion_weight=0.2,
-    hard_core_scale=0.6,
-    nonbond_push_scale=0.3,
+    repulsion_weight=0.8,
+    hard_core_scale=0.85,
+    nonbond_push_scale=0.55,
 )
 ```
 

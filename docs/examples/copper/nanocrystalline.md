@@ -1,11 +1,10 @@
 # Nanocrystalline
 
-Copper in the nanocrystalline regime.  A 21 Å grain spans the
-20 × 20 × 20 Å supercell (`grain_size ≥ min(box_dim)` triggers the
-identity-rotation single-grain path) so every Cu sits at the centre of
-a full 12-vertex cuboctahedron.  At 40 × 40 × 40 Å (the overview
-panel) the same setting yields ~10 distinct rotated grains with sharp
-boundaries.
+Copper in the nanocrystalline regime. 18 Å Voronoi grains tile the
+20 × 20 × 20 Å box into 3 random-rotation FCC crystallites with
+sharp boundaries between them.  Most Cu atoms sit at the centre of a
+full 12-vertex cuboctahedron; boundary atoms carry the residual
+disorder.
 
 ## Parameters
 
@@ -24,11 +23,11 @@ cell = tc.Supercell.from_atoms(
 )
 cell.generate(
     shell_target,
-    num_steps=150,
-    grain_size=21.0,
+    num_steps=200,
+    grain_size=18.0,
     bond_weight=1.5,
-    angle_weight=0.2,
-    repulsion_weight=1.5,
+    angle_weight=0.0,
+    repulsion_weight=2.0,
     hard_core_scale=0.94,
     nonbond_push_scale=0.95,
     displacement_sigma=0.01,

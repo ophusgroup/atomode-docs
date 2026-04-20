@@ -1,9 +1,9 @@
 # Extended medium-range order
 
-Copper in the extended medium-range order regime. 14 Å Voronoi grains
-hold several complete cuboctahedral shells and visibly crystalline
-interiors; the grain boundaries still dominate long-range statistics,
-but second and third neighbour peaks in g(r) are clearly separated.
+Copper in the extended medium-range order regime. 12 Å Voronoi grains
+hold enough FCC coordination for second and third neighbour peaks in
+g(r) to stand out from the background; the random-rotation grain
+boundaries still dominate the visible structure.
 
 ## Parameters
 
@@ -22,14 +22,14 @@ cell = tc.Supercell.from_atoms(
 )
 cell.generate(
     shell_target,
-    num_steps=100,
-    grain_size=14.0,
-    bond_weight=1.5,
-    angle_weight=0.2,
-    repulsion_weight=1.5,
-    hard_core_scale=0.92,
-    nonbond_push_scale=0.9,
-    displacement_sigma=0.015,
+    num_steps=40,
+    grain_size=12.0,
+    bond_weight=0.4,
+    angle_weight=0.0,
+    repulsion_weight=0.6,
+    hard_core_scale=0.83,
+    nonbond_push_scale=0.7,
+    displacement_sigma=0.03,
 )
 ```
 
