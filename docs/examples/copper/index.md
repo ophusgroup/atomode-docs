@@ -59,7 +59,7 @@ left blank use the default (`bond_weight=1.0`, `angle_weight=0.5`,
 
 | Regime | `num_steps` | `grain_size` (Å) | `bond_weight` | `angle_weight` | `repulsion_weight` | `hard_core_scale` | `nonbond_push_scale` | `displacement_sigma` |
 |---|---|---|---|---|---|---|---|---|
-| liquid                       |  10 | —    | 0.05 | 0.00 | 0.3 | 0.75 | 0.30 | —    |
+| liquid                       |  40 | —    | 0.04 | 0.00 | 0.45 | 0.78 | 0.38 | —    |
 | amorphous                    |  30 | —    | 0.1  | 0.00 | 0.5 | 0.80 | 0.42 | —    |
 | short-range order            |  50 | —    | 0.15 | 0.00 | 0.6 | 0.81 | 0.45 | —    |
 | medium-range order           |  40 |  9.0 | 0.3  | 0.00 | 0.6 | 0.82 | 0.55 | 0.04 |
