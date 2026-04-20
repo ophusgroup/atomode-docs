@@ -16,10 +16,21 @@ cylinders by default:
 
 | Species | Polyhedron | Centre-vertex bond | Scale |
 |---|---|---|---|
-| Si / C | tetrahedron | 2.35 / 1.54 Å (self) | 0.5 (vertices at bond midpoints) |
+| Si / C (diamond) | tetrahedron | 2.35 / 1.54 Å (self) | 0.5 (vertices at bond midpoints) |
+| C (graphite, sp²) | triangle (3-sub-triangle fan, 120°) | 1.42 Å (self) | 0.5 |
 | Cu | cuboctahedron (FCC 12-coord) | 2.56 Å (self) | 0.5 |
 | SiO₂ | SiO₄ tetrahedron | 1.61 Å (Si → O) | 1.0 |
 | SrTiO₃ | TiO₆ octahedron | 1.96 Å (Ti → O) | 1.0 |
+
+For **blended materials** (sp²/sp³ carbon; SiO₂/Si₃N₄ mixes, …) pass
+`polyhedra_groups=[...]` to `export_overview_html` or
+`export_trajectory_html` — each entry carries its own `kind`
+(``triangles``, ``tetrahedra``, ``octahedra``, ``cuboctahedra``),
+colour, opacity, and an optional `virtual_species` filter that
+restricts detection to atoms flagged with that shell-target species
+index.  See [Carbon](../examples/carbon/index.md) for a worked
+example where green sp²-C triangle fans and navy sp³-C tetrahedra
+render in the same scene.
 
 Override with the ``polyhedra=`` kwarg:
 

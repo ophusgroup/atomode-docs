@@ -147,7 +147,7 @@ function drawProfile() {
     // Each curve gets its own slot of height perCurveMax; offsets
     // stack them bottom-to-top with a tiny gap so crests don't touch
     // the next series' trough.
-    offsetStep = perCurveMax * 0.35;
+    offsetStep = perCurveMax * 0.85;
     yMax = perCurveMax + offsetStep * (drawSpec.length - 1);
   } else {
     offsetStep = 0;

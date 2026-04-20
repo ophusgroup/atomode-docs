@@ -19,7 +19,7 @@ strontium_titanate/index
 |---|---|---|---|---|
 | Copper (Cu) | FCC, *a* = 3.615 Å | 12 (close-packed) | Metallic close-packed; first-shell angles 60°, 90°, 120°, 180°. | Complete |
 | Silicon (Si) | Diamond cubic, *a* = 5.431 Å | 4 (tetrahedral, 109.5°) | Covalent reference; full 6-regime walkthrough. | Complete |
-| Carbon (C) | sp² / sp³ mixtures | 3 or 4 | Amorphous and glassy phases. | Planned |
+| Carbon (C) | graphite + diamond blend | 3 (sp²) and/or 4 (sp³) | Grain-level sp²/sp³ mixing via composite shell target; green triangles + navy tetrahedra rendered simultaneously. | Complete |
 | Silicon dioxide (SiO₂) | α-quartz reference, *a* = 4.913 Å | Si: 4, O: 2 | Corner-sharing SiO₄ tetrahedra; tetrahedra rendered as translucent polyhedra. | Initial release |
 | Strontium titanate (SrTiO₃) | Cubic perovskite, *a* = 3.913 Å | Sr: 12, Ti: 6, O: 2 | Corner-sharing TiO₆ octahedra; octahedra rendered as translucent polyhedra. | Initial release |
 

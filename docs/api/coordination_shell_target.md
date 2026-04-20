@@ -10,6 +10,7 @@ drives the bond-length, angle, and repulsion springs in
 .. autoclass:: tricor.CoordinationShellTarget
    :members:
       from_atoms,
+      from_targets,
       with_cross_species_bonds_only,
       with_bonded_species_pairs
    :undoc-members:
@@ -36,3 +37,26 @@ st = st.with_cross_species_bonds_only()
 st = tc.CoordinationShellTarget.from_atoms(atoms, phi_num_bins=90)
 st = st.with_bonded_species_pairs([('Ti', 'O')])
 ```
+
+## Blending two reference crystals
+
+For materials with a controllable phase mix (sp²/sp³ carbon; SiO₂ /
+Si₃N₄ nitride-silica blends; etc.) extract one shell target per
+chemistry and combine them with `from_targets`:
+
+```python
+shell_sp2 = tc.CoordinationShellTarget.from_atoms(atoms_graphite, phi_num_bins=90)
+shell_sp3 = tc.CoordinationShellTarget.from_atoms(atoms_diamond,  phi_num_bins=90)
+shell_target = tc.CoordinationShellTarget.from_targets(
+    {"sp2": shell_sp2, "sp3": shell_sp3},
+)
+```
+
+The composite target holds **virtual species** (e.g. ``sp2_C`` at
+index 0, ``sp3_C`` at index 1) — both atomic number 6, but with
+distinct ``coordination_target`` rows (3 vs 4), ``pair_peak`` (1.42
+vs 1.54 Å), and ``angle_mode_deg`` (120° vs 109.5°).  Each atom's
+virtual species is assigned at grain-build time via
+``Supercell.generate(..., grain_sources=[...])`` (see
+[Carbon example](../examples/carbon/index.md)); the relaxer then
+pulls each atom toward the geometry of its source crystal.
