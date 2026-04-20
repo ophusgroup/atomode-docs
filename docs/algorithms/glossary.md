@@ -84,3 +84,32 @@
 
 **displacement_sigma**
 : Gaussian displacement applied to grain atoms before relaxation (Angstrom).
+
+## Composite shell targets
+
+**Composite shell target**
+: A single `CoordinationShellTarget` produced by
+  `CoordinationShellTarget.from_targets({key: target, ...})` that
+  stacks two or more per-chemistry targets into one object with
+  a widened species axis.  Used for phase blends (sp²/sp³ carbon,
+  potential SiO₂/Si₃N₄ mixes) where atoms share an atomic number
+  but want different local coordination.
+
+**Virtual species**
+: A species slot in a composite shell target.  Each virtual species
+  carries its own row of `coordination_target`, `pair_peak`,
+  `angle_mode_deg`, etc.  Multiple virtual species can share an
+  atomic number (e.g. sp²_C and sp³_C both have Z=6).
+
+**grain_sources**
+: The `generate(..., grain_sources=[{atoms, species_offset,
+  weight}, ...])` kwarg that assigns each Voronoi grain a reference
+  crystal by weight.  `species_offset` is the virtual-species index
+  each atom from that grain receives; the relaxer consults it via
+  `Supercell._atom_shell_species_index`.
+
+**atom_species_index**
+: Optional `generate(atom_species_index=...)` override — a (num_atoms,)
+  array of virtual-species indices.  Used when the caller wants to
+  assign virtual species directly rather than letting
+  `grain_sources` do it.

@@ -87,6 +87,43 @@ shell_target = (
 )
 ```
 
+## Phase blends (sp²/sp³ carbon, etc.)
+
+For materials with a controllable phase mix — sp² ↔ sp³ carbon; a
+polymer/ceramic boundary; etc. — extract one shell target per
+chemistry and combine them with `from_targets`:
+
+```python
+from ase.io import read
+atoms_g = read("docs/structures/C_graphite.cif")
+atoms_d = read("docs/structures/C_diamond.cif")
+
+shell_sp2 = tc.CoordinationShellTarget.from_atoms(atoms_g, phi_num_bins=90)
+shell_sp3 = tc.CoordinationShellTarget.from_atoms(atoms_d, phi_num_bins=90)
+shell_target = tc.CoordinationShellTarget.from_targets(
+    {"sp2": shell_sp2, "sp3": shell_sp3},
+)
+
+# 50/50 graphite/diamond grains, assigned at Voronoi-grain time
+cell.generate(
+    shell_target,
+    grain_size=10.0,
+    grain_sources=[
+        {"atoms": atoms_g, "species_offset": 0, "weight": 0.5},  # sp²
+        {"atoms": atoms_d, "species_offset": 1, "weight": 0.5},  # sp³
+    ],
+    num_steps=120, bond_weight=2.0, angle_weight=1.0,
+    repulsion_weight=2.0, hard_core_scale=0.9,
+    nonbond_push_scale=0.8, displacement_sigma=0.03,
+)
+```
+
+Each atom inherits a virtual-species index (0 = sp², 1 = sp³) from
+its grain, and the relaxer pulls each atom toward the coordination +
+angle target of its source chemistry.  See the
+[Carbon example](examples/carbon/index.md) for the full regime
+ladder.
+
 ## Regime-ladder comparison
 
 Building the same material across every preset and comparing the

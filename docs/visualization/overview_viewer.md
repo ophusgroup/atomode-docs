@@ -60,7 +60,40 @@ are rendered as text badges in the top-left corner of each panel.
 | `bond_length_tol` | 0.10 | Accept bonds within `±tol` of the ideal first-neighbour distance. |
 | `ideal_angle_deg` | 109.47 | Ideal angle for the tetrahedral check (Si-like). |
 | `bond_angle_tol_deg` | 18.0 | Maximum deviation of any pairwise angle from the ideal. |
+| `tetrahedra` / `octahedra` / `cuboctahedra` | `None` | Single-group polyhedra config (one kind per scene). Dict of detector keys (`center_symbol`, `vertex_symbol`, `bond_length`, `bond_length_tol`, `ideal_angle_deg`, `angle_tol_deg`, `scale`). |
+| `polyhedra_groups` | `None` | Multi-group polyhedra: list of dicts, each with a `kind` ∈ `{"triangles", "tetrahedra", "octahedra", "cuboctahedra"}` plus the single-group keys. Use for carbon-style sp²/sp³ blends where both triangles and tetrahedra must render in the same scene. |
 
 For a non-tetrahedral material, set `ideal_angle_deg` and
 `bond_angle_tol_deg` appropriately, or disable the angular filter by
 setting `bond_angle_tol_deg` to a large value (e.g. 90).
+
+(multi-group-polyhedra)=
+## Multi-group polyhedra (carbon sp²/sp³)
+
+For materials with a phase mix, pass a `polyhedra_groups` list so
+each group runs its own detector and renders with its own colour.
+Each group may also carry `virtual_species=N` to restrict detection
+to atoms flagged with that shell-target species index (see
+`Supercell.generate(..., grain_sources=...)`):
+
+```python
+tc.export_overview_html(
+    "carbon_overview.html",
+    cells,
+    polyhedra_groups=[
+        dict(kind="triangles",   center_symbol="C", vertex_symbol="C",
+             bond_length=1.42, ideal_angle_deg=120.0, angle_tol_deg=22.0,
+             virtual_species=0, scale=0.5,
+             color=(0.25, 0.65, 0.35), opacity=0.85),   # sp² green
+        dict(kind="tetrahedra",  center_symbol="C", vertex_symbol="C",
+             bond_length=1.54, ideal_angle_deg=109.47, angle_tol_deg=22.0,
+             virtual_species=1, scale=0.5,
+             color=(0.20, 0.30, 0.75), opacity=0.65),   # sp³ navy
+    ],
+)
+```
+
+The `triangles` kind emits a 4-vertex motif ``[centre, j, k, l]``
+rendered as three sub-triangles all anchored at the centre
+(``(i, j, k)``, ``(i, k, l)``, ``(i, l, j)``), so the mesh always
+touches the parent atom even at unequal bond lengths after relax.

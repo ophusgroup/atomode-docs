@@ -93,3 +93,19 @@ shell_target.with_bonded_species_pairs([('Ti', 'O')]) # keep listed pairs, zero 
 Both return a new `CoordinationShellTarget`; the original is unchanged.
 This is the mechanism that keeps SiO₂ / SrTiO₃ from developing a
 spurious Si-Si or Ti-Ti bond at the second-shell distance.
+
+### Composite shell target
+
+`CoordinationShellTarget.from_targets({key: target, ...})` stacks
+several per-chemistry targets into one with a widened species axis.
+Each input contributes its own virtual-species rows of
+`coordination_target`, `pair_peak`, `angle_mode_deg`, etc.
+Cross-target coordination defaults to zero (no bonds form across the
+virtual boundary), but cross-target repulsion is preserved so
+different phases don't overlap.  Used for the sp²/sp³ carbon ladder
+where the two virtual species (`sp2_C`, `sp3_C`) share atomic number
+6 but carry distinct coordination (3 vs 4) and angle targets (120°
+vs 109.5°).  Per-atom virtual species is assigned at grain-build
+time via `Supercell.generate(..., grain_sources=[...])`; see
+[Supercell generation](supercell_generation.md) for the grain
+mechanism.

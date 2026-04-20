@@ -36,14 +36,28 @@ skips steps 1-6 (the random-position initial cell from
    translation; crop to atoms within $R_\text{grain}$.  The result is a
    single array of positions + species shared by every grain.
 
-5. **Per-grain rotation.** Crystalline grains get a random rotation
-   $Q \in SO(3)$ drawn via `scipy.spatial.transform.Rotation.random`.
-   A **single-box-grain special case** is detected when
+5. **Per-grain rotation + source choice.** Crystalline grains get a
+   random rotation $Q \in SO(3)$ drawn via
+   `scipy.spatial.transform.Rotation.random`.  A
+   **single-box-grain special case** is detected when
    $\sum \mathbb 1[\text{crystalline}] \le 1$ and
    $d_\text{grain}/2 \ge \tfrac{1}{2} \min L_\text{box}$: every grain
    gets the identity rotation and a *shared* random seed offset, so
    the resulting box is one coherent tile of the reference crystal
    (used e.g. for Si / SrTiO₃ nanocrystalline at 20 Å).
+
+   **Multi-source grain sampling.** When `generate(..., grain_sources=
+   [{"atoms": ..., "species_offset": k, "weight": w}, ...])` supplies
+   more than one reference crystal, each grain independently samples
+   a source by the listed weights.  A separate master atom block
+   (step 4) is tiled per source; the grain's atoms are cut from that
+   source's master block and tagged with the source's
+   `species_offset` as their virtual-species index.  This is the
+   mechanism behind the carbon sp²/sp³ ladder — graphite grains get
+   virtual species 0 (sp²), diamond grains get virtual species 1
+   (sp³), and the density target is a weight-averaged blend so the
+   denser phase (diamond) isn't trimmed to the sparse phase's
+   density at exact-count enforcement (step 7).
 
 6. **Cell filling.** For each grain $g$ with seed $s_g$ and Voronoi
    cell $C_g$:

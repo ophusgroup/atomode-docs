@@ -33,10 +33,10 @@ g3_static
 
 | Method | Output | Purpose |
 |---|---|---|
-| `cell.view_structure()` | Jupyter widget | 3D WebGL atom viewer.  Polyhedra (tets / octahedra / cuboctahedra) drawn by default for recognised materials, with live sliders for radial + angular tolerance; bonds optional; perspective / orthographic toggle. |
+| `cell.view_structure()` | Jupyter widget | 3D WebGL atom viewer.  Polyhedra (triangles / tetrahedra / octahedra / cuboctahedra) drawn by default for recognised materials, with live sliders for radial + angular tolerance; bonds optional; perspective / orthographic toggle. |
 | `cell.plot_structure(output=...)` | MP4 / GIF / PNG | Rotating movie or static still for publication figures. |
-| `cell.export_trajectory_html(path)` | HTML file | Play back the shell-relaxation trajectory in 3D, colour-coded by per-atom spring energy; supports polyhedra overlay. |
-| `tricor.export_overview_html(path, cells)` | HTML file | Multiple structures rendered side-by-side with synchronised rotation. |
+| `cell.export_trajectory_html(path)` | HTML file | Play back the shell-relaxation trajectory in 3D, colour-coded by per-atom spring energy; supports single- or **multi-group** polyhedra overlay (e.g. sp² triangles + sp³ tetrahedra in the same carbon cell). |
+| `tricor.export_overview_html(path, cells)` | HTML file | Multiple structures rendered side-by-side with synchronised rotation; same `polyhedra_groups=` support as the trajectory exporter. |
 | `cell.plot_shell_relax()` | matplotlib figure | Loss-history plot from the last `generate()` or `shell_relax()` call. |
 | `cell.plot_g2()` | Jupyter widget (iframe) | Single-cell g(r) viewer with species-pair dropdown + overlay-all-pairs mode. |
 | `cell.export_g2_html(path)` | HTML file | Standalone g(r) viewer — species-pair dropdown + overlay-all-pairs. |

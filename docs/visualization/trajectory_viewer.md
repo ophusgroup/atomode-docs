@@ -47,6 +47,9 @@ The trajectory is stored on `cell.shell_relax_history["trajectory"]`
 | `bond_radius` | 0.06 | Bond cylinder radius in Å. |
 | `background_color` | `"#f7f8f5"` | CSS colour for the viewer background. |
 | `title` | `""` | Optional text shown at the top of the viewer. |
+| `tetrahedra` / `octahedra` / `cuboctahedra` | `None` | Single-group polyhedra overlay (supersedes bonds). Detector dict with `center_symbol`, `vertex_symbol`, `bond_length`, `bond_length_tol`, `ideal_angle_deg`, `angle_tol_deg`, `scale`. |
+| `polyhedra_groups` | `None` | Multi-group polyhedra list (sp²/sp³ carbon blends etc.). Same entry shape as `export_overview_html`; each dict may carry a `virtual_species` filter keyed to `Supercell._atom_shell_species_index`. Suppresses bonds automatically. |
+| `show_bonds` | `None` | Auto-picks: `True` when no polyhedra are requested, `False` when the legacy single-group or `polyhedra_groups` is set. |
 
 ## Embedding in documentation
 

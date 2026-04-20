@@ -8,6 +8,14 @@ descriptions and rendered examples.
 
 ## Multi-cell overview
 
+Supports **multi-group polyhedra** via the `polyhedra_groups=` kwarg
+— each entry is a dict `{kind, center_symbol, vertex_symbol,
+bond_length, ..., virtual_species, color, opacity}` where `kind` is
+one of `"triangles"`, `"tetrahedra"`, `"octahedra"`,
+`"cuboctahedra"`.  Use for sp²/sp³ carbon blends where green
+triangle fans and navy tetrahedra render side-by-side; see
+the [Multi-Cell Overview page](../visualization/overview_viewer.md).
+
 ```{eval-rst}
 .. autofunction:: tricor.export_overview_html
 ```
