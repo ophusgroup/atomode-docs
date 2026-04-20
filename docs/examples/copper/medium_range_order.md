@@ -1,8 +1,9 @@
 # Medium-range order
 
-Copper in the medium-range order (MRO) regime. A longer relaxation with
-stronger bond springs and a stiffer hard core produces multiple visible
-maxima in g(r) while keeping the angular distribution broadly FCC-like.
+Copper in the medium-range order (MRO) regime. 10 Å Voronoi grains
+hold ~100 atoms each and carry multiple shells of FCC coordination;
+the random-rotation grain boundaries keep the longer-range order
+short of a full nanocrystal.
 
 ## Parameters
 
@@ -21,13 +22,14 @@ cell = tc.Supercell.from_atoms(
 )
 cell.generate(
     shell_target,
-    num_steps=200,
-    grain_size=None,
-    bond_weight=2.0,
-    angle_weight=0.20,
-    repulsion_weight=1.9,
-    hard_core_scale=0.94,
-    nonbond_push_scale=0.95,
+    num_steps=60,
+    grain_size=10.0,
+    bond_weight=1.0,
+    angle_weight=0.1,
+    repulsion_weight=1.2,
+    hard_core_scale=0.9,
+    nonbond_push_scale=0.8,
+    displacement_sigma=0.02,
 )
 ```
 

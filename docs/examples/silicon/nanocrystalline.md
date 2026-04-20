@@ -1,13 +1,11 @@
 # Nanocrystalline
 
-Silicon in the nanocrystalline regime: crystalline grains are seeded with
-an initial diameter of ~15 Å, their interiors are held close to the
-diamond-cubic reference, and the spring network relaxes only the grain
-boundaries. The relaxed grain size is typically a little smaller than the
-initial diameter, so the preset-level label (`nanocrystalline_10`) is best
-read as a nominal tag for the regime rather than an exact post-relaxation
-dimension. See the [preset summary](index.md#preset-summary) for the full
-parameter set.
+Silicon in the nanocrystalline regime: a single ~20 Å grain spans the
+20 × 20 × 20 Å supercell (`grain_size ≥ min(box_dim)` triggers the
+identity-rotation single-grain path), so the cell reads as a coherent
+diamond-cubic tile. With the bigger grain + stronger springs compared to
+``MRO_more``, this panel is the most ordered of the six - sharper first
+and second g(r) peaks and the clearest tetrahedral g3 signature.
 
 ## Parameters
 
@@ -24,7 +22,7 @@ cell = tc.Supercell.from_atoms(
     r_max=10, r_step=0.1, phi_num_bins=90,
     rng_seed=42,
 )
-cell.generate(shell_target, **tc.Supercell.PRESETS["nanocrystalline_10"])
+cell.generate(shell_target, **tc.Supercell.PRESETS["nanocrystalline_20"])
 ```
 
 ## Relaxation trajectory

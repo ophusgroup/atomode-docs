@@ -1,11 +1,11 @@
 # Nanocrystalline
 
-Copper in the nanocrystalline regime. Voronoi grains ~14 Å in initial
-diameter are seeded across the box and filled with rotated copies of the
-FCC reference cell; the spring network then relaxes the grain boundaries
-while the crystalline interiors stay pinned. The resulting structure has
-sharp crystalline domains separated by ~1 Å-wide amorphous boundary
-layers.
+Copper in the nanocrystalline regime.  A 21 Å grain spans the
+20 × 20 × 20 Å supercell (`grain_size ≥ min(box_dim)` triggers the
+identity-rotation single-grain path) so every Cu sits at the centre of
+a full 12-vertex cuboctahedron.  At 40 × 40 × 40 Å (the overview
+panel) the same setting yields ~10 distinct rotated grains with sharp
+boundaries.
 
 ## Parameters
 
@@ -25,13 +25,13 @@ cell = tc.Supercell.from_atoms(
 cell.generate(
     shell_target,
     num_steps=150,
-    grain_size=18.0,
-    bond_weight=2.4,
-    angle_weight=0.35,
-    repulsion_weight=2.0,
-    hard_core_scale=0.95,
-    nonbond_push_scale=0.9,
-    displacement_sigma=0.02,
+    grain_size=21.0,
+    bond_weight=1.5,
+    angle_weight=0.2,
+    repulsion_weight=1.5,
+    hard_core_scale=0.94,
+    nonbond_push_scale=0.95,
+    displacement_sigma=0.01,
 )
 ```
 

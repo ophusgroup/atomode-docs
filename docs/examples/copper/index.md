@@ -51,12 +51,12 @@ left blank use the default (`bond_weight=1.0`, `angle_weight=0.5`,
 
 | Regime | `num_steps` | `grain_size` (Å) | `bond_weight` | `angle_weight` | `repulsion_weight` | `hard_core_scale` | `nonbond_push_scale` | `displacement_sigma` |
 |---|---|---|---|---|---|---|---|---|
-| liquid                       | 30  | —    | 0.25 | 0.00 | 0.4 | 0.70 | 0.50 | —    |
-| amorphous                    | 80  | —    | 0.35 | 0.00 | 0.8 | 0.78 | 0.58 | —    |
-| short-range order            | 150 | —    | 1.3  | 0.10 | 1.5 | 0.90 | 0.80 | —    |
-| medium-range order           | 200 | —    | 2.0  | 0.20 | 1.9 | 0.94 | 0.95 | —    |
-| extended medium-range order  | 250 | —    | 2.8  | 0.35 | 2.2 | 0.96 | 1.00 | —    |
-| nanocrystalline              | 150 | 18.0 | 2.4  | 0.35 | 2.0 | 0.95 | 0.90 | 0.02 |
+| liquid                       | 30  | —    | 0.05 | 0.00 | 0.2 | 0.60 | 0.30 | —     |
+| amorphous                    | 30  | 5.0  | 0.3  | 0.00 | 0.5 | 0.80 | 0.50 | 0.05  |
+| short-range order            | 40  | 8.0  | 0.5  | 0.05 | 0.7 | 0.85 | 0.60 | 0.03  |
+| medium-range order           | 60  | 10.0 | 1.0  | 0.10 | 1.2 | 0.90 | 0.80 | 0.02  |
+| extended medium-range order  | 100 | 14.0 | 1.5  | 0.20 | 1.5 | 0.92 | 0.90 | 0.015 |
+| nanocrystalline              | 150 | 21.0 | 1.5  | 0.20 | 1.5 | 0.94 | 0.95 | 0.01  |
 
 Angle springs are turned off in the liquid and amorphous regimes because
 the FCC first-shell angular distribution is multimodal (60°, 90°, 120°,

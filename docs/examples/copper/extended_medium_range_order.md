@@ -1,9 +1,9 @@
 # Extended medium-range order
 
-Copper in the extended medium-range order regime. A long relaxation with
-stronger bond and repulsion springs sharpens the correlations out to
-further distances in g(r) without introducing explicit crystalline grains,
-approaching the nanocrystalline regime from the disordered side.
+Copper in the extended medium-range order regime. 14 Å Voronoi grains
+hold several complete cuboctahedral shells and visibly crystalline
+interiors; the grain boundaries still dominate long-range statistics,
+but second and third neighbour peaks in g(r) are clearly separated.
 
 ## Parameters
 
@@ -22,13 +22,14 @@ cell = tc.Supercell.from_atoms(
 )
 cell.generate(
     shell_target,
-    num_steps=250,
-    grain_size=None,
-    bond_weight=2.8,
-    angle_weight=0.35,
-    repulsion_weight=2.2,
-    hard_core_scale=0.96,
-    nonbond_push_scale=1.0,
+    num_steps=100,
+    grain_size=14.0,
+    bond_weight=1.5,
+    angle_weight=0.2,
+    repulsion_weight=1.5,
+    hard_core_scale=0.92,
+    nonbond_push_scale=0.9,
+    displacement_sigma=0.015,
 )
 ```
 

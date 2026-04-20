@@ -1,10 +1,10 @@
 # Amorphous
 
-Copper in the amorphous regime: no grains, but stronger bond springs and a
-stiffer hard core produce a well-defined first-neighbour shell with
-persistent medium-range correlations. Angle springs stay weak, so the
-angular distribution settles into the broad multimodal shape typical of a
-metallic glass.
+Copper in the amorphous regime: a 5 Å Voronoi grain seeder gives a
+loose frame for local FCC-like coordination, then a short shell
+relaxation with weak bond springs keeps the long-range order absent.
+Angle springs stay off so the angular distribution settles into the
+broad multimodal shape typical of a metallic glass.
 
 ## Parameters
 
@@ -23,13 +23,14 @@ cell = tc.Supercell.from_atoms(
 )
 cell.generate(
     shell_target,
-    num_steps=80,
-    grain_size=None,
-    bond_weight=0.35,
+    num_steps=30,
+    grain_size=5.0,
+    bond_weight=0.3,
     angle_weight=0.0,
-    repulsion_weight=0.8,
-    hard_core_scale=0.78,
-    nonbond_push_scale=0.58,
+    repulsion_weight=0.5,
+    hard_core_scale=0.8,
+    nonbond_push_scale=0.5,
+    displacement_sigma=0.05,
 )
 ```
 
