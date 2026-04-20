@@ -8,11 +8,19 @@ Starting from a measured crystalline g3:
 
 1. **Reduce.** Divide out the ideal density factor to obtain the reduced distribution $\tilde{g}_3$, which approaches 1.0 in the random limit.
 
-2. **Blur in $\phi$.** Gaussian convolution along the angular axis with reflected boundaries at $\phi = 0$ and $\phi = \pi$. The blur sigma grows linearly with radius:
+2. **Blur in $\phi$.** Gaussian convolution along the angular axis with
+   reflected boundaries at $\phi = 0$ and $\phi = \pi$.  The blur
+   $\sigma$ grows linearly with radius:
 
-$$\sigma_\phi(r) = \frac{\sigma_{\phi,\text{ref}}}{r_\text{ref}} \cdot r$$
+$$\sigma_\phi(r) = \frac{\phi_{\sigma,\text{deg}}}{r_{\sigma\text{\_at}}} \cdot r$$
 
-3. **Blur in $r$.** 2D Gaussian kernel applied to both radial axes ($r_{01}$ and $r_{02}$) via einsum. The blur sigma also scales with radius.
+   If `r_sigma_at` is omitted, `phi_sigma_deg` is interpreted as the
+   slope directly ($\sigma_\phi(r) = \phi_{\sigma,\text{deg}} \, r$).
+
+3. **Blur in $r$.** 1D Gaussian kernel applied sequentially along
+   $r_{01}$ then $r_{02}$ (a separable 2D blur).  The radial $\sigma$
+   scales with $r_{01}$ and $r_{02}$ respectively using the same
+   `r_sigma / r_sigma_at` relation.
 
 4. **Blend toward random.** Smooth Hermite cubic interpolation between the blurred crystalline distribution and the random limit:
 

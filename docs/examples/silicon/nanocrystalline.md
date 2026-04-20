@@ -22,7 +22,7 @@ cell = tc.Supercell.from_atoms(
     r_max=10, r_step=0.1, phi_num_bins=90,
     rng_seed=42,
 )
-cell.generate(shell_target, **tc.Supercell.PRESETS["nanocrystalline_20"])
+cell.generate(shell_target, **tc.Supercell.PRESETS["nanocrystalline"])
 ```
 
 ## Relaxation trajectory

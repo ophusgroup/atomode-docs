@@ -25,6 +25,6 @@ strontium_titanate/index
 
 The silicon case walks through the six standard disorder regimes in the
 `Supercell.PRESETS` dictionary (liquid, amorphous, SRO, MRO, MRO_more,
-nanocrystalline_20). `nanocrystalline_20` uses a 20 Å grain so a single
-tile spans the 20 × 20 × 20 Å cell with identity rotation, giving the
-cleanest diamond-cubic panel of the six.
+nanocrystalline).  `nanocrystalline` uses a 20 Å grain so a single tile
+spans the 20 × 20 × 20 Å cell with identity rotation, giving the cleanest
+diamond-cubic panel of the six.

@@ -78,14 +78,7 @@ cases = [
         nonbond_push_scale=0.9,
         displacement_sigma=0.04,
     )),
-    ("nanocrystalline_10", dict(
-        num_steps=200,
-        grain_size=15.0,
-        bond_weight=2.8,
-        angle_weight=1.3,
-        displacement_sigma=0.02,
-    )),
-    ("nanocrystalline_20", dict(
+    ("nanocrystalline", dict(
         num_steps=150,
         grain_size=20.0,
         bond_weight=3.0,
@@ -145,33 +138,3 @@ cell.measure_g3()
 cell.plot_g3()
 ```
 
-## SiC binary example
-
-The presets above are tuned for monatomic silicon, but the same workflow
-applies unchanged to binary and higher-species systems. Below is an MRO
-supercell of zincblende silicon carbide:
-
-```python
-from ase.build import bulk
-
-atoms_sic = bulk("SiC", "zincblende", a=4.36)
-shell_target_sic = tc.CoordinationShellTarget.from_atoms(
-    atoms_sic,
-    phi_num_bins=90,
-)
-
-cell_sic = tc.Supercell.from_atoms(
-    atoms_sic,
-    cell_dim_angstroms=(30, 30, 30),
-    r_max=10,
-    r_step=0.2,
-    phi_num_bins=90,
-    rng_seed=42,
-)
-cell_sic.generate(shell_target_sic, **tc.Supercell.PRESETS["MRO"])
-cell_sic.measure_g3()
-cell_sic.plot_g3()
-```
-
-The per-species-pair coordination targets (e.g. Si-C = 4, Si-Si = 0 in
-zincblende) are handled automatically by `CoordinationShellTarget`.

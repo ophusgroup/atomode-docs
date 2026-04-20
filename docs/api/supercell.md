@@ -17,7 +17,9 @@ spring-network relaxation, and provides visualisation and export helpers.
       view_structure,
       plot_structure,
       export_trajectory_html,
-      export_g3_html
+      export_g3_html,
+      export_g2_html,
+      plot_g2
    :inherited-members:
    :undoc-members:
 ```

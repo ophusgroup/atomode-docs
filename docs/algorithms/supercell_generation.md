@@ -1,84 +1,187 @@
-# Supercell Generation
+# Supercell generation
 
-Disordered supercells are built in two stages: grain construction to set the initial atom positions, followed by spring-network relaxation to refine the local geometry.
+Disordered supercells are built in two stages: **Voronoi-grain
+construction** sets the initial atom positions, and **spring-network
+relaxation** refines the local geometry against first-shell targets.
+The whole flow lives in `src/tricor/_grain.py` + `_shell_relax.py`.
 
 ## Voronoi grain construction
 
-When `grain_size` is specified, the periodic box is filled with crystalline grains:
+`Supercell.generate(..., grain_size=d)` forwards to
+`_build_grain_atoms`, which executes the steps below.  `grain_size=None`
+skips steps 1-6 (the random-position initial cell from
+`_build_random_atoms` is used directly).
 
-1. **Seed placement.** $N_\text{seeds}$ random points are placed in the box, where
+1. **Seed placement.** Drop $N_\text{seeds}$ random points in the
+   orthogonal supercell box at
 
-$$N_\text{seeds} = \left\lceil \frac{V_\text{box}}{V_\text{grain}} \right\rceil, \quad V_\text{grain} = \frac{4}{3}\pi \left(\frac{d_\text{grain}}{2}\right)^3$$
+   $$N_\text{seeds} = \left\lceil \frac{V_\text{box}}{V_\text{grain}} \right\rceil,
+     \quad V_\text{grain} = \tfrac{4}{3}\pi \left(\tfrac{d_\text{grain}}{2}\right)^3.$$
 
-2. **Cell assignment.** $\lfloor f_\text{cryst} \cdot N_\text{seeds} \rfloor$ seeds are randomly marked as crystalline; the rest as amorphous.
+2. **Periodic Voronoi tessellation.** Replicate the seeds into a 3×3×3
+   array of periodic images, call `scipy.spatial.Voronoi`, and keep
+   the finite central cell for each original seed.  Each cell is
+   stored as a convex polyhedron: `ConvexHull` of its vertices,
+   together with the hull's half-space inequalities `A x + b ≤ 0`.
 
-3. **Crystal tiling.** The reference unit cell is tiled to fill the supercell box. Each atom is assigned to its nearest Voronoi seed (minimum-image PBC distance).
+3. **Grain radius.** The radius of the smallest sphere around the
+   origin (in seed-local coordinates) that encloses every Voronoi cell:
 
-4. **Per-grain rotation.** Atoms in each crystalline cell are rotated around their seed centre by a random rotation $Q \in SO(3)$ (generated via QR decomposition of a random Gaussian matrix).
+   $$R_\text{grain} = \max_{\text{seed } s, \text{ vertex } v \in \text{cell}(s)} \lVert v - s \rVert.$$
 
-5. **Amorphous fill.** Atoms in amorphous Voronoi cells are replaced with random positions at the target density.
+4. **Master atom block.** Tile the reference basis through all
+   integer lattice vectors $i\mathbf a + j\mathbf b + k\mathbf c$ with
+   $|i|,|j|,|k| \le \lceil R_\text{grain} / \lambda_\text{min} \rceil + 1$,
+   where $\lambda_\text{min}$ is the shortest non-zero Bravais
+   translation; crop to atoms within $R_\text{grain}$.  The result is a
+   single array of positions + species shared by every grain.
 
-6. **Overlap removal.** Atoms closer than `pair_inner` are removed.
+5. **Per-grain rotation.** Crystalline grains get a random rotation
+   $Q \in SO(3)$ drawn via `scipy.spatial.transform.Rotation.random`.
+   A **single-box-grain special case** is detected when
+   $\sum \mathbb 1[\text{crystalline}] \le 1$ and
+   $d_\text{grain}/2 \ge \tfrac{1}{2} \min L_\text{box}$: every grain
+   gets the identity rotation and a *shared* random seed offset, so
+   the resulting box is one coherent tile of the reference crystal
+   (used e.g. for Si / SrTiO₃ nanocrystalline at 20 Å).
 
-7. **Stoichiometry correction.** Excess atoms are trimmed (preferring to remove grain atoms over fill atoms) to match the target composition.
+6. **Cell filling.** For each grain $g$ with seed $s_g$ and Voronoi
+   cell $C_g$:
 
-### Grain size clamping and inflation
+   - Crystalline grain: keep master-block atoms whose seed-local
+     position lies inside the convex hull of $C_g$ (exact face-test
+     $A x + b \le \varepsilon$), then translate by $s_g$ and wrap.
+   - Amorphous grain: sample $\mathrm{round}(\rho_\text{ref} \cdot V_g)$
+     points uniformly inside $C_g$ (tetrahedra decomposition +
+     Dirichlet sampling), assign species from the reference
+     composition.
 
-Small grain sizes are clamped to a minimum of $3 \times r_\text{peak}$ to ensure at least one complete coordination shell. The construction grain size is then inflated:
+7. **Overlap removal + exact-count enforcement.**
 
-$$d_\text{construction} = \max(d_\text{user}, 3 r_\text{peak}) + 2 \times 0.75 \, r_\text{peak}$$
+   - Tight duplicate cutoff
+     $d_\text{dup} = \max(0.5, 0.7 \, r_\text{hard-min})$ for
+     crystalline builds, $0.9 \, r_\text{hard-min}$ otherwise.
+     Pairs within that radius collapse to one atom (species of the
+     surviving atom chosen to favour whichever species is most
+     *under* its stoichiometric target).
+   - Target per-species counts
+     $N_\text{target}(z) = \rho_\text{ref}(z) \cdot V_\text{box} \cdot f_\text{rel}$
+     computed via formula-unit rounding (so Si : O stays exactly 1 : 2
+     for SiO₂, Sr : Ti : O exactly 1 : 1 : 3 for SrTiO₃).  Surplus
+     atoms are randomly dropped; shortfalls are random-placed with a
+     rejection filter at $d_\text{pad} = 0.8 \, r_\text{hard-min}$.
+     The single-box-grain path skips this step to preserve the
+     coherent FCC tile.
 
-to compensate for boundary disorder, which erodes the crystalline core by approximately $r_\text{peak}$ on each side.
+8. **Close-pair push.** A few iterations of pairwise geometric
+   repulsion move any surviving pair below $d_\text{push}$ outward
+   along the pair axis to exactly $d_\text{push}$; positions are
+   re-wrapped after each iteration.  Cutoff defaults to the build-
+   specific $d_\text{dup}$ for crystalline grains and to the full
+   hard-min for amorphous / liquid paths.
+
+9. **Optional thermal displacement.** Add iid Gaussian jitter
+   $\mathcal N(0, \sigma^2)$ per coordinate and re-wrap.
 
 ## Shell relaxation
 
-The spring-network relaxation simultaneously moves all atoms to match first-shell targets. Three force terms act on each atom.
+The spring-network relaxation simultaneously moves all atoms to match
+first-shell targets.  Three force terms contribute at each step; the
+per-atom *spring energy* is accumulated into `atom_cost` for the
+trajectory viewer's colour scale.
 
 ### Bond springs
 
-For each bonded pair $(i, j)$ with target distance $r_\text{target}$:
+For each bonded pair $(i, j)$ with target distance $r_\text{target}$
+(the `shell_target.pair_peak[z_i, z_j]` entry):
 
-$$\mathbf{F}_{ij}^\text{bond} = w_\text{bond} \cdot (r_{ij} - r_\text{target}) \cdot \hat{\mathbf{r}}_{ij}$$
+$$\mathbf F_{ij}^\text{bond}
+  = k_\text{bond} \, (r_{ij} - r_\text{target}) \, \hat{\mathbf r}_{ij}
+  \qquad
+  U_{ij}^\text{bond}
+  = \tfrac{1}{2} k_\text{bond} \, (r_{ij} - r_\text{target})^2.$$
 
 ### Angle springs
 
-For each bonded triplet $(a, \text{center}, b)$ with target angle $\phi_\text{target}$:
+For each bonded triplet $(a, c, b)$ centred on atom $c$ with target
+angle $\phi_\text{target}$ (the `shell_target.angle_mode_deg` entry
+for the triplet's species):
 
-$$\mathbf{F}_a^\text{angle} = \frac{w_\text{angle} \cdot (\phi - \phi_\text{target})}{r_a} \cdot \mathbf{e}_{\perp,a}$$
+$$\mathbf F_a^\text{angle}
+  = \frac{k_\text{angle} \, (\phi - \phi_\text{target})}{r_a}
+      \, \mathbf e_{\perp,a},
+  \quad
+  \mathbf e_{\perp,a}
+  = \frac{\hat{\mathbf r}_b - \cos\phi \, \hat{\mathbf r}_a}{\sin\phi}$$
 
-where $\mathbf{e}_{\perp,a}$ is the component of $\hat{\mathbf{r}}_b$ perpendicular to $\hat{\mathbf{r}}_a$ in the plane of the triplet.
+(symmetric expression for $\mathbf F_b$; $\mathbf F_c = -(\mathbf F_a + \mathbf F_b)$).
 
 ### Repulsion
 
-Two repulsive terms prevent overlaps and create a clean shell gap:
+Two repulsive terms prevent overlaps and create a clean shell gap.
+Define $u = r_\text{wall} / r$ for each pair and let $h = u - 1$.
 
-**Hard core** repulsion acts on any pair closer than `pair_inner`:
+**Hard core** (acts on all pairs with $u > 1$; wall at
+$r_\text{wall} = r_\text{hard-min}$ scaled by `hard_core_scale`):
 
-$$F^\text{hard} = 4 w_\text{rep} \cdot \left(\frac{r_\text{hard}}{r} - 1\right) \cdot \left(1 + \frac{r_\text{hard}}{r} - 1\right)$$
+$$F^\text{hard} = 4 \, k_\text{rep} \, (h + h^2)$$
 
-**Non-bonded clearance** acts on non-bonded pairs closer than $1.5 \times r_\text{peak}$:
+**Non-bonded clearance** (acts on non-bonded pairs with $u > 1$; wall at
+$r_\text{wall} = 1.5 \, r_\text{peak}$ scaled by `nonbond_push_scale`):
 
-$$F^\text{push} = w_\text{rep} \cdot \left(\frac{r_\text{push}}{r} - 1\right) \cdot \left(1 + \frac{r_\text{push}}{r} - 1\right)$$
+$$F^\text{push} = k_\text{rep} \, (h + h^2)$$
+
+Both forces are directed along the pair axis.
 
 ### Bond topology
 
-The bond graph is rebuilt periodically using a greedy algorithm:
+The bond graph is rebuilt every `neighbor_update_interval` steps
+(default 10) using a greedy algorithm:
 
-1. Sort all neighbour pairs by distance (nearest first).
-2. Accept a bond $(i, j)$ only if:
-   - Neither atom has reached its coordination target $K$
-   - Neither atom has exceeded its **per-species-pair** coordination target $K_{ij}$
-   - The new bond makes angles $\ge 60°$ with all existing bonds at both endpoints
-3. Second pass: fill remaining under-coordinated atoms without the angle constraint.
+1. Sort all neighbour pairs within $1.5 \, r_\text{peak}$ by distance.
+2. Accept a candidate bond $(i, j)$ only if:
+   - Neither atom has reached its total coordination target $K_i$ or $K_j$,
+   - Neither atom has exceeded the per-species-pair target
+     $K_{ij}$ set by `shell_target.coordination_target`,
+   - The new bond makes $\ge 60°$ with every existing bond at both
+     endpoints (prevents near-colinear bond pairs for covalent
+     networks).
+3. Species-aware bond restrictions via
+   {meth}`CoordinationShellTarget.with_cross_species_bonds_only` or
+   {meth}`CoordinationShellTarget.with_bonded_species_pairs` zero the
+   corresponding entries of $K_{ij}$, so those pairs cannot be bonded
+   even if they pass the distance check (essential for SiO₂ / SrTiO₃ —
+   the second-shell Si-Si / Ti-Ti peak is close enough to pass a
+   naive distance test but is not a chemical bond).
 
 ### Integration
 
-FIRE-inspired dynamics with momentum:
+FIRE-like velocity-Verlet with fixed momentum coefficient and step
+decay:
 
-$$\mathbf{v}_{n+1} = \begin{cases} 0.8 \, \mathbf{v}_n + \Delta t \, \mathbf{F}_n & \text{if } \mathbf{v}_n \cdot \mathbf{F}_n > 0 \\ 0 & \text{otherwise} \end{cases}$$
+$$\mathbf v_{n+1} = \begin{cases}
+0.8 \, \mathbf v_n + \Delta t \, \mathbf F_n & \text{if } \mathbf v_n \cdot \mathbf F_n > 0 \\
+\mathbf 0 & \text{otherwise}
+\end{cases}$$
 
-Positions are updated and wrapped into the periodic box via fractional coordinates. The step size decays multiplicatively each iteration.
+Positions are updated, then wrapped via fractional coordinates.  The
+step size decays multiplicatively each iteration
+($\Delta t \leftarrow \Delta t \cdot 0.995$ by default).  Per-atom
+forces are clipped in magnitude at `max_force_clip` before
+integration.
 
-### Grain-aware freezing
+### Per-atom cost (spring energy)
 
-Atoms deep inside crystalline grains are identified by their **boundary depth**: half the gap between the distance to the nearest foreign seed and the distance to the atom's own seed. Atoms with boundary depth exceeding $0.5 \times r_\text{peak}$ are classified as **interior** and have their forces and velocities zeroed, so they remain at their crystalline positions throughout relaxation.
+The `atom_cost` accumulated into the trajectory's per-frame colour
+map is the actual harmonic spring energy:
+
+$$U_i^\text{cost}
+  = \tfrac{1}{2} k_\text{bond} \sum_{j \in \mathcal N(i)} (r_{ij} - r_\text{target})^2
+  + \tfrac{1}{6} k_\text{angle} \sum_{\text{triplets } (i, c, b)} (\phi - \phi_\text{target})^2
+  + (\text{repulsion contributions}).$$
+
+The viewer's global colour scale uses the 99th percentile of
+`atom_cost` in the **last quarter of frames** (steady state), not
+across the whole trajectory — early frames of liquid-path runs can
+have per-atom costs two orders of magnitude larger than the relaxed
+state and would otherwise saturate the scale.

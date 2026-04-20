@@ -1,6 +1,6 @@
 # Silicon
 
-Silicon (diamond cubic, a = 5.431 A). 4-fold tetrahedral coordination with Si-Si-Si bond angle of 109.5 degrees. The reference case for the 7 disorder regimes.
+Silicon (diamond cubic, a = 5.431 A). 4-fold tetrahedral coordination with Si-Si-Si bond angle of 109.5 degrees. The reference case for the six disorder regimes.
 
 ## Overview
 
@@ -58,4 +58,4 @@ relaxation is typically slightly smaller.  Fields left blank use the default
 | `SRO`                 | 10.0 | 200 | 2.2 | 1.0 | 2.0 | 0.95 | 0.6 | 0.04 | —    |
 | `MRO`                 | 13.0 | 150 | 1.9 | 0.9 | 2.5 | 0.95 | 0.7 | 0.04 | —    |
 | `MRO_more`            | 18.0 | 150 | 2.0 | 1.0 | —   | 0.95 | 0.9 | 0.04 | —    |
-| `nanocrystalline_20`  | 20.0 | 150 | 3.0 | 1.5 | —   | —    | —   | 0.02 | —    |
+| `nanocrystalline`     | 20.0 | 150 | 3.0 | 1.5 | —   | —    | —   | 0.02 | —    |
