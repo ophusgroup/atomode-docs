@@ -12,6 +12,15 @@ manually.
         style="border: 1px solid rgba(0,0,0,0.1); border-radius: 6px;"
         loading="lazy"></iframe>
 
+g(r) per regime overlaid on a single axis - the dropdown below the
+plot switches species pair; the legend identifies each curve by the
+regime it was measured from:
+
+<iframe src="../../_static/g2_compare/silicon.html"
+        width="100%" height="480"
+        style="border: 1px solid rgba(0,0,0,0.1); border-radius: 6px;"
+        loading="lazy"></iframe>
+
 ## Reference crystal
 
 ```python

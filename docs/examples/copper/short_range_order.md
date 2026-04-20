@@ -1,10 +1,11 @@
 # Short-range order
 
-Copper in the short-range order (SRO) regime. 10 Å Voronoi grains
-seed small islands of FCC-like coordination, then a short shell
-relaxation tightens the first neighbour shell while the
-random-rotation grain boundaries keep longer-range correlations
-largely washed out.
+Copper in the short-range order (SRO) regime. Random starting
+positions (no grain seeding) relaxed with a slightly stiffer bond
+spring over more steps than the amorphous regime: a well-defined
+first neighbour shell at 2.55 Å forms, and a bump of second-shell
+density starts to stand out from the background, but no crystalline
+patches yet.
 
 ## Parameters
 
@@ -23,14 +24,13 @@ cell = tc.Supercell.from_atoms(
 )
 cell.generate(
     shell_target,
-    num_steps=30,
-    grain_size=10.0,
-    bond_weight=0.3,
+    num_steps=50,
+    grain_size=None,
+    bond_weight=0.15,
     angle_weight=0.0,
-    repulsion_weight=0.5,
-    hard_core_scale=0.8,
-    nonbond_push_scale=0.6,
-    displacement_sigma=0.04,
+    repulsion_weight=0.6,
+    hard_core_scale=0.81,
+    nonbond_push_scale=0.45,
 )
 ```
 

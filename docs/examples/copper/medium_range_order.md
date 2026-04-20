@@ -1,8 +1,9 @@
 # Medium-range order
 
-Copper in the medium-range order (MRO) regime. 11 Å Voronoi grains
-hold a couple of FCC coordination shells per grain; the random-
-rotation grain boundaries keep the longer-range order short of a
+Copper in the medium-range order (MRO) regime.  This is the first
+regime where Voronoi grain seeding is introduced: 9 Å grains hold a
+handful of well-coordinated Cu atoms each, and the random-rotation
+grain boundaries keep longer-range correlations well short of a
 full nanocrystal.
 
 ## Parameters
@@ -22,13 +23,13 @@ cell = tc.Supercell.from_atoms(
 )
 cell.generate(
     shell_target,
-    num_steps=30,
-    grain_size=11.0,
+    num_steps=40,
+    grain_size=9.0,
     bond_weight=0.3,
     angle_weight=0.0,
-    repulsion_weight=0.5,
-    hard_core_scale=0.8,
-    nonbond_push_scale=0.6,
+    repulsion_weight=0.6,
+    hard_core_scale=0.82,
+    nonbond_push_scale=0.55,
     displacement_sigma=0.04,
 )
 ```

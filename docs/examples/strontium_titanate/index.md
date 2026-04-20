@@ -18,6 +18,15 @@ sync. Drag any panel to orbit manually.
         style="border: 1px solid rgba(0,0,0,0.1); border-radius: 6px;"
         loading="lazy"></iframe>
 
+g(r) per regime overlaid on a single axis - the dropdown below the
+plot switches between the six species pairs (Sr-Sr, Sr-Ti, Sr-O,
+Ti-Ti, Ti-O, O-O):
+
+<iframe src="../../_static/g2_compare/strontium_titanate.html"
+        width="100%" height="480"
+        style="border: 1px solid rgba(0,0,0,0.1); border-radius: 6px;"
+        loading="lazy"></iframe>
+
 ## Reference crystal
 
 ```python

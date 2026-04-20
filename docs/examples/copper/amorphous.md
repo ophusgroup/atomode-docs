@@ -1,8 +1,10 @@
 # Amorphous
 
-Copper in the amorphous regime: 9 Å Voronoi grains seed fragments of
-FCC coordination in random orientations, then a short shell
-relaxation with weak bond springs keeps long-range order absent.
+Copper in the amorphous regime: random starting positions (no grain
+seeding) relaxed with weak bond + repulsion springs.  The soft
+repulsion opens up a first-neighbour shell around 2.55 Å without
+imposing any angular order, giving a broad pair distribution
+characteristic of a metallic glass.
 Angle springs stay off so the angular distribution settles into the
 broad multimodal shape typical of a metallic glass.
 
@@ -23,14 +25,13 @@ cell = tc.Supercell.from_atoms(
 )
 cell.generate(
     shell_target,
-    num_steps=20,
-    grain_size=9.0,
-    bond_weight=0.2,
+    num_steps=30,
+    grain_size=None,
+    bond_weight=0.1,
     angle_weight=0.0,
-    repulsion_weight=0.4,
-    hard_core_scale=0.78,
-    nonbond_push_scale=0.5,
-    displacement_sigma=0.05,
+    repulsion_weight=0.5,
+    hard_core_scale=0.80,
+    nonbond_push_scale=0.42,
 )
 ```
 

@@ -1,6 +1,6 @@
 # Extended medium-range order
 
-Copper in the extended medium-range order regime. 12 Å Voronoi grains
+Copper in the extended medium-range order regime. 11 Å Voronoi grains
 hold enough FCC coordination for second and third neighbour peaks in
 g(r) to stand out from the background; the random-rotation grain
 boundaries still dominate the visible structure.
@@ -23,13 +23,13 @@ cell = tc.Supercell.from_atoms(
 cell.generate(
     shell_target,
     num_steps=40,
-    grain_size=12.0,
-    bond_weight=0.4,
+    grain_size=11.0,
+    bond_weight=0.3,
     angle_weight=0.0,
     repulsion_weight=0.6,
-    hard_core_scale=0.83,
-    nonbond_push_scale=0.7,
-    displacement_sigma=0.03,
+    hard_core_scale=0.82,
+    nonbond_push_scale=0.55,
+    displacement_sigma=0.04,
 )
 ```
 
