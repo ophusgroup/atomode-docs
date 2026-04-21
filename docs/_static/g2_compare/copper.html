@@ -149,7 +149,7 @@ function drawProfile() {
     // perCurveMax itself (not ~0.35× it) to keep sharp first-shell
     // peaks — graphite's in-plane C-C peak reaches ~6× the bulk
     // average — from crashing into adjacent series.
-    offsetStep = perCurveMax * 0.85;
+    offsetStep = perCurveMax * 0.42;
     yMax = perCurveMax + offsetStep * (drawSpec.length - 1);
   } else {
     offsetStep = 0;
