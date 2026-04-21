@@ -36,21 +36,21 @@ atoms_ref = read('structures/SrTiO3.cif')   # 1 Sr + 1 Ti + 3 O
 
 ## Supercell
 
-Only **Ti–O** is a real chemical bond in SrTiO₃. The observed short
-Sr–O contact (2.77 Å) is ionic, and the Sr–Sr / Ti–Ti / Sr–Ti peaks at
-*a* = 3.91 Å are pure lattice separations — treating them as bonds
-would install spurious angle springs (`angle_mode_deg` for non-bond
-triplets is a geometric artefact of the reference sampling) that
-destroy the TiO₆ octahedra under relaxation. The new
-`with_bonded_species_pairs` helper restricts the bond graph to a list
-of explicit species pairs:
+SrTiO₃ has **two** real chemical bonds: short covalent **Ti–O**
+(1.96 Å, the TiO₆ octahedron) and longer ionic **Sr–O** (2.77 Å, the
+SrO₁₂ cuboctahedron).  The Sr–Sr / Ti–Ti / Sr–Ti peaks at *a* =
+3.91 Å are pure lattice separations through the bonded bridge atoms —
+treating them as bonds would install spurious angle springs that
+destroy the TiO₆ octahedra.  The shell target is built with **both**
+Ti–O and Sr–O enabled as bonds:
 
 ```python
 import tricor as tc
 
 shell_target = (
     tc.CoordinationShellTarget.from_atoms(atoms_ref, phi_num_bins=90)
-    .with_bonded_species_pairs([('Ti', 'O')])
+    .with_bonded_species_pairs([('Ti', 'O'), ('Sr', 'O')])
+    .with_angle_triplets([('Ti', 'O', 'O'), ('O', 'Ti', 'Ti')])
 )
 
 cell = tc.Supercell.from_atoms(
@@ -62,14 +62,19 @@ cell = tc.Supercell.from_atoms(
 cell.generate(shell_target, grain_size=None)  # liquid - see regime pages
 ```
 
-A second deliberate choice: **`angle_weight = 0`** for every SrTiO₃
-regime. The octahedral vertex geometry is *bimodal* (twelve 90° pairs
-plus three 180° antipodal pairs) while the shell-target extracts a
-single mode per triplet. A 91° spring would force the antipodal pairs
-away from 180°, tearing the octahedra apart. With bonds restricted to
-Ti–O and angles switched off, the gentle bond-and-repulsion spring
-network preserves whatever octahedra the Voronoi tiler lays down
-without collapsing atoms at grain boundaries.
+The second line — `with_angle_triplets(...)` — silences every
+Sr-centered angle spring (and every triplet involving Sr as a
+neighbour).  Reason: **SrO₁₂ is geometrically identical to the Cu-FCC
+cuboctahedron**, so the O-Sr-O distribution is quadri-modal at
+60°/90°/120°/180° and picking any one mode would strain the others.
+The Cu FCC regime ladder handles this the same way (`angle_weight =
+0`, all angles dropped); SrTiO₃ does it per-triplet so the TiO₆
+octahedron's single-mode 90° and the Ti-O-Ti 180° backbone angles
+can still be enforced.
+
+The Sr atoms are held in place by 12 Sr-O bond-distance springs
+each — not by an angle spring.  Combined with the repulsion wall
+this is sufficient to preserve the SrO₁₂ geometry under relaxation.
 
 ## Disorder regimes
 
@@ -88,16 +93,17 @@ nanocrystalline
 
 | Regime | `grain_size` (Å) | `num_steps` |
 |---|---|---|
-| liquid                      | —    | 50 |
-| amorphous                   | 8.0  | 50 |
-| short-range order           | 10.0 | 50 |
-| medium-range order          | 12.0 | 50 |
-| extended medium-range order | 15.0 | 50 |
-| nanocrystalline             | 18.0 | 50 |
+| liquid                      | —    | 80  |
+| amorphous                   | 8.0  | 100 |
+| short-range order           | 10.0 | 100 |
+| medium-range order          | 12.0 | 100 |
+| extended medium-range order | 15.0 | 100 |
+| nanocrystalline             | 18.0 | 100 |
 
 Shared ordered-regime weights
-(`bond_weight=0.2`, `angle_weight=0.0`, `repulsion_weight=0.3`,
+(`bond_weight=0.3`, `angle_weight=0.6`, `repulsion_weight=0.4`,
 `hard_core_scale=1.0`, `nonbond_push_scale=0.5`,
-`displacement_sigma=0.005`) keep the initial tiled geometry intact;
-the progression across panels comes from the Voronoi grain size, not
-from per-regime hyper-tuning.
+`displacement_sigma=0.005`) drive the Ti-centered 90° + Ti-O-Ti 180°
+angle springs while the Sr-centered cuboctahedron is held by its
+12 Sr-O bond-distance springs alone.  The progression across panels
+comes from the Voronoi grain size, not from per-regime hyper-tuning.

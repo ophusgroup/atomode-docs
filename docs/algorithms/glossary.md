@@ -51,6 +51,16 @@
 **angle_mode_deg**
 : Most probable bond angle for each triplet type in the reference crystal.
 
+**angle_enabled_mask**
+: Per-triplet bool array that controls whether `shell_relax` installs
+  an angle spring for that triplet type.  Bond-distance springs are
+  always installed (independent of this mask).  Used to silence
+  multi-modal cases (cuboctahedral SrO₁₂ in SrTiO₃, whose O-Sr-O
+  distribution is spread over 60°/90°/120°/180° so picking one mode
+  distorts the others).  Toggled via
+  {meth}`~tricor.CoordinationShellTarget.with_angle_triplets` /
+  {meth}`~tricor.CoordinationShellTarget.without_angle_triplets`.
+
 ## Grain construction
 
 **grain_size**

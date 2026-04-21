@@ -80,10 +80,13 @@ shell_target = (
     .with_cross_species_bonds_only()
 )
 
-# SrTiO3: only Ti-O is a real bond (Sr is an ionic spectator)
+# SrTiO3: both Ti-O and Sr-O are real bonds; silence the
+# multi-modal Sr-centered cuboctahedral angle springs so only the
+# single-mode Ti-centered 90° and Ti-O-Ti 180° remain.
 shell_target = (
     tc.CoordinationShellTarget.from_atoms(atoms_sto, phi_num_bins=90)
-    .with_bonded_species_pairs([("Ti", "O")])
+    .with_bonded_species_pairs([("Ti", "O"), ("Sr", "O")])
+    .with_angle_triplets([("Ti", "O", "O"), ("O", "Ti", "Ti")])
 )
 ```
 

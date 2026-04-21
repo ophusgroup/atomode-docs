@@ -10,9 +10,9 @@ remain at the grain boundaries.
 ```python
 cell.generate(
     shell_target,
-    num_steps=50,
+    num_steps=100,
     grain_size=18.0,
-    bond_weight=0.2, angle_weight=0.0, repulsion_weight=0.3,
+    bond_weight=0.3, angle_weight=0.6, repulsion_weight=0.4,
     hard_core_scale=1.0, nonbond_push_scale=0.5,
     displacement_sigma=0.005,
 )

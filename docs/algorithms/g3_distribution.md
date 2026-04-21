@@ -94,6 +94,25 @@ Both return a new `CoordinationShellTarget`; the original is unchanged.
 This is the mechanism that keeps SiO₂ / SrTiO₃ from developing a
 spurious Si-Si or Ti-Ti bond at the second-shell distance.
 
+### Angle-spring masking (multi-modal shells)
+
+For shells with multiple physically valid bond angles (the 12-coord
+cuboctahedron at 60°/90°/120°/180°, Sr in SrTiO₃'s SrO₁₂ motif, …)
+the single `angle_mode_deg` that gets extracted picks one of the
+peaks and forcing it strains the others.  Two helpers flip entries of
+`angle_enabled_mask` to silence specific triplet types without
+touching their bond-distance springs:
+
+```python
+shell_target.with_angle_triplets([('Ti','O','O'), ('O','Ti','Ti')])  # whitelist
+shell_target.without_angle_triplets([('Sr','O','O')])                # blacklist
+```
+
+For SrTiO₃ the whitelist form keeps Ti-centered 90° (octahedral) and
+O | Ti Ti 180° (linear Ti-O-Ti backbone) while silencing every
+Sr-centered triplet — consistent with Cu FCC's `angle_weight=0`
+treatment of the cuboctahedron.
+
 ### Composite shell target
 
 `CoordinationShellTarget.from_targets({key: target, ...})` stacks
