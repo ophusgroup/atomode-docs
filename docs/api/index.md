@@ -11,7 +11,7 @@ overview
 
 ## Public module surface
 
-At a glance — the full list of symbols exposed from `tricor`:
+At a glance - the full list of symbols exposed from `tricor`:
 
 | Symbol | Kind | Purpose |
 |---|---|---|

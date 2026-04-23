@@ -1,15 +1,19 @@
 # Carbon
 
-Carbon's structural axis isn't crystalline ↔ amorphous — it's **sp² ↔
-sp³**.  Graphite stacks planar 3-coordinated (sp²) sheets; diamond is
-the 4-coordinated (sp³) tetrahedral network.  Real carbon materials —
-ta-C (tetrahedral amorphous carbon), DLC coatings, glassy carbon,
-nanocrystalline diamond — sit at controlled points along that axis.
+This example models carbon along the **sp² ↔ sp³ coordination axis**.
+Graphite stacks planar 3-coordinated (sp²) sheets; diamond is the
+4-coordinated (sp³) tetrahedral network; ta-C (tetrahedral amorphous
+carbon), DLC coatings, glassy carbon, and nanocrystalline diamond all
+sit at controlled points along that axis.  The crystalline ↔
+amorphous disorder axis (the one the Si / Cu / SiO₂ / SrTiO₃
+examples walk) is another sensible way to explore carbon; we hold it
+roughly fixed here (every regime is nanocrystalline) so the sp²/sp³
+mix is the only variable.
 
-The carbon pipeline builds six regimes by mixing **Voronoi grains**:
-each grain is either a rotated graphite tile (sp², 3 neighbours,
-120°) or a rotated diamond tile (sp³, 4 neighbours, 109.5°), and the
-mix fraction controls where on the sp²/sp³ axis the cell sits.
+The pipeline builds six regimes by mixing **Voronoi grains**: each
+grain is either a rotated graphite tile (sp², 3 neighbours, 120°) or
+a rotated diamond tile (sp³, 4 neighbours, 109.5°), and the mix
+fraction controls where on the sp²/sp³ axis the cell sits.
 
 ## Overview
 
@@ -24,7 +28,7 @@ manually.
         style="border: 1px solid rgba(0,0,0,0.1); border-radius: 6px;"
         loading="lazy"></iframe>
 
-Stacked g(r) per regime — most sp²-dominant curve at the bottom, most
+Stacked g(r) per regime - most sp²-dominant curve at the bottom, most
 sp³-dominant at the top.  The pair dropdown below the plot lets you
 switch between the sp²-C and sp³-C channels:
 
@@ -44,7 +48,7 @@ atoms_diamond  = read("docs/structures/C_diamond.cif")   # Fd-3m,  a=3.561 Å
 
 ## Composite shell target
 
-Carbon uses a **composite shell target** — one `CoordinationShellTarget`
+Carbon uses a **composite shell target** - one `CoordinationShellTarget`
 per chemistry, stacked into a single object with two virtual species
 (``sp2_C`` and ``sp3_C``) that share atomic number 6 but carry
 distinct coordination + bond-angle targets:
@@ -61,7 +65,7 @@ shell_target = tc.CoordinationShellTarget.from_targets(
 
 The relaxer consults each atom's **virtual species index** (assigned
 per grain during construction) so sp² atoms develop 3 bonds at 120°
-and sp³ atoms develop 4 bonds at 109.5° — inside the same cell.
+and sp³ atoms develop 4 bonds at 109.5° - inside the same cell.
 
 ## Grain-level sp²/sp³ mixing
 
@@ -84,7 +88,7 @@ cell.generate(
 )
 ```
 
-Atom count scales naturally with the regime's phase mix — diamond is
+Atom count scales naturally with the regime's phase mix - diamond is
 denser than graphite (0.177 vs 0.098 atoms/Å³), so diamond-dominant
 regimes carry more atoms at the same box size.
 

@@ -37,7 +37,7 @@ st = st.with_cross_species_bonds_only()
 
 # SrTiO3: both Ti-O and Sr-O are real bonds.  The SrO12 cuboctahedron
 # is multi-modal (60°/90°/120°/180°) so Sr-centered angle springs
-# would strain the other modes — mask them out but keep the Ti-O
+# would strain the other modes - mask them out but keep the Ti-O
 # distance springs intact.
 st = (
     tc.CoordinationShellTarget.from_atoms(atoms, phi_num_bins=90)
@@ -48,21 +48,21 @@ st = (
 
 ## Masking angle springs (multi-modal shells)
 
-Some coordination shells are **multi-modal** — the single
+Some coordination shells are **multi-modal** - the single
 `angle_mode_deg` peak that `from_atoms` extracts is just the tallest
 bar of a distribution with several physically valid modes.  The
 canonical example is the 12-coordinated cuboctahedron (Cu FCC, SrO₁₂
 in SrTiO₃) whose angle distribution sits at 60° / 90° / 120° / 180°
-simultaneously — enforcing any one mode distorts the others.
+simultaneously - enforcing any one mode distorts the others.
 
 Two helpers operate on the `angle_enabled_mask` field:
 
-- `with_angle_triplets(triplets)` — whitelist; enable angle springs
+- `with_angle_triplets(triplets)` - whitelist; enable angle springs
   only for the listed triplet types.
-- `without_angle_triplets(triplets)` — blacklist; disable angle
+- `without_angle_triplets(triplets)` - blacklist; disable angle
   springs for the listed triplets, keep the rest.
 
-Bond-distance springs are unaffected — masking only controls the
+Bond-distance springs are unaffected - masking only controls the
 angle force term.  For copper, the whole thing is replaced with
 `angle_weight=0.0` in the regime presets, but for mixed compounds
 like SrTiO₃ you want 90° preserved on the TiO₆ octahedron while
@@ -90,7 +90,7 @@ shell_target = tc.CoordinationShellTarget.from_targets(
 ```
 
 The composite target holds **virtual species** (e.g. ``sp2_C`` at
-index 0, ``sp3_C`` at index 1) — both atomic number 6, but with
+index 0, ``sp3_C`` at index 1) - both atomic number 6, but with
 distinct ``coordination_target`` rows (3 vs 4), ``pair_peak`` (1.42
 vs 1.54 Å), and ``angle_mode_deg`` (120° vs 109.5°).  Each atom's
 virtual species is assigned at grain-build time via

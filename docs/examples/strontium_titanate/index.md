@@ -5,7 +5,7 @@ Strontium titanate (SrTiO₃) is the archetypal cubic perovskite
 (12-coordinated by O), Ti at the body centre (6-coordinated by O,
 forming a **TiO₆ octahedron**), and each O bridging two Ti along a
 linear backbone while being surrounded by four Sr. Every panel below
-renders the translucent orange TiO₆ octahedra — the motif whose
+renders the translucent orange TiO₆ octahedra - the motif whose
 preservation across the disorder ladder drives everything else.
 
 ## Overview
@@ -39,8 +39,7 @@ atoms_ref = read('structures/SrTiO3.cif')   # 1 Sr + 1 Ti + 3 O
 SrTiO₃ has **two** real chemical bonds: short covalent **Ti–O**
 (1.96 Å, the TiO₆ octahedron) and longer ionic **Sr–O** (2.77 Å, the
 SrO₁₂ cuboctahedron).  The Sr–Sr / Ti–Ti / Sr–Ti peaks at *a* =
-3.91 Å are pure lattice separations through the bonded bridge atoms —
-treating them as bonds would install spurious angle springs that
+3.91 Å are pure lattice separations through the bonded bridge atoms - treating them as bonds would install spurious angle springs that
 destroy the TiO₆ octahedra.  The shell target is built with **both**
 Ti–O and Sr–O enabled as bonds:
 
@@ -62,7 +61,7 @@ cell = tc.Supercell.from_atoms(
 cell.generate(shell_target, grain_size=None)  # liquid - see regime pages
 ```
 
-The second line — `with_angle_triplets(...)` — silences every
+The second line - `with_angle_triplets(...)` - silences every
 Sr-centered angle spring (and every triplet involving Sr as a
 neighbour).  Reason: **SrO₁₂ is geometrically identical to the Cu-FCC
 cuboctahedron**, so the O-Sr-O distribution is quadri-modal at
@@ -73,7 +72,7 @@ octahedron's single-mode 90° and the Ti-O-Ti 180° backbone angles
 can still be enforced.
 
 The Sr atoms are held in place by 12 Sr-O bond-distance springs
-each — not by an angle spring.  Combined with the repulsion wall
+each - not by an angle spring.  Combined with the repulsion wall
 this is sufficient to preserve the SrO₁₂ geometry under relaxation.
 
 ## Disorder regimes
@@ -93,7 +92,7 @@ nanocrystalline
 
 | Regime | `grain_size` (Å) | `num_steps` |
 |---|---|---|
-| liquid                      | —    | 80  |
+| liquid                      | - | 80  |
 | amorphous                   | 8.0  | 100 |
 | short-range order           | 10.0 | 100 |
 | medium-range order          | 12.0 | 100 |

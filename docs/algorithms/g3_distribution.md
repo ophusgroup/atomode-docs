@@ -37,7 +37,7 @@ Examples: SiO₂ ($S = 2$) → 6 channels (`Si | Si Si`, `Si | Si O`,
 
 `g3_index` stores the `(centre, neigh_1, neigh_2)` species indices for
 each channel, and `g3_lookup[c, a, b]` maps any ordered species triple
-to its channel — both orderings of the two neighbours land on the same
+to its channel - both orderings of the two neighbours land on the same
 entry so the caller doesn't have to sort.  The atom-pair $(j, k)$ and
 $(k, j)$ are added separately when the two neighbour species differ
 (symmetrising the $(r_{01}, r_{02})$ plane); when they are the same
@@ -110,7 +110,7 @@ shell_target.without_angle_triplets([('Sr','O','O')])                # blacklist
 
 For SrTiO₃ the whitelist form keeps Ti-centered 90° (octahedral) and
 O | Ti Ti 180° (linear Ti-O-Ti backbone) while silencing every
-Sr-centered triplet — consistent with Cu FCC's `angle_weight=0`
+Sr-centered triplet - consistent with Cu FCC's `angle_weight=0`
 treatment of the cuboctahedron.
 
 ### Composite shell target

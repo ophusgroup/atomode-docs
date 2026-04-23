@@ -8,8 +8,7 @@ descriptions and rendered examples.
 
 ## Multi-cell overview
 
-Supports **multi-group polyhedra** via the `polyhedra_groups=` kwarg
-— each entry is a dict `{kind, center_symbol, vertex_symbol,
+Supports **multi-group polyhedra** via the `polyhedra_groups=` kwarg - each entry is a dict `{kind, center_symbol, vertex_symbol,
 bond_length, ..., virtual_species, color, opacity}` where `kind` is
 one of `"triangles"`, `"tetrahedra"`, `"octahedra"`,
 `"cuboctahedra"`.  Use for sp²/sp³ carbon blends where green

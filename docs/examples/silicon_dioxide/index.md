@@ -86,7 +86,7 @@ nanocrystalline
 
 | Regime | `grain_size` (Å) | `num_steps` |
 |---|---|---|
-| liquid                      | —    | 50 |
+| liquid                      | - | 50 |
 | amorphous                   | 4.0  | 50 |
 | short-range order           | 8.0  | 50 |
 | medium-range order          | 10.0 | 50 |

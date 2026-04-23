@@ -38,7 +38,7 @@ cell.generate(shell_target, **tc.Supercell.PRESETS["MRO"])
 cell.measure_g3()
 cell.plot_g3()
 
-# 5. Interactive 3D viewer (Jupyter) — blue Si tetrahedra by default
+# 5. Interactive 3D viewer (Jupyter) - blue Si tetrahedra by default
 cell.view_structure()
 ```
 
@@ -55,7 +55,7 @@ Available keys, in order of increasing structural order:
 
 | Preset | Grain seed (Å) | Notes |
 |---|---|---|
-| `liquid` | — | No grains; fully random starting positions. |
+| `liquid` | - | No grains; fully random starting positions. |
 | `amorphous` | 6 | Short-range tetrahedral network. |
 | `SRO` | 10 | Short-range order. |
 | `MRO` | 13 | Medium-range order. |
@@ -92,8 +92,8 @@ shell_target = (
 
 ## Phase blends (sp²/sp³ carbon, etc.)
 
-For materials with a controllable phase mix — sp² ↔ sp³ carbon; a
-polymer/ceramic boundary; etc. — extract one shell target per
+For materials with a controllable phase mix - sp² ↔ sp³ carbon; a
+polymer/ceramic boundary; etc. - extract one shell target per
 chemistry and combine them with `from_targets`:
 
 ```python
@@ -141,7 +141,7 @@ for name in ["liquid", "amorphous", "SRO", "MRO", "MRO_more", "nanocrystalline"]
     c.generate(shell_target, **tc.Supercell.PRESETS[name])
     cells[name] = c
 
-# Overlaid g(r) stack — most disordered bottom, most ordered top
+# Overlaid g(r) stack - most disordered bottom, most ordered top
 tc.plot_g2_compare(cells, r_max=8.0, title="Silicon regime ladder")
 
 # Synchronised rotating 3D grid

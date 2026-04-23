@@ -53,7 +53,7 @@ skips steps 1-6 (the random-position initial cell from
    (step 4) is tiled per source; the grain's atoms are cut from that
    source's master block and tagged with the source's
    `species_offset` as their virtual-species index.  This is the
-   mechanism behind the carbon sp²/sp³ ladder — graphite grains get
+   mechanism behind the carbon sp²/sp³ ladder - graphite grains get
    virtual species 0 (sp²), diamond grains get virtual species 1
    (sp³), and the density target is a weight-averaged blend so the
    denser phase (diamond) isn't trimmed to the sparse phase's
@@ -94,8 +94,13 @@ skips steps 1-6 (the random-position initial cell from
    specific $d_\text{dup}$ for crystalline grains and to the full
    hard-min for amorphous / liquid paths.
 
-9. **Optional thermal displacement.** Add iid Gaussian jitter
-   $\mathcal N(0, \sigma^2)$ per coordinate and re-wrap.
+9. **Optional thermal displacement.** 3D Gaussian jitter per atom:
+
+   $$\mathbf r_i \leftarrow \mathbf r_i + \sigma \, \boldsymbol\xi_i,
+     \qquad \boldsymbol\xi_i \sim \mathcal N(\mathbf 0, \mathbf I_3)$$
+
+   (equivalent to ``positions += rng.normal(0.0, sigma,
+   size=positions.shape)``), then re-wrap into the supercell.
 
 ## Shell relaxation
 
@@ -164,8 +169,7 @@ The bond graph is rebuilt every `neighbor_update_interval` steps
    {meth}`CoordinationShellTarget.with_cross_species_bonds_only` or
    {meth}`CoordinationShellTarget.with_bonded_species_pairs` zero the
    corresponding entries of $K_{ij}$, so those pairs cannot be bonded
-   even if they pass the distance check (essential for SiO₂ / SrTiO₃ —
-   the second-shell Si-Si / Ti-Ti peak is close enough to pass a
+   even if they pass the distance check (essential for SiO₂ / SrTiO₃ - the second-shell Si-Si / Ti-Ti peak is close enough to pass a
    naive distance test but is not a chemical bond).
 
 ### Integration
@@ -196,6 +200,6 @@ $$U_i^\text{cost}
 
 The viewer's global colour scale uses the 99th percentile of
 `atom_cost` in the **last quarter of frames** (steady state), not
-across the whole trajectory — early frames of liquid-path runs can
+across the whole trajectory - early frames of liquid-path runs can
 have per-atom costs two orders of magnitude larger than the relaxed
 state and would otherwise saturate the scale.

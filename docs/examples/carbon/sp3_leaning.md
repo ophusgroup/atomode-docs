@@ -2,7 +2,7 @@
 
 40% graphite grains, 60% diamond grains.  Diamond-style tetrahedra
 begin to dominate the centre of the cell while graphitic sheets
-persist at the grain boundaries — close in character to the
+persist at the grain boundaries - close in character to the
 industrially-relevant ta-C and DLC coatings.
 
 ## Parameters

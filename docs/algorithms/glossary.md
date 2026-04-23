@@ -119,7 +119,7 @@
   `Supercell._atom_shell_species_index`.
 
 **atom_species_index**
-: Optional `generate(atom_species_index=...)` override — a (num_atoms,)
+: Optional `generate(atom_species_index=...)` override - a (num_atoms,)
   array of virtual-species indices.  Used when the caller wants to
   assign virtual species directly rather than letting
   `grain_sources` do it.
