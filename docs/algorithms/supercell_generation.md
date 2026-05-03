@@ -1,16 +1,21 @@
 # Supercell generation
 
 Disordered supercells are built in two stages: **Voronoi-grain
-construction** sets the initial atom positions, and **spring-network
-relaxation** refines the local geometry against first-shell targets.
-The whole flow lives in `src/tricor/_grain.py` + `_shell_relax.py`.
-
-## Voronoi grain construction
+construction** (this page) sets the initial atom positions, and
+**spring-network relaxation** ([static FIRE](static_relaxation.md))
+refines the local geometry against first-shell targets.  An
+optional [orientation refinement](orientation_refinement.md) pass
+between the two stages walks each grain through small SO(3)
+perturbations to seat its lattice in the right basin before FIRE
+runs.  The grain-construction flow lives in
+`src/tricor/_grain.py`.
 
 `Supercell.generate(..., grain_size=d)` forwards to
 `_build_grain_atoms`, which executes the steps below.  `grain_size=None`
 skips steps 1-6 (the random-position initial cell from
 `_build_random_atoms` is used directly).
+
+## Voronoi grain construction
 
 1. **Seed placement.** Drop $N_\text{seeds}$ random points in the
    orthogonal supercell box at
@@ -102,104 +107,15 @@ skips steps 1-6 (the random-position initial cell from
    (equivalent to ``positions += rng.normal(0.0, sigma,
    size=positions.shape)``), then re-wrap into the supercell.
 
-## Shell relaxation
+After grain construction, the resulting initial atom block is handed
+off to **shell relaxation** to refine bond lengths, bond angles, and
+non-bonded distances against the first-shell targets:
 
-The spring-network relaxation simultaneously moves all atoms to match
-first-shell targets.  Three force terms contribute at each step; the
-per-atom *spring energy* is accumulated into `atom_cost` for the
-trajectory viewer's colour scale.
+- [Orientation refinement](orientation_refinement.md) — optional
+  per-grain SO(3) coordinate search that runs **before** the FIRE
+  quench, picking rotations that align each grain's lattice with its
+  local neighbourhood.  Enabled with `refine_orientations=True`.
+- [Static relaxation](static_relaxation.md) — FIRE-style gradient
+  descent on the spring-network energy.  Default for
+  `Supercell.generate()`.
 
-### Bond springs
-
-For each bonded pair $(i, j)$ with target distance $r_\text{target}$
-(the `shell_target.pair_peak[z_i, z_j]` entry):
-
-$$\mathbf F_{ij}^\text{bond}
-  = k_\text{bond} \, (r_{ij} - r_\text{target}) \, \hat{\mathbf r}_{ij}
-  \qquad
-  U_{ij}^\text{bond}
-  = \tfrac{1}{2} k_\text{bond} \, (r_{ij} - r_\text{target})^2.$$
-
-### Angle springs
-
-For each bonded triplet $(a, c, b)$ centred on atom $c$ with target
-angle $\phi_\text{target}$ (the `shell_target.angle_mode_deg` entry
-for the triplet's species):
-
-$$\mathbf F_a^\text{angle}
-  = \frac{k_\text{angle} \, (\phi - \phi_\text{target})}{r_a}
-      \, \mathbf e_{\perp,a},
-  \quad
-  \mathbf e_{\perp,a}
-  = \frac{\hat{\mathbf r}_b - \cos\phi \, \hat{\mathbf r}_a}{\sin\phi}$$
-
-(symmetric expression for $\mathbf F_b$; $\mathbf F_c = -(\mathbf F_a + \mathbf F_b)$).
-
-### Repulsion
-
-Two repulsive terms prevent overlaps and create a clean shell gap.
-Define $u = r_\text{wall} / r$ for each pair and let $h = u - 1$.
-
-**Hard core** (acts on all pairs with $u > 1$; wall at
-$r_\text{wall} = r_\text{hard-min}$ scaled by `hard_core_scale`):
-
-$$F^\text{hard} = 4 \, k_\text{rep} \, (h + h^2)$$
-
-**Non-bonded clearance** (acts on non-bonded pairs with $u > 1$; wall at
-$r_\text{wall} = 1.5 \, r_\text{peak}$ scaled by `nonbond_push_scale`):
-
-$$F^\text{push} = k_\text{rep} \, (h + h^2)$$
-
-Both forces are directed along the pair axis.
-
-### Bond topology
-
-The bond graph is rebuilt every `neighbor_update_interval` steps
-(default 10) using a greedy algorithm:
-
-1. Sort all neighbour pairs within $1.5 \, r_\text{peak}$ by distance.
-2. Accept a candidate bond $(i, j)$ only if:
-   - Neither atom has reached its total coordination target $K_i$ or $K_j$,
-   - Neither atom has exceeded the per-species-pair target
-     $K_{ij}$ set by `shell_target.coordination_target`,
-   - The new bond makes $\ge 60°$ with every existing bond at both
-     endpoints (prevents near-colinear bond pairs for covalent
-     networks).
-3. Species-aware bond restrictions via
-   {meth}`CoordinationShellTarget.with_cross_species_bonds_only` or
-   {meth}`CoordinationShellTarget.with_bonded_species_pairs` zero the
-   corresponding entries of $K_{ij}$, so those pairs cannot be bonded
-   even if they pass the distance check (essential for SiO₂ / SrTiO₃ - the second-shell Si-Si / Ti-Ti peak is close enough to pass a
-   naive distance test but is not a chemical bond).
-
-### Integration
-
-FIRE-like velocity-Verlet with fixed momentum coefficient and step
-decay:
-
-$$\mathbf v_{n+1} = \begin{cases}
-0.8 \, \mathbf v_n + \Delta t \, \mathbf F_n & \text{if } \mathbf v_n \cdot \mathbf F_n > 0 \\
-\mathbf 0 & \text{otherwise}
-\end{cases}$$
-
-Positions are updated, then wrapped via fractional coordinates.  The
-step size decays multiplicatively each iteration
-($\Delta t \leftarrow \Delta t \cdot 0.995$ by default).  Per-atom
-forces are clipped in magnitude at `max_force_clip` before
-integration.
-
-### Per-atom cost (spring energy)
-
-The `atom_cost` accumulated into the trajectory's per-frame colour
-map is the actual harmonic spring energy:
-
-$$U_i^\text{cost}
-  = \tfrac{1}{2} k_\text{bond} \sum_{j \in \mathcal N(i)} (r_{ij} - r_\text{target})^2
-  + \tfrac{1}{6} k_\text{angle} \sum_{\text{triplets } (i, c, b)} (\phi - \phi_\text{target})^2
-  + (\text{repulsion contributions}).$$
-
-The viewer's global colour scale uses the 99th percentile of
-`atom_cost` in the **last quarter of frames** (steady state), not
-across the whole trajectory - early frames of liquid-path runs can
-have per-atom costs two orders of magnitude larger than the relaxed
-state and would otherwise saturate the scale.

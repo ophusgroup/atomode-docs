@@ -59,7 +59,7 @@ Available keys, in order of increasing structural order:
 | `amorphous` | 6 | Short-range tetrahedral network. |
 | `SRO` | 10 | Short-range order. |
 | `MRO` | 13 | Medium-range order. |
-| `MRO_more` | 18 | Extended medium-range order. |
+| `LRO` | 18 | Long-range order. |
 | `nanocrystalline` | 20 | Single coherent grain filling a 20 Å box. |
 
 See the [preset summary table](examples/silicon/index.md#preset-summary)
@@ -134,7 +134,7 @@ results side-by-side is a standard tricor workflow:
 
 ```python
 cells = {}
-for name in ["liquid", "amorphous", "SRO", "MRO", "MRO_more", "nanocrystalline"]:
+for name in ["liquid", "amorphous", "SRO", "MRO", "LRO", "nanocrystalline"]:
     c = tc.Supercell.from_atoms(atoms, cell_dim_angstroms=(20, 20, 20),
                                 r_max=10, r_step=0.1, phi_num_bins=90,
                                 rng_seed=42)
@@ -180,7 +180,7 @@ multi-panel overview, g(r), g3).
 
 ## Next steps
 
-- [Examples](examples/index.md): case studies across materials, with
+- [Static Examples](examples/index.md): case studies across materials, with
   interactive viewers embedded.
 - [Generating order variety](order_variety.md): batch generation of
   every disorder regime for a single material.

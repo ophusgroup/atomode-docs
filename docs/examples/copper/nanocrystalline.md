@@ -1,7 +1,7 @@
 # Nanocrystalline
 
 Copper in the nanocrystalline regime. 18 Å Voronoi grains tile the
-20 × 20 × 20 Å box into 3 random-rotation FCC crystallites with
+40 × 40 × 40 Å box into 3 random-rotation FCC crystallites with
 sharp boundaries between them.  Most Cu atoms sit at the centre of a
 full 12-vertex cuboctahedron; boundary atoms carry the residual
 disorder.
@@ -17,7 +17,7 @@ shell_target = tc.CoordinationShellTarget.from_atoms(atoms, phi_num_bins=90)
 
 cell = tc.Supercell.from_atoms(
     atoms,
-    cell_dim_angstroms=(20, 20, 20),
+    cell_dim_angstroms=(40, 40, 40),
     r_max=10, r_step=0.1, phi_num_bins=90,
     rng_seed=42,
 )
@@ -36,8 +36,7 @@ cell.generate(
 
 ## Relaxation trajectory
 
-Interactive 3D viewer of the shell-relaxation trajectory (~440 atoms, 151
-frames). Drag to rotate, scroll to zoom. Controls below the canvas play,
+Interactive 3D viewer of the shell-relaxation trajectory (40 × 40 × 40 Å cell). Drag to rotate, scroll to zoom. Controls below the canvas play,
 scrub, and change playback speed.
 
 <iframe src="../../_static/trajectories/cu_nanocrystalline.html"

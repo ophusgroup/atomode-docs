@@ -14,16 +14,26 @@ shell_target = tc.CoordinationShellTarget.from_atoms(atoms, phi_num_bins=90)
 
 cell = tc.Supercell.from_atoms(
     atoms,
-    cell_dim_angstroms=(20, 20, 20),
+    cell_dim_angstroms=(40, 40, 40),
     r_max=10, r_step=0.1, phi_num_bins=90,
     rng_seed=42,
 )
-cell.generate(shell_target, **tc.Supercell.PRESETS["amorphous"])
+cell.generate(
+    shell_target,
+    num_steps=120,
+    grain_size=None,
+    bond_weight=0.6,
+    angle_weight=0.20,
+    repulsion_weight=1.3,
+    hard_core_scale=0.86,
+    nonbond_push_scale=0.45,
+    displacement_sigma=0.12,
+)
 ```
 
 ## Relaxation trajectory
 
-Interactive 3D viewer of the shell-relaxation trajectory (384 atoms, 151 frames).
+Interactive 3D viewer of the shell-relaxation trajectory (40 × 40 × 40 Å cell).
 Drag to rotate, scroll to zoom. Controls below the canvas play, scrub, and change
 playback speed.
 

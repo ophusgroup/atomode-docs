@@ -39,23 +39,24 @@ liquid
 amorphous
 short_range_order
 medium_range_order
-extended_medium_range_order
+long_range_order
 nanocrystalline
 ```
 
 ## Preset summary
 
-All values come from ``tricor.Supercell.PRESETS``.  ``initial grain diameter``
-is the target size passed to the Voronoi seeder; the grain size after
-relaxation is typically slightly smaller.  Fields left blank use the default
-(``bond_weight=1.0``, ``angle_weight=0.5``, ``repulsion_weight=3.0``,
-``hard_core_scale=1.0``, ``nonbond_push_scale=1.0``, ``step_size=0.1``).
+``liquid`` and ``nanocrystalline`` keep the library
+``tricor.Supercell.PRESETS`` defaults; the in-between regimes use
+explicit per-cell parameters tuned so the polyhedron count walks a
+clear ladder from disordered (liquid → ~110 tetrahedra detected at
+the polyhedra-detector tolerances `bond_length_tol=0.10`,
+`angle_tol_deg=18`) through to crystalline (NC → ~1300).
 
-| Preset | Initial grain diameter (Å) | `num_steps` | `bond_weight` | `angle_weight` | `repulsion_weight` | `hard_core_scale` | `nonbond_push_scale` | `displacement_sigma` | `step_size` |
-|---|---|---|---|---|---|---|---|---|---|
-| `liquid`              | - | 100 | 0.4 | 0.5 | 0.5 | 0.75 | 0.7 | - | - |
-| `amorphous`           | 6.0  | 150 | 1.2 | 0.6 | 1.5 | 0.9  | 0.5 | 0.08 | - |
-| `SRO`                 | 10.0 | 200 | 2.2 | 1.0 | 2.0 | 0.95 | 0.6 | 0.04 | - |
-| `MRO`                 | 13.0 | 150 | 1.9 | 0.9 | 2.5 | 0.95 | 0.7 | 0.04 | - |
-| `MRO_more`            | 18.0 | 150 | 2.0 | 1.0 | - | 0.95 | 0.9 | 0.04 | - |
-| `nanocrystalline`     | 20.0 | 150 | 3.0 | 1.5 | - | - | - | 0.02 | - |
+| Preset | `num_steps` | Grain (Å) | `bond_weight` | `angle_weight` | `repulsion_weight` | `hard_core_scale` | `nonbond_push_scale` | `displacement_sigma` |
+|---|---|---|---|---|---|---|---|---|
+| `liquid`              |  80 | -    | 0.05 | 0.0  | 0.5  | 0.75 | 0.4  | -    |
+| `amorphous`           | 120 | -    | 0.6  | 0.20 | 1.3  | 0.86 | 0.45 | 0.12 |
+| `SRO`                 | 180 | 8.0  | 1.5  | 0.5  | 1.8  | 0.91 | 0.60 | 0.06 |
+| `MRO`                 | 200 | 12.0 | 2.0  | 0.8  | 2.2  | 0.93 | 0.75 | 0.04 |
+| `LRO`                 | 200 | 15.0 | 2.4  | 1.0  | 2.3  | 0.93 | 0.85 | 0.035 |
+| `nanocrystalline`     | 150 | 20.0 | 3.0  | 1.5  | -    | -    | -    | 0.02 |

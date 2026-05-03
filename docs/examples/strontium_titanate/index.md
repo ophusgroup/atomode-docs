@@ -54,7 +54,7 @@ shell_target = (
 
 cell = tc.Supercell.from_atoms(
     atoms_ref,
-    cell_dim_angstroms=(20.0, 20.0, 20.0),
+    cell_dim_angstroms=(40, 40, 40),
     r_max=10, r_step=0.1, phi_num_bins=90,
     rng_seed=42,
 )
@@ -84,25 +84,26 @@ liquid
 amorphous
 short_range_order
 medium_range_order
-extended_medium_range_order
+long_range_order
 nanocrystalline
 ```
 
 ## Preset summary
 
-| Regime | `grain_size` (Å) | `num_steps` |
-|---|---|---|
-| liquid                      | - | 80  |
-| amorphous                   | 8.0  | 100 |
-| short-range order           | 10.0 | 100 |
-| medium-range order          | 12.0 | 100 |
-| extended medium-range order | 15.0 | 100 |
-| nanocrystalline             | 18.0 | 100 |
+| Regime | `num_steps` | `grain_size` (Å) | `bond_weight` | `angle_weight` | `repulsion_weight` |
+|---|---|---|---|---|---|
+| liquid                      | 200 | -    | 0.10 | 0.0  | 1.0  |
+| amorphous                   | 300 | -    | 0.50 | 0.4  | 1.1  |
+| short-range order           | 300 | 10.0 | 0.7  | 0.6  | 1.15 |
+| medium-range order          | 350 | 14.0 | 0.9  | 0.7  | 1.2  |
+| long-range order            | 350 | 18.0 | 1.1  | 0.8  | 1.3  |
+| nanocrystalline             | 400 | 22.0 | 1.3  | 0.9  | 1.4  |
 
-Shared ordered-regime weights
-(`bond_weight=0.3`, `angle_weight=0.6`, `repulsion_weight=0.4`,
-`hard_core_scale=1.0`, `nonbond_push_scale=0.5`,
-`displacement_sigma=0.005`) drive the Ti-centered 90° + Ti-O-Ti 180°
-angle springs while the Sr-centered cuboctahedron is held by its
-12 Sr-O bond-distance springs alone.  The progression across panels
-comes from the Voronoi grain size, not from per-regime hyper-tuning.
+`hard_core_scale=1.10` (shared) enforces a ~1.65 Å minimum Ti-O
+separation — below the 1.96 Å Ti-O bond but well above 1.5 Å —
+which prevents the sub-1 Å pair collapses an earlier preset
+allowed.  `nonbond_push_scale` ramps 0.6 → 0.85 with order;
+`displacement_sigma` shrinks 0.02 → 0.002.  The Ti-centered 90° +
+Ti-O-Ti 180° angle springs hold the TiO₆ octahedra together; the
+Sr-centered cuboctahedron is held by its 12 Sr-O bond-distance
+springs alone.

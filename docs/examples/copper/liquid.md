@@ -15,7 +15,7 @@ shell_target = tc.CoordinationShellTarget.from_atoms(atoms, phi_num_bins=90)
 
 cell = tc.Supercell.from_atoms(
     atoms,
-    cell_dim_angstroms=(20, 20, 20),
+    cell_dim_angstroms=(40, 40, 40),
     r_max=10, r_step=0.1, phi_num_bins=90,
     rng_seed=42,
 )
@@ -37,8 +37,7 @@ longer runs would drive it into a close-packed configuration.
 
 ## Relaxation trajectory
 
-Interactive 3D viewer of the shell-relaxation trajectory (650 atoms, 31
-frames). Drag to rotate, scroll to zoom. Controls below the canvas play,
+Interactive 3D viewer of the shell-relaxation trajectory (40 × 40 × 40 Å cell). Drag to rotate, scroll to zoom. Controls below the canvas play,
 scrub, and change playback speed.
 
 <iframe src="../../_static/trajectories/cu_liquid.html"

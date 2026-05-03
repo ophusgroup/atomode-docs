@@ -13,10 +13,13 @@ reference and supercell construction. Then:
 ```python
 cell.generate(
     shell_target,
-    num_steps=50,
+    num_steps=120,
     grain_size=None,
-    bond_weight=0.5, angle_weight=0.0, repulsion_weight=1.5,
-    hard_core_scale=1.05, nonbond_push_scale=0.6,
+    bond_weight=0.5,
+    angle_weight=0.0,
+    repulsion_weight=1.5,
+    hard_core_scale=1.05,
+    nonbond_push_scale=0.6,
     displacement_sigma=0.01,
 )
 ```

@@ -9,11 +9,14 @@ interspersed with the phase-boundary disorder.
 ```python
 cell.generate(
     shell_target,
-    num_steps=50,
-    grain_size=10.0,
-    bond_weight=1.5, angle_weight=1.2, repulsion_weight=1.2,
-    hard_core_scale=0.8, nonbond_push_scale=0.7,
-    displacement_sigma=0.01,
+    num_steps=250,
+    grain_size=17.0,
+    bond_weight=1.65,
+    angle_weight=1.35,
+    repulsion_weight=1.3,
+    hard_core_scale=0.82,
+    nonbond_push_scale=0.72,
+    displacement_sigma=0.011,
 )
 ```
 

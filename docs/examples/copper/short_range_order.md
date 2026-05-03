@@ -18,19 +18,20 @@ shell_target = tc.CoordinationShellTarget.from_atoms(atoms, phi_num_bins=90)
 
 cell = tc.Supercell.from_atoms(
     atoms,
-    cell_dim_angstroms=(20, 20, 20),
+    cell_dim_angstroms=(40, 40, 40),
     r_max=10, r_step=0.1, phi_num_bins=90,
     rng_seed=42,
 )
 cell.generate(
     shell_target,
-    num_steps=50,
-    grain_size=None,
-    bond_weight=0.15,
+    num_steps=100,
+    grain_size=7.0,
+    bond_weight=0.6,
     angle_weight=0.0,
-    repulsion_weight=0.6,
-    hard_core_scale=0.81,
-    nonbond_push_scale=0.45,
+    repulsion_weight=1.0,
+    hard_core_scale=0.88,
+    nonbond_push_scale=0.65,
+    displacement_sigma=0.06,
 )
 ```
 
@@ -41,8 +42,7 @@ to, but still slightly inside, the reference `pair_peak`.
 
 ## Relaxation trajectory
 
-Interactive 3D viewer of the shell-relaxation trajectory (650 atoms, 121
-frames). Drag to rotate, scroll to zoom. Controls below the canvas play,
+Interactive 3D viewer of the shell-relaxation trajectory (40 × 40 × 40 Å cell). Drag to rotate, scroll to zoom. Controls below the canvas play,
 scrub, and change playback speed.
 
 <iframe src="../../_static/trajectories/cu_sro.html"

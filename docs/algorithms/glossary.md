@@ -14,7 +14,7 @@
 **Medium-range order (MRO)**
 : Correlations extend to 4-5 visible maxima. Constructed from grains of ~13 A.
 
-**Extended medium-range order**
+**Long-range order (LRO)**
 : Larger grains (~18 A) extend correlations further (8-10 A range).
 
 **Nanocrystalline**
@@ -94,6 +94,35 @@
 
 **displacement_sigma**
 : Gaussian displacement applied to grain atoms before relaxation (Angstrom).
+
+**k_restraint**
+: Spring constant of the optional position-restraint term
+  $\tfrac{1}{2} k_\text{restraint} \sum_i \lVert \mathbf r_i - \mathbf r_i^{(0)} \rVert^2$
+  that tethers atoms to their starting positions during
+  `shell_relax`.  ``0`` disables the term and reproduces unrestrained
+  relaxation; large values pin the structure.
+
+## Orientation refinement
+
+**amplitudes_deg**
+: Schedule of rotation amplitudes (degrees) the SO(3) coordinate
+  search walks through.  Default ``(30, 15, 5, 2)``: the largest
+  step lets a misaligned grain escape its starting basin, the
+  smallest step locks in the chosen orientation.
+
+**trials_per_amplitude_per_grain**
+: Number of random rotations sampled per (amplitude, grain).  Default
+  50.  The best-scoring trial is accepted if it beats the current
+  orientation by more than ``score_cutoff_factor``.
+
+**cost_function**
+: ``"pair_distance"`` (default, topology-free, sub-millisecond per
+  trial) or ``"bond_angle"`` (rebuilds bond + triplet topology per
+  trial; usually not worth the slowdown).
+
+**score_cutoff_factor**
+: Acceptance threshold for the per-trial score relative to the
+  current baseline.  Higher values accept more aggressively.
 
 ## Composite shell targets
 

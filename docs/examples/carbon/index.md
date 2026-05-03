@@ -112,13 +112,14 @@ diamond
 
 | Regime | w_graphite | w_diamond | grain_size (Å) | num_steps |
 |---|---|---|---|---|
-| `graphite_nc`  | 1.00 | 0.00 | 10.0 | 120 |
-| `sp2_rich`     | 0.80 | 0.20 | 10.0 | 120 |
-| `sp2_leaning`  | 0.60 | 0.40 | 10.0 | 120 |
-| `sp3_leaning`  | 0.40 | 0.60 | 10.0 | 120 |
-| `sp3_rich`     | 0.20 | 0.80 | 10.0 | 120 |
-| `diamond_nc`   | 0.00 | 1.00 | 10.0 | 120 |
+| `graphite_nc`  | 1.00 | 0.00 | 14.0 | 150 |
+| `sp2_rich`     | 0.80 | 0.20 | 14.0 | 150 |
+| `sp2_leaning`  | 0.60 | 0.40 | 14.0 | 150 |
+| `sp3_leaning`  | 0.40 | 0.60 | 14.0 | 150 |
+| `sp3_rich`     | 0.20 | 0.80 | 14.0 | 150 |
+| `diamond_nc`   | 0.00 | 1.00 | 14.0 | 150 |
 
 Shell-relax weights are identical across regimes:
-``bond_weight=2.0, angle_weight=1.0, repulsion_weight=2.0,
-hard_core_scale=0.9, nonbond_push_scale=0.8, displacement_sigma=0.03``.
+``bond_weight=2.5, angle_weight=1.2, repulsion_weight=2.0,
+hard_core_scale=0.92, nonbond_push_scale=0.85,
+displacement_sigma=0.02``.

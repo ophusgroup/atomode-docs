@@ -9,11 +9,14 @@ but the phase-mismatched grain boundaries still dominate the structure.
 ```python
 cell.generate(
     shell_target,
-    num_steps=100,
+    num_steps=300,
     grain_size=10.0,
-    bond_weight=0.3, angle_weight=0.6, repulsion_weight=0.4,
-    hard_core_scale=1.0, nonbond_push_scale=0.5,
-    displacement_sigma=0.005,
+    bond_weight=0.7,
+    angle_weight=0.6,
+    repulsion_weight=1.15,
+    hard_core_scale=1.10,
+    nonbond_push_scale=0.7,
+    displacement_sigma=0.006,
 )
 ```
 

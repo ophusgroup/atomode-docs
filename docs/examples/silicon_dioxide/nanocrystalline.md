@@ -1,7 +1,7 @@
 # Nanocrystalline
 
 SiO₂ with 21 Å α-quartz grains: grains are now large enough that only
-a couple fit in the 20 × 20 × 20 Å box. The crystalline tiles dominate
+a couple fit in the 40 × 40 × 40 Å box. The crystalline tiles dominate
 the structure; only thin seams of disordered atoms remain where rotated
 grains meet.
 
@@ -10,10 +10,13 @@ grains meet.
 ```python
 cell.generate(
     shell_target,
-    num_steps=50,
-    grain_size=21.0,
-    bond_weight=1.5, angle_weight=1.2, repulsion_weight=1.2,
-    hard_core_scale=0.8, nonbond_push_scale=0.7,
+    num_steps=250,
+    grain_size=27.0,
+    bond_weight=1.5,
+    angle_weight=1.2,
+    repulsion_weight=1.2,
+    hard_core_scale=0.8,
+    nonbond_push_scale=0.7,
     displacement_sigma=0.01,
 )
 ```

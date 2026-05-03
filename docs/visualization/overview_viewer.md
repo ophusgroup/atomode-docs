@@ -11,7 +11,7 @@ import tricor as tc
 
 cells = []
 for name in ["liquid", "amorphous", "SRO", "MRO",
-             "MRO_more", "nanocrystalline"]:
+             "LRO", "nanocrystalline"]:
     cell = tc.Supercell.from_atoms(atoms, (40, 40, 40), rng_seed=42)
     cell.generate(shell_target, **tc.Supercell.PRESETS[name])
     cells.append((cell, name))

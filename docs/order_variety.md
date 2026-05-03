@@ -69,7 +69,7 @@ cases = [
         nonbond_push_scale=0.7,
         displacement_sigma=0.04,
     )),
-    ("MRO_more", dict(
+    ("LRO", dict(
         num_steps=150,
         grain_size=18.0,
         bond_weight=2.0,

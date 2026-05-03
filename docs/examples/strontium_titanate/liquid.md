@@ -13,11 +13,14 @@ and `with_bonded_species_pairs([('Ti', 'O')])` setup. Then:
 ```python
 cell.generate(
     shell_target,
-    num_steps=80,
+    num_steps=200,
     grain_size=None,
-    bond_weight=0.15, angle_weight=0.0, repulsion_weight=1.0,
-    hard_core_scale=1.0, nonbond_push_scale=0.5,
-    displacement_sigma=0.01,
+    bond_weight=0.10,
+    angle_weight=0.0,
+    repulsion_weight=1.0,
+    hard_core_scale=1.10,
+    nonbond_push_scale=0.6,
+    displacement_sigma=0.02,
 )
 ```
 

@@ -1,10 +1,10 @@
 # Nanocrystalline
 
 Silicon in the nanocrystalline regime: a single ~20 Å grain spans the
-20 × 20 × 20 Å supercell (`grain_size ≥ min(box_dim)` triggers the
+40 × 40 × 40 Å supercell (`grain_size ≥ min(box_dim)` triggers the
 identity-rotation single-grain path), so the cell reads as a coherent
 diamond-cubic tile. With the bigger grain + stronger springs compared to
-``MRO_more``, this panel is the most ordered of the six - sharper first
+``LRO``, this panel is the most ordered of the six - sharper first
 and second g(r) peaks and the clearest tetrahedral g3 signature.
 
 ## Parameters
@@ -18,7 +18,7 @@ shell_target = tc.CoordinationShellTarget.from_atoms(atoms, phi_num_bins=90)
 
 cell = tc.Supercell.from_atoms(
     atoms,
-    cell_dim_angstroms=(20, 20, 20),
+    cell_dim_angstroms=(40, 40, 40),
     r_max=10, r_step=0.1, phi_num_bins=90,
     rng_seed=42,
 )
@@ -27,7 +27,7 @@ cell.generate(shell_target, **tc.Supercell.PRESETS["nanocrystalline"])
 
 ## Relaxation trajectory
 
-Interactive 3D viewer of the shell-relaxation trajectory (384 atoms, 201 frames).
+Interactive 3D viewer of the shell-relaxation trajectory (40 × 40 × 40 Å cell).
 Drag to rotate, scroll to zoom. Controls below the canvas play, scrub, and
 change playback speed.
 

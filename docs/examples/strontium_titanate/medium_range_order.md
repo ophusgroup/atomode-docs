@@ -9,10 +9,13 @@ against the phase-boundary disorder.
 ```python
 cell.generate(
     shell_target,
-    num_steps=100,
-    grain_size=12.0,
-    bond_weight=0.3, angle_weight=0.6, repulsion_weight=0.4,
-    hard_core_scale=1.0, nonbond_push_scale=0.5,
+    num_steps=350,
+    grain_size=14.0,
+    bond_weight=0.9,
+    angle_weight=0.7,
+    repulsion_weight=1.2,
+    hard_core_scale=1.10,
+    nonbond_push_scale=0.75,
     displacement_sigma=0.005,
 )
 ```

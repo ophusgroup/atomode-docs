@@ -10,11 +10,14 @@ oxygen connectivity.
 ```python
 cell.generate(
     shell_target,
-    num_steps=100,
-    grain_size=8.0,
-    bond_weight=0.3, angle_weight=0.6, repulsion_weight=0.4,
-    hard_core_scale=1.0, nonbond_push_scale=0.5,
-    displacement_sigma=0.005,
+    num_steps=300,
+    grain_size=None,
+    bond_weight=0.50,
+    angle_weight=0.4,
+    repulsion_weight=1.1,
+    hard_core_scale=1.10,
+    nonbond_push_scale=0.65,
+    displacement_sigma=0.008,
 )
 ```
 

@@ -10,11 +10,14 @@ shell.
 ```python
 cell.generate(
     shell_target,
-    num_steps=50,
-    grain_size=8.0,
-    bond_weight=1.5, angle_weight=1.2, repulsion_weight=1.2,
-    hard_core_scale=0.8, nonbond_push_scale=0.7,
-    displacement_sigma=0.01,
+    num_steps=250,
+    grain_size=14.0,
+    bond_weight=1.6,
+    angle_weight=1.3,
+    repulsion_weight=1.25,
+    hard_core_scale=0.82,
+    nonbond_push_scale=0.71,
+    displacement_sigma=0.011,
 )
 ```
 

@@ -47,7 +47,7 @@ liquid
 amorphous
 short_range_order
 medium_range_order
-extended_medium_range_order
+long_range_order
 nanocrystalline
 ```
 
@@ -59,19 +59,19 @@ left blank use the default (`bond_weight=1.0`, `angle_weight=0.5`,
 
 | Regime | `num_steps` | `grain_size` (Å) | `bond_weight` | `angle_weight` | `repulsion_weight` | `hard_core_scale` | `nonbond_push_scale` | `displacement_sigma` |
 |---|---|---|---|---|---|---|---|---|
-| liquid                       |  40 | - | 0.04 | 0.00 | 0.45 | 0.78 | 0.38 | - |
-| amorphous                    |  30 | - | 0.1  | 0.00 | 0.5 | 0.80 | 0.42 | - |
-| short-range order            |  50 | - | 0.15 | 0.00 | 0.6 | 0.81 | 0.45 | - |
-| medium-range order           |  40 |  9.0 | 0.3  | 0.00 | 0.6 | 0.82 | 0.55 | 0.04 |
-| extended medium-range order  |  40 | 11.0 | 0.3  | 0.00 | 0.6 | 0.82 | 0.55 | 0.04 |
-| nanocrystalline              | 200 | 18.0 | 1.5  | 0.00 | 2.0 | 0.94 | 0.95 | 0.01 |
+| liquid                       |  40 | -    | 0.04 | 0.00 | 0.45 | 0.78 | 0.38 | -     |
+| amorphous                    | 100 | -    | 0.35 | 0.00 | 0.85 | 0.88 | 0.60 | -     |
+| short-range order            | 100 |  7.0 | 0.6  | 0.00 | 1.0  | 0.88 | 0.65 | 0.06  |
+| medium-range order           | 120 |  9.0 | 0.85 | 0.00 | 1.3  | 0.89 | 0.72 | 0.045 |
+| long-range order             | 140 | 12.5 | 1.1  | 0.00 | 1.6  | 0.91 | 0.82 | 0.03  |
+| nanocrystalline              | 200 | 18.0 | 1.5  | 0.00 | 2.0  | 0.94 | 0.95 | 0.01  |
 
 Angle springs are turned off in the liquid and amorphous regimes because
 the FCC first-shell angular distribution is multimodal (60°, 90°, 120°,
 180°) - a single-target angle spring would fight the natural geometry.
-SRO through extended MRO turn the angle spring back on at progressively
+SRO through LRO turn the angle spring back on at progressively
 higher weight. The `nonbond_push_scale` value ramps from 0.5 (liquid) to
-1.0 (extended MRO) so the effective first-shell radius progressively
+1.0 (LRO) so the effective first-shell radius progressively
 approaches the reference `pair_peak` - this is what drives the increasing
 bond count visible across the overview panels.  Only nanocrystalline uses
 explicit Voronoi grain construction; the others start from random

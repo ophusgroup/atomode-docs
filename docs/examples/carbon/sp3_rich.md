@@ -9,15 +9,15 @@ the structure; residual sp² atoms live at grain boundaries as small
 ```python
 cell.generate(
     shell_target,
-    num_steps=120,
-    grain_size=10.0,
+    num_steps=150,
+    grain_size=14.0,
     grain_sources=[
         {"atoms": atoms_graphite, "species_offset": 0, "weight": 0.20},
         {"atoms": atoms_diamond,  "species_offset": 1, "weight": 0.80},
     ],
-    bond_weight=2.0, angle_weight=1.0, repulsion_weight=2.0,
-    hard_core_scale=0.9, nonbond_push_scale=0.8,
-    displacement_sigma=0.03,
+    bond_weight=2.5, angle_weight=1.2, repulsion_weight=2.0,
+    hard_core_scale=0.92, nonbond_push_scale=0.85,
+    displacement_sigma=0.02,
 )
 ```
 

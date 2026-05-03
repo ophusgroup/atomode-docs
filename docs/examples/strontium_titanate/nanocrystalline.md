@@ -1,7 +1,7 @@
 # Nanocrystalline
 
 SrTiO₃ with 18 Å grains: 2 - 3 distinct perovskite grains fit in the
-20 × 20 × 20 Å box, each rotated independently. The crystalline
+40 × 40 × 40 Å box, each rotated independently. The crystalline
 interiors dominate the structure; only thin seams of disordered atoms
 remain at the grain boundaries.
 
@@ -10,11 +10,14 @@ remain at the grain boundaries.
 ```python
 cell.generate(
     shell_target,
-    num_steps=100,
-    grain_size=18.0,
-    bond_weight=0.3, angle_weight=0.6, repulsion_weight=0.4,
-    hard_core_scale=1.0, nonbond_push_scale=0.5,
-    displacement_sigma=0.005,
+    num_steps=400,
+    grain_size=22.0,
+    bond_weight=1.3,
+    angle_weight=0.9,
+    repulsion_weight=1.4,
+    hard_core_scale=1.10,
+    nonbond_push_scale=0.85,
+    displacement_sigma=0.002,
 )
 ```
 

@@ -1,4 +1,10 @@
 # Configuration file for the Sphinx documentation builder.
+import sys
+from pathlib import Path
+
+# Make the tricor source tree importable so autodoc can pull
+# docstrings + signatures.  The tricor repo lives next to tricor-docs.
+sys.path.insert(0, str(Path(__file__).parent.parent.parent / "tricor" / "src"))
 
 project = "tricor"
 copyright = "2025, Colin Ophus"

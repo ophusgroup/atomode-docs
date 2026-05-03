@@ -10,11 +10,14 @@ while orientations remain largely uncorrelated beyond first neighbours.
 ```python
 cell.generate(
     shell_target,
-    num_steps=50,
-    grain_size=4.0,
-    bond_weight=1.5, angle_weight=1.2, repulsion_weight=1.2,
-    hard_core_scale=0.8, nonbond_push_scale=0.7,
-    displacement_sigma=0.01,
+    num_steps=250,
+    grain_size=12.0,
+    bond_weight=1.55,
+    angle_weight=1.25,
+    repulsion_weight=1.25,
+    hard_core_scale=0.81,
+    nonbond_push_scale=0.7,
+    displacement_sigma=0.012,
 )
 ```
 
