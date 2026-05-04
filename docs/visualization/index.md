@@ -10,7 +10,7 @@ tricor's visualisers come in two complementary flavours:
   `export_overview_html`) bake a single structure, trajectory, or
   group of structures into one HTML file that can be opened in any
   browser or embedded in Sphinx docs via ``<iframe>``.  No server, no
-  build step - the pages load Three.js from a CDN at view time.
+  build step. The pages load Three.js from a CDN at view time.
 
 A static PNG / MP4 / GIF exporter (`plot_structure`) and the matplotlib
 loss-history plot (`plot_shell_relax`) are also documented below.
@@ -39,7 +39,7 @@ g3_static
 | `tricor.export_overview_html(path, cells)` | HTML file | Multiple structures rendered side-by-side with synchronised rotation; same `polyhedra_groups=` support as the trajectory exporter. |
 | `cell.plot_shell_relax()` | matplotlib figure | Loss-history plot from the last `generate()` or `shell_relax()` call. |
 | `cell.plot_g2()` | Jupyter widget (iframe) | Single-cell g(r) viewer with species-pair dropdown + overlay-all-pairs mode. |
-| `cell.export_g2_html(path)` | HTML file | Standalone g(r) viewer - species-pair dropdown + overlay-all-pairs. |
+| `cell.export_g2_html(path)` | HTML file | Standalone g(r) viewer with species-pair dropdown + overlay-all-pairs. |
 | `tricor.plot_g2_compare(cells)` | Jupyter widget (iframe) | Overlaid g(r) from multiple supercells, stacked with inline per-series labels. |
 | `tricor.export_g2_compare_html(cells, path)` | HTML file | Standalone version of the compare viewer for docs embedding. |
 | `cell.plot_g3()` | Jupyter widget | Browse the measured g3 as a 2D heatmap with a radial profile. |

@@ -51,13 +51,13 @@ cell.measure_g3()
 
 After {meth}`~Supercell.generate` the cell carries:
 
-- ``cell.atoms`` — the ASE ``Atoms`` object with periodic positions.
-- ``cell.shell_relax_history`` — per-step bond / angle / repulsion
+- ``cell.atoms``: the ASE ``Atoms`` object with periodic positions.
+- ``cell.shell_relax_history``: per-step bond / angle / repulsion
   losses, FIRE trajectory, and (optionally) per-atom cost vectors.
-- ``cell.refine_initial_orientations_history`` — only populated when
+- ``cell.refine_initial_orientations_history``: only populated when
   ``refine_orientations=True`` is passed; one entry per accepted
   rotation.
-- ``cell.current_distribution`` — the most recently measured
+- ``cell.current_distribution``: the most recently measured
   {class}`G3Distribution` (set by {meth}`~Supercell.measure_g3`).
 
 From there the visualisation methods ({meth}`~Supercell.plot_g3`,

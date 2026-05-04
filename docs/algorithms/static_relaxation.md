@@ -76,7 +76,7 @@ at $r_\text{wall} = 1.5 \, r_\text{peak}$ scaled by `nonbond_push_scale`):
 $$F^\text{push} = k_\text{rep} \, (h + h^2).$$
 
 Both are directed along the pair axis and integrate analytically to
-$U \propto k_\text{rep} \, r_\text{wall} \, (h - \ln(1 + h))$ — finite at the wall, soft outside.
+$U \propto k_\text{rep} \, r_\text{wall} \, (h - \ln(1 + h))$ (finite at the wall, soft outside).
 
 ### Position restraint (optional)
 
@@ -149,7 +149,7 @@ $$U_i^\text{cost}
 
 The viewer's global colour scale uses the 99th percentile of
 `atom_cost` in the **last quarter of frames** (steady state), not
-across the whole trajectory — early frames of liquid-path runs can
+across the whole trajectory. Early frames of liquid-path runs can
 have per-atom costs two orders of magnitude larger than the relaxed
 state and would otherwise saturate the scale.
 

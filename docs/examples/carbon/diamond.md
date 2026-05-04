@@ -3,7 +3,7 @@
 Pure sp³ endpoint: every Voronoi grain is cut from the cubic diamond
 reference (Fd-3m, *a* = 3.561 Å).  Randomly rotated tetrahedral
 networks meet at grain boundaries, giving a nanocrystalline diamond
-panel - the cleanest tetrahedral g3 signature on the regime ladder.
+panel, the cleanest tetrahedral g3 signature on the regime ladder.
 
 ## Parameters
 

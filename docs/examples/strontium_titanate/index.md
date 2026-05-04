@@ -5,7 +5,7 @@ Strontium titanate (SrTiO₃) is the archetypal cubic perovskite
 (12-coordinated by O), Ti at the body centre (6-coordinated by O,
 forming a **TiO₆ octahedron**), and each O bridging two Ti along a
 linear backbone while being surrounded by four Sr. Every panel below
-renders the translucent orange TiO₆ octahedra - the motif whose
+renders the translucent orange TiO₆ octahedra, the motif whose
 preservation across the disorder ladder drives everything else.
 
 ## Overview
@@ -18,7 +18,7 @@ sync. Drag any panel to orbit manually.
         style="border: 1px solid rgba(0,0,0,0.1); border-radius: 6px;"
         loading="lazy"></iframe>
 
-g(r) per regime overlaid on a single axis - the dropdown below the
+g(r) per regime overlaid on a single axis. The dropdown below the
 plot switches between the six species pairs (Sr-Sr, Sr-Ti, Sr-O,
 Ti-Ti, Ti-O, O-O):
 
@@ -39,9 +39,15 @@ atoms_ref = read('structures/SrTiO3.cif')   # 1 Sr + 1 Ti + 3 O
 SrTiO₃ has **two** real chemical bonds: short covalent **Ti–O**
 (1.96 Å, the TiO₆ octahedron) and longer ionic **Sr–O** (2.77 Å, the
 SrO₁₂ cuboctahedron).  The Sr–Sr / Ti–Ti / Sr–Ti peaks at *a* =
-3.91 Å are pure lattice separations through the bonded bridge atoms - treating them as bonds would install spurious angle springs that
-destroy the TiO₆ octahedra.  The shell target is built with **both**
-Ti–O and Sr–O enabled as bonds:
+3.91 Å are pure lattice separations through the bonded bridge atoms.
+Since 2026-05 the auto-filter in
+``CoordinationShellTarget.from_atoms`` zeroes those lattice-artefact
+pairs automatically (any pair whose ``pair_peak`` is not the smallest
+in either its row or column), so the explicit
+``with_bonded_species_pairs(...)`` chain below is redundant but
+harmless.  The angle whitelist is still required: the SrO₁₂
+cuboctahedron is multi-modal (60° / 90° / 120° / 180°), so no
+single-target Sr-centred angle spring would converge.
 
 ```python
 import tricor as tc
@@ -58,10 +64,10 @@ cell = tc.Supercell.from_atoms(
     r_max=10, r_step=0.1, phi_num_bins=90,
     rng_seed=42,
 )
-cell.generate(shell_target, grain_size=None)  # liquid - see regime pages
+cell.generate(shell_target, grain_size=None)  # liquid; see regime pages
 ```
 
-The second line - `with_angle_triplets(...)` - silences every
+The second line, `with_angle_triplets(...)`, silences every
 Sr-centered angle spring (and every triplet involving Sr as a
 neighbour).  Reason: **SrO₁₂ is geometrically identical to the Cu-FCC
 cuboctahedron**, so the O-Sr-O distribution is quadri-modal at
@@ -72,7 +78,7 @@ octahedron's single-mode 90° and the Ti-O-Ti 180° backbone angles
 can still be enforced.
 
 The Sr atoms are held in place by 12 Sr-O bond-distance springs
-each - not by an angle spring.  Combined with the repulsion wall
+each, not by an angle spring.  Combined with the repulsion wall
 this is sufficient to preserve the SrO₁₂ geometry under relaxation.
 
 ## Disorder regimes
@@ -90,20 +96,39 @@ nanocrystalline
 
 ## Preset summary
 
-| Regime | `num_steps` | `grain_size` (Å) | `bond_weight` | `angle_weight` | `repulsion_weight` |
-|---|---|---|---|---|---|
-| liquid                      | 200 | -    | 0.10 | 0.0  | 1.0  |
-| amorphous                   | 300 | -    | 0.50 | 0.4  | 1.1  |
-| short-range order           | 300 | 10.0 | 0.7  | 0.6  | 1.15 |
-| medium-range order          | 350 | 14.0 | 0.9  | 0.7  | 1.2  |
-| long-range order            | 350 | 18.0 | 1.1  | 0.8  | 1.3  |
-| nanocrystalline             | 400 | 22.0 | 1.3  | 0.9  | 1.4  |
+| Regime | `num_steps` | `grain_size` (Å) | `bond_weight` | `angle_weight` | `repulsion_weight` | `displacement_sigma` |
+|---|---|---|---|---|---|---|
+| liquid                      | 200 | -    | 0.10 | 0.0  | 1.0  | 0.020 |
+| amorphous                   | 300 | -    | 0.50 | 0.4  | 1.1  | 0.008 |
+| short-range order           | 350 | 14.0 | 1.0  | 0.7  | 1.2  | 0.005 |
+| medium-range order          | 400 | 22.0 | 1.0  | 0.7  | 1.2  | 0.002 |
+| long-range order            | 450 | 28.0 | 1.0  | 0.7  | 1.2  | 0.0015 |
+| nanocrystalline             | 500 | 35.0 | 1.0  | 0.7  | 1.2  | 0.001 |
+
+SRO through NC share the same bond + angle weights (1.0 / 0.7, the
+FIRE sweet spot for SrTiO₃ at this density). The order ladder is
+built by progressively growing the grain (14 → 22 → 28 → 35 Å) and
+the relaxation budget (350 → 400 → 450 → 500 steps) while tightening
+``displacement_sigma`` (0.005 → 0.001).  Pushing weights past 1.0 / 0.7
+saturates and then *reduces* the count of detected TiO₆ octahedra by
+20–30 % — the angle springs over-constrain and conflict with the
+remaining cuboctahedral O-Sr-O modes.
 
 `hard_core_scale=1.10` (shared) enforces a ~1.65 Å minimum Ti-O
-separation — below the 1.96 Å Ti-O bond but well above 1.5 Å —
-which prevents the sub-1 Å pair collapses an earlier preset
-allowed.  `nonbond_push_scale` ramps 0.6 → 0.85 with order;
-`displacement_sigma` shrinks 0.02 → 0.002.  The Ti-centered 90° +
-Ti-O-Ti 180° angle springs hold the TiO₆ octahedra together; the
-Sr-centered cuboctahedron is held by its 12 Sr-O bond-distance
-springs alone.
+separation (below the 1.96 Å Ti-O bond but well above 1.5 Å) and a
+~3.7 Å minimum Sr-Sr / Ti-Ti separation that lets the cuboctahedral
+SrO₁₂ network re-form during FIRE.  Dropping the wall to ``1.0`` cuts
+the octahedra count 5–10 ×.  `nonbond_push_scale=0.75` (shared)
+keeps the second-shell gap clean.
+
+The Ti-centred 90° (O-Ti-O) and 180° (Ti-O-Ti) angle springs hold the
+TiO₆ octahedra together; the Sr-centred cuboctahedron is held by its
+12 Sr-O bond-distance springs alone (the explicit
+``with_angle_triplets([('Ti','O','O'), ('O','Ti','Ti')])`` whitelist
+silences every Sr-centred angle, since the O-Sr-O distribution is
+quadri-modal at 60° / 90° / 120° / 180°).
+
+The benchmark ladder (rng seed 42, 40 Å cell, 0.18 / 18° octahedra
+detector, 1026 Ti atoms) walks ≈ 1 (amorphous) → 107 (SRO) → 266
+(MRO) → 360 (LRO) → 490 (NC) detected TiO₆ octahedra, a monotonic
+0 % → 48 % progression.

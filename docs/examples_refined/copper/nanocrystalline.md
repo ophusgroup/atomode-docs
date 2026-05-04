@@ -7,7 +7,7 @@ orientation refinement enabled.
 
 Each frame is one accepted grain rotation; the schedule walks
 30° → 15° → 5° → 2° and accepts the best of 50 trials per (amplitude,
-grain).  Discrete steps — no FIRE between accepts.
+grain).  Discrete steps, no FIRE between accepts.
 
 <iframe src="../../_static/refined/trajectories/copper_nanocrystalline_refine.html"
         width="100%" height="600"
@@ -25,7 +25,7 @@ all atoms into the basin.
         style="border: 1px solid rgba(0,0,0,0.1); border-radius: 6px;"
         loading="lazy"></iframe>
 
-## Cost trace — refinement + FIRE
+## Cost trace: refinement + FIRE
 
 Total / bond / angle / repulsion components.  Left of the dashed
 line: rotation refinement (one point per accepted rotation).  Right:
@@ -33,7 +33,7 @@ FIRE convergence (downsampled).
 
 ![Cost trace for Cu Nanocrystalline](../../_static/refined/cost_history/copper_nanocrystalline.png)
 
-## g3 distribution — initial · after refine · after FIRE
+## g3 distribution: initial · after refine · after FIRE
 
 Three rooted three-body distributions captured at three points along
 the pipeline so the algorithmic effect of each stage is visible.

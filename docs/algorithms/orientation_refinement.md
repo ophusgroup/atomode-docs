@@ -6,7 +6,7 @@ perturbations, accepting any rotation that lowers a fast topology-free
 score against the grain's local environment.  It runs **between** the
 Voronoi build and the final FIRE quench, so the quench starts from a
 configuration where every grain's lattice is already aligned with the
-neighbours it actually has — not the random orientation the seed
+neighbours it actually has, rather than the random orientation the seed
 draw happened to produce.
 
 The algorithm is most useful for **directional-bond** materials
@@ -30,7 +30,7 @@ are bad at the start:
 1. **Stuck across grain boundaries.**  When a grain is rotated wrong,
    its surface atoms sit far from the angles their cross-grain
    neighbours want.  FIRE pulls those atoms perpendicular to the
-   gradient and they thrash without converging — angle-spring energy
+   gradient and they thrash without converging; angle-spring energy
    stays high.
 2. **Crystal interior is correct but useless.**  FIRE will happily
    leave the misaligned grain's *interior* alone (locally minimal
@@ -54,14 +54,14 @@ For each grain $g$ and each rotation amplitude $a \in
 2. **Score.**  For each candidate, retile the grain $g$ to its master
    block under $\mathbf R_t \cdot \mathbf R_g^{(0)}$ and compute the
    *pair-distance* score (defined below) against the atoms in $g$'s
-   neighbourhood.  No FIRE is run per trial — the scoring kernel is
+   neighbourhood.  No FIRE is run per trial; the scoring kernel is
    pure geometry.
 3. **Accept the best.**  If the lowest-scoring candidate beats the
    current orientation by more than `score_cutoff_factor`, commit it:
    update $\mathbf R_g$ and $\mathbf{r}_g$, refresh species indices
    for multi-species grains.  Otherwise the grain stays put.
 4. **Iterate within an amplitude.**  Repeat the above for
-   `max_rounds_per_amplitude` rounds (default 2) — every grain gets
+   `max_rounds_per_amplitude` rounds (default 2), so every grain gets
    another shot now that its neighbours have moved too.
 5. **Step down the schedule.**  Move to the next (smaller) amplitude
    and repeat.  Smaller amplitudes refine the basin chosen at coarser
@@ -89,7 +89,7 @@ Two crucial properties:
 
 - **Topology-free.**  No bond graph is built; the kernel just sums
   over geometric neighbour pairs.  This is what makes per-trial
-  scoring sub-millisecond — the bottleneck of any
+  scoring sub-millisecond, which matters because the bottleneck of any
   retile-then-FIRE-test alternative is the bond rebuild.
 - **Boundary-weighted.**  Atoms deep inside a grain see only same-
   grain neighbours and contribute a constant baseline to $S_g$ for
@@ -101,7 +101,7 @@ Two crucial properties:
 A grain near a perfect crystal boundary scores
 $S_g \approx \mathrm{const} \cdot (a - r^\star)^2$ where $a$ is the
 grain's lattice spacing.  Tilting the grain by $\theta$ adds
-roughly $\theta^2 \cdot K$ for some prefactor — the score is locally
+roughly $\theta^2 \cdot K$ for some prefactor, so the score is locally
 quadratic in mis-rotation, which is what makes the coordinate-descent
 schedule converge predictably.
 
@@ -109,29 +109,29 @@ schedule converge predictably.
 
 For grains drawn from a multi-species master (SiO₂'s SiO₄
 tetrahedra, SrTiO₃'s perovskite cube, …) the retile operation must
-permute *both* `atoms.numbers` and `species_idx` along with positions
-— otherwise an O slot can land at a Si index and the species-pair
+permute *both* `atoms.numbers` and `species_idx` along with positions;
+otherwise an O slot can land at a Si index and the species-pair
 shell-target lookups produce nonsense.  This is handled automatically
 by the kernel.
 
 ## What gets tuned
 
-- `amplitudes_deg` (default `(30, 15, 5, 2)`) — rotation schedule.
+- `amplitudes_deg` (default `(30, 15, 5, 2)`): rotation schedule.
   Larger first amplitude lets the search escape mis-oriented basins
   drawn by the seed RNG.
-- `trials_per_amplitude_per_grain` (default 50) — number of
+- `trials_per_amplitude_per_grain` (default 50): number of
   candidate rotations sampled per (grain, amplitude).  Higher gives
   a denser SO(3) sampling at the cost of wall time.
-- `max_rounds_per_amplitude` (default 2) — number of full passes
+- `max_rounds_per_amplitude` (default 2): number of full passes
   over all grains within one amplitude phase.  More rounds let
   late-touched grains revisit their own orientations after their
   neighbours moved.
-- `cost_function` (default `"pair_distance"`) — the score above.
+- `cost_function` (default `"pair_distance"`): the score above.
   Alternative `"bond_angle"` builds a topology per trial; usually
   not worth the slowdown.
-- `score_cutoff_factor` (default 1.5) — accept threshold relative to
+- `score_cutoff_factor` (default 1.5): accept threshold relative to
   the per-trial baseline.  Larger values accept more aggressively.
-- `time_budget_sec` — wall-time guard rail; the search bails after
+- `time_budget_sec`: wall-time guard rail; the search bails after
   this even if amplitudes remain.
 
 ## Cost of the search vs the FIRE that follows
@@ -150,10 +150,10 @@ side-by-side comparison.
 
 ## Where to read the code
 
-- `src/tricor/_resample.py` — `refine_initial_orientations`,
+- `src/tricor/_resample.py`: `refine_initial_orientations`,
   `_pair_distance_cost`, `_so3_bounded_rotation`,
   `_retile_grain`.
-- `src/tricor/supercell.py` — `Supercell.generate`'s integration
+- `src/tricor/supercell.py`: `Supercell.generate`'s integration
   block (the `if refine_orientations:` branch around the FIRE call).
-- `src/tricor/_thermal_mc.py` — the numba kernel that runs the
+- `src/tricor/_thermal_mc.py`: the numba kernel that runs the
   per-trial pair-distance evaluation.

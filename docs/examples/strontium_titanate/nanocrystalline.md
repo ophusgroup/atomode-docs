@@ -1,6 +1,6 @@
 # Nanocrystalline
 
-SrTiO₃ with 18 Å grains: 2 - 3 distinct perovskite grains fit in the
+SrTiO₃ with 18 Å grains: 2 to 3 distinct perovskite grains fit in the
 40 × 40 × 40 Å box, each rotated independently. The crystalline
 interiors dominate the structure; only thin seams of disordered atoms
 remain at the grain boundaries.

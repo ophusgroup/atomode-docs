@@ -1,7 +1,7 @@
 # Generating Order Variety
 
-Generate a full spectrum of supercells - from fully disordered liquid to
-nanocrystalline - from a single reference crystal. The pattern below is a
+Generate a full spectrum of supercells, from fully disordered liquid to
+nanocrystalline, from a single reference crystal. The pattern below is a
 good starting point for building training sets for machine-learning
 potentials or for studying how the g3 distribution evolves as structural
 order increases.

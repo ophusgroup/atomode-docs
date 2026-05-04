@@ -2,7 +2,7 @@
 
 Generate disordered atomic supercells guided by three-body (g3) distributions, spanning the full spectrum from liquid to nanocrystalline. Designed for machine-learning training data generation.
 
-Silicon, liquid → nanocrystalline — see [Static Examples → Silicon](examples/silicon/index.md).
+Silicon, liquid → nanocrystalline. See [Static Examples → Silicon](examples/silicon/index.md).
 
 <iframe src="_static/overview/silicon.html"
         width="100%" height="640"
@@ -11,7 +11,7 @@ Silicon, liquid → nanocrystalline — see [Static Examples → Silicon](exampl
 
 ## Overview
 
-tricor builds periodic supercells with controllable disorder - from fully liquid to nanocrystalline - by combining Voronoi grain construction with spring-network relaxation. The resulting structures are characterized by their rooted three-body (g3) distributions, which capture both radial and angular correlations.
+tricor builds periodic supercells with controllable disorder, from fully liquid to nanocrystalline, by combining Voronoi grain construction with spring-network relaxation. The resulting structures are characterized by their rooted three-body (g3) distributions, which capture both radial and angular correlations.
 
 **Key features:**
 

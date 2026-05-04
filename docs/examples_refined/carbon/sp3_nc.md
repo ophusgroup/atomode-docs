@@ -1,12 +1,12 @@
 # Nanocrystalline diamond (sp³)
 
-C, 40 × 40 × 40 Å, regime preset `"sp3_nc"`.  All grains sampled from diamond (Fd-3m, *a* = 3.567 Å) — 100% sp³ regime.  Every C atom develops 4 tetrahedral bonds at 109.5°.  Final-frame polyhedra render the SiC₄ analogue (CC₄ tetrahedra) of the sp³ network.
+C, 40 × 40 × 40 Å, regime preset `"sp3_nc"` (100% sp³ regime). All grains sampled from diamond (Fd-3m, *a* = 3.567 Å). Every C atom develops 4 tetrahedral bonds at 109.5°. Final-frame polyhedra render the SiC₄ analogue (CC₄ tetrahedra) of the sp³ network.
 
 ## Orientation-refinement movie
 
 Each frame is one accepted grain rotation; the schedule walks
 30° → 15° → 5° → 2° and accepts the best of 50 trials per (amplitude,
-grain).  Discrete steps — no FIRE between accepts.
+grain).  Discrete steps, no FIRE between accepts.
 
 <iframe src="../../_static/refined/trajectories/carbon_sp3_nc_refine.html"
         width="100%" height="600"
@@ -24,7 +24,7 @@ the playback (locked-index polyhedra following the trajectory).
         style="border: 1px solid rgba(0,0,0,0.1); border-radius: 6px;"
         loading="lazy"></iframe>
 
-## Cost trace — refinement + FIRE
+## Cost trace: refinement + FIRE
 
 Total / bond / angle / repulsion components.  Left of the dashed
 line: rotation refinement (one point per accepted rotation).  Right:
@@ -32,7 +32,7 @@ FIRE convergence (downsampled).
 
 ![Cost trace for C Nanocrystalline diamond (sp³)](../../_static/refined/cost_history/carbon_sp3_nc.png)
 
-## g3 distribution — initial · after refine · after FIRE
+## g3 distribution: initial · after refine · after FIRE
 
 Three rooted three-body distributions captured at three points along
 the pipeline so the algorithmic effect of each stage is visible.

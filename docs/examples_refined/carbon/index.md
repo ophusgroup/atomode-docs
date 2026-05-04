@@ -11,9 +11,10 @@ sampled from either graphite (sp², 3-coordinated, 120°) or diamond
 | `mixed_nc` | 0.50 | 0.50 | sp²/sp³ mixed nanocrystalline |
 | `sp3_nc`   | 0.00 | 1.00 | nanocrystalline diamond (all sp³) |
 
-Every regime is nanocrystalline (`grain_size = 10 Å`) — the variable
+Every regime is nanocrystalline (`grain_size = 18 Å`); the variable
 is the grain chemistry, not the grain size.  Shell-relax weights are
-fixed at `bond_weight=2, angle_weight=1, repulsion_weight=2`.  The
+fixed at `bond_weight=2.5, angle_weight=1.2, repulsion_weight=2.0`.
+The
 composite shell target carries two virtual species (`sp2_C`,
 `sp3_C`); each grain's atoms inherit the species index of the master
 they came from, so 3-coordinated graphite atoms develop bonds at
@@ -24,7 +25,7 @@ they came from, so 3-coordinated graphite atoms develop bonds at
 
 Top row is `Supercell.generate()` with the static-relaxation
 pipeline only (FIRE quench, no orientation search); bottom row is
-the same cell with `refine_orientations=True` enabled — the SO(3)
+the same cell with `refine_orientations=True` enabled. The SO(3)
 coordinate search that aligns each grain's lattice to its local
 environment before the same final FIRE quench runs.  Drag any panel
 to orbit; all six rotate in sync.
@@ -34,7 +35,7 @@ to orbit; all six rotate in sync.
         style="border: 1px solid rgba(0,0,0,0.1); border-radius: 6px;"
         loading="lazy"></iframe>
 
-## g(r) overlay — static vs refined, all 6 cases
+## g(r) overlay: static vs refined, all 6 cases
 
 Six g(r) curves on a single radial axis: each regime's static and
 refined post-FIRE state, overlaid for direct comparison.  The pair

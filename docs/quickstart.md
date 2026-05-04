@@ -38,7 +38,7 @@ cell.generate(shell_target, **tc.Supercell.PRESETS["MRO"])
 cell.measure_g3()
 cell.plot_g3()
 
-# 5. Interactive 3D viewer (Jupyter) - blue Si tetrahedra by default
+# 5. Interactive 3D viewer (Jupyter); blue Si tetrahedra by default
 cell.view_structure()
 ```
 
@@ -53,14 +53,14 @@ cell.generate(shell_target, **tc.Supercell.PRESETS["MRO"])
 
 Available keys, in order of increasing structural order:
 
-| Preset | Grain seed (Å) | Notes |
+| Preset | Grain size (Å) | Notes |
 |---|---|---|
 | `liquid` | - | No grains; fully random starting positions. |
-| `amorphous` | 6 | Short-range tetrahedral network. |
+| `amorphous` | 6 | Short-range tetrahedral network with 6 Å grains. |
 | `SRO` | 10 | Short-range order. |
 | `MRO` | 13 | Medium-range order. |
 | `LRO` | 18 | Long-range order. |
-| `nanocrystalline` | 20 | Single coherent grain filling a 20 Å box. |
+| `nanocrystalline` | 20 | Few large grains per cell (≈ 8 grains in a 40 Å cube). |
 
 See the [preset summary table](examples/silicon/index.md#preset-summary)
 on the silicon examples page for the full parameter values.
@@ -92,8 +92,8 @@ shell_target = (
 
 ## Phase blends (sp²/sp³ carbon, etc.)
 
-For materials with a controllable phase mix - sp² ↔ sp³ carbon; a
-polymer/ceramic boundary; etc. - extract one shell target per
+For materials with a controllable phase mix (sp² ↔ sp³ carbon, a
+polymer/ceramic boundary, etc.), extract one shell target per
 chemistry and combine them with `from_targets`:
 
 ```python
@@ -135,13 +135,13 @@ results side-by-side is a standard tricor workflow:
 ```python
 cells = {}
 for name in ["liquid", "amorphous", "SRO", "MRO", "LRO", "nanocrystalline"]:
-    c = tc.Supercell.from_atoms(atoms, cell_dim_angstroms=(20, 20, 20),
+    c = tc.Supercell.from_atoms(atoms, cell_dim_angstroms=(40, 40, 40),
                                 r_max=10, r_step=0.1, phi_num_bins=90,
                                 rng_seed=42)
     c.generate(shell_target, **tc.Supercell.PRESETS[name])
     cells[name] = c
 
-# Overlaid g(r) stack - most disordered bottom, most ordered top
+# Overlaid g(r) stack (most disordered bottom, most ordered top)
 tc.plot_g2_compare(cells, r_max=8.0, title="Silicon regime ladder")
 
 # Synchronised rotating 3D grid

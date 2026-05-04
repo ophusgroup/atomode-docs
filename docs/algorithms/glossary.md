@@ -6,19 +6,19 @@
 : A structure with only nearest-neighbour correlations enforced. No grain construction; atoms are placed randomly and relaxed with weak angle springs.
 
 **Amorphous**
-: Short-range order limited to the first nearest-neighbour shell. Constructed from very small grains (~6 A) with heavy broadening.
+: Short-range order limited to the first nearest-neighbour shell. Constructed from very small grains (~6 Å) with heavy broadening.
 
 **Short-range order (SRO)**
-: Correlations extend out to ~3 visible maxima in the pair correlation function. Constructed from small grains (~10 A).
+: Correlations extend out to ~3 visible maxima in the pair correlation function. Constructed from small grains (~10 Å).
 
 **Medium-range order (MRO)**
-: Correlations extend to 4-5 visible maxima. Constructed from grains of ~13 A.
+: Correlations extend to 4-5 visible maxima. Constructed from grains of ~13 Å.
 
 **Long-range order (LRO)**
-: Larger grains (~18 A) extend correlations further (8-10 A range).
+: Larger grains (~18 Å) extend correlations further (8-10 Å range).
 
 **Nanocrystalline**
-: Grains filling the box with sharp crystalline peaks. Grain size determines the crystallite domain size (e.g. 10 A, 20 A nanocrystalline).
+: Grains filling the box with sharp crystalline peaks. Grain size determines the crystallite domain size (e.g. 10 Å, 20 Å nanocrystalline).
 
 ## Three-body distribution
 
@@ -64,7 +64,7 @@
 ## Grain construction
 
 **grain_size**
-: Diameter of crystalline grains in Angstrom. Smaller grains give fewer visible shells in g3.
+: Diameter of crystalline grains in Å.  Smaller grains give fewer visible shells in g3.
 
 **crystalline_fraction**
 : Volume fraction filled by crystalline grains. The rest is amorphous fill. 1.0 = all grains, 0.0 = all random.
@@ -93,7 +93,7 @@
 : Multiplier for the non-bonded clearance distance. Values below 1.0 give broader 2nd shells.
 
 **displacement_sigma**
-: Gaussian displacement applied to grain atoms before relaxation (Angstrom).
+: Gaussian displacement (Å) applied to grain atoms before relaxation.
 
 **k_restraint**
 : Spring constant of the optional position-restraint term
@@ -148,7 +148,7 @@
   `Supercell._atom_shell_species_index`.
 
 **atom_species_index**
-: Optional `generate(atom_species_index=...)` override - a (num_atoms,)
+: Optional `generate(atom_species_index=...)` override; a (num_atoms,)
   array of virtual-species indices.  Used when the caller wants to
   assign virtual species directly rather than letting
   `grain_sources` do it.

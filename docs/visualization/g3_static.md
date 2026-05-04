@@ -2,7 +2,7 @@
 
 Bake the measured three-body distribution of a single supercell into a
 self-contained HTML file. The layout mirrors the interactive Jupyter
-widget but has no live selectors - a fixed colormap and root-bond shell
+widget but has no live selectors. A fixed colormap and root-bond shell
 window are baked in, so the file renders identically in any browser.
 
 ## Usage
@@ -18,19 +18,19 @@ main measurement state.
 
 ## Layout
 
-- **Top panel** - 2D heatmap of the reduced g3 slice
+- **Top panel:** 2D heatmap of the reduced g3 slice
   $\tilde{g}_3(r, \phi)$ at a fixed root-bond shell, plotted in `r` vs
   $\phi$ with the diverging `RdBu_r` colormap centred at $\tilde{g}_3 = 1$
   (uniform random reference). Blue = depleted, white = uniform,
   red = enhanced.
-- **Bottom panel** - pair profile $g(r) / \text{uniform}$ for the same
+- **Bottom panel:** pair profile $g(r) / \text{uniform}$ for the same
   triplet channel, with the root-bond integration window highlighted as an
   amber band. The band shows exactly which range of distances was summed
   over to produce the slice above.
-- **Right side** - colorbar legend with tick marks at 0, 1.0, and the
+- **Right side:** colorbar legend with tick marks at 0, 1.0, and the
   current colour max. The 1.0 label follows the white point as the maximum
   is changed.
-- **Controls** - drop-down channel selector (hidden when only one triplet
+- **Controls:** drop-down channel selector (hidden when only one triplet
   type is present) and a numeric input for the colour maximum.
 
 ## Parameters

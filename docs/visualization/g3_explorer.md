@@ -27,7 +27,7 @@ the three scalars
 Accumulated over all central atoms of the relevant species, this gives a
 four-index histogram $g_3^{t}(r_j, r_k, \phi)$ for every triplet type $t$
 (e.g. `Si | Si Si`). "Rooted" means the distribution is conditioned on one
-of the two bonds - the **root bond** - sitting in a specific radial shell.
+of the two bonds (the **root bond**) sitting in a specific radial shell.
 
 The 2D viewer shows a slice of the full distribution: the root-bond length
 $r_j$ is integrated over a user-chosen shell window (usually the first

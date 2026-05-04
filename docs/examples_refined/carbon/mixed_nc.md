@@ -1,12 +1,12 @@
 # Mixed sp²/sp³ nanocrystalline
 
-C, 40 × 40 × 40 Å, regime preset `"mixed_nc"`.  50/50 mix of graphite and diamond grains.  In every Voronoi cell either all atoms are sp² (graphite) or all atoms are sp³ (diamond) — the two coexist as separate grains, with grain boundaries between sp² and sp³ patches.
+C, 40 × 40 × 40 Å, regime preset `"mixed_nc"`. 50/50 mix of graphite and diamond grains. In every Voronoi cell either all atoms are sp² (graphite) or all atoms are sp³ (diamond); the two coexist as separate grains, with grain boundaries between sp² and sp³ patches.
 
 ## Orientation-refinement movie
 
 Each frame is one accepted grain rotation; the schedule walks
 30° → 15° → 5° → 2° and accepts the best of 50 trials per (amplitude,
-grain).  Discrete steps — no FIRE between accepts.
+grain).  Discrete steps, no FIRE between accepts.
 
 <iframe src="../../_static/refined/trajectories/carbon_mixed_nc_refine.html"
         width="100%" height="600"
@@ -24,7 +24,7 @@ the playback (locked-index polyhedra following the trajectory).
         style="border: 1px solid rgba(0,0,0,0.1); border-radius: 6px;"
         loading="lazy"></iframe>
 
-## Cost trace — refinement + FIRE
+## Cost trace: refinement + FIRE
 
 Total / bond / angle / repulsion components.  Left of the dashed
 line: rotation refinement (one point per accepted rotation).  Right:
@@ -32,7 +32,7 @@ FIRE convergence (downsampled).
 
 ![Cost trace for C Mixed sp²/sp³ nanocrystalline](../../_static/refined/cost_history/carbon_mixed_nc.png)
 
-## g3 distribution — initial · after refine · after FIRE
+## g3 distribution: initial · after refine · after FIRE
 
 Three rooted three-body distributions captured at three points along
 the pipeline so the algorithmic effect of each stage is visible.

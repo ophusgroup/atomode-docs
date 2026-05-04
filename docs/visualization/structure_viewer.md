@@ -11,7 +11,7 @@ cell.view_structure()
 
 For recognised materials (Si / C, Cu, SiO₂, SrTiO₃, …) the viewer
 picks a coordination polyhedron and renders it as a translucent mesh
-around every atom whose first shell passes the detector - no bond
+around every atom whose first shell passes the detector, with no bond
 cylinders by default:
 
 | Species | Polyhedron | Centre-vertex bond | Scale |
@@ -24,7 +24,7 @@ cylinders by default:
 
 For **blended materials** (sp²/sp³ carbon; SiO₂/Si₃N₄ mixes, …) pass
 `polyhedra_groups=[...]` to `export_overview_html` or
-`export_trajectory_html` - each entry carries its own `kind`
+`export_trajectory_html`. Each entry carries its own `kind`
 (``triangles``, ``tetrahedra``, ``octahedra``, ``cuboctahedra``),
 colour, opacity, and an optional `virtual_species` filter that
 restricts detection to atoms flagged with that shell-target species
@@ -100,11 +100,11 @@ Colours come from ASE's jmol colour scheme; the polyhedra colour
 defaults to a material-specific hint (blue for Si-tets, orange for
 Ti-octa, copper-orange for Cu-cubocta, …).
 
-## Example - silicon MRO
+## Example: silicon MRO
 
 Here is the live widget as rendered from `tc.Supercell.PRESETS["MRO"]`
-on Si at 20 × 20 × 20 Å - the blue tetrahedra mark Si atoms whose four
-nearest neighbours pass the 109.5 ° / 2.35 Å first-shell filter, with
+on Si at 40 × 40 × 40 Å. The blue tetrahedra mark Si atoms whose four
+nearest neighbours pass the 109.5° / 2.35 Å first-shell filter, with
 the tets shrunk to half-size so their corners meet at Si-Si bond
 midpoints:
 

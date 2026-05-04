@@ -40,7 +40,7 @@ with $r_\text{eff} = \max(r_{01}, r_{02})$.
 |-----------|-------------|
 | `target_r_min` | Radius where the transition from crystalline to random begins |
 | `target_r_max` | Radius where the distribution is fully random |
-| `r_sigma` | Radial blur width in Angstrom (at `r_sigma_at`) |
+| `r_sigma` | Radial blur width in Å (at `r_sigma_at`) |
 | `r_sigma_at` | Reference radius where the radial blur equals `r_sigma` |
 | `phi_sigma_deg` | Angular blur width in degrees (at `r_sigma_at`) |
 

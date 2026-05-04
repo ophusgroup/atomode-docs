@@ -46,7 +46,7 @@ scrub, and change playback speed.
 ## g3 distribution
 
 Measured from the **final (post-relaxation) atoms**. The heatmap is the
-reduced three-body density in units of the uniform random reference - white
+reduced three-body density in units of the uniform random reference, where white
 = 1.0, blue = depleted, red = enhanced. The lower panel shows the pair
 profile g(r); the shaded amber band marks the first-neighbour shell used as
 the root-bond integration window for the g3 slice.

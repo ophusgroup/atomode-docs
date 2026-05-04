@@ -28,9 +28,14 @@ manually.
         style="border: 1px solid rgba(0,0,0,0.1); border-radius: 6px;"
         loading="lazy"></iframe>
 
-Stacked g(r) per regime - most sp²-dominant curve at the bottom, most
-sp³-dominant at the top.  The pair dropdown below the plot lets you
-switch between the sp²-C and sp³-C channels:
+Stacked g(r) per regime, most sp²-dominant curve at the bottom, most
+sp³-dominant at the top.  Only one pair appears in the dropdown
+(`C-C`) because the g(r) measurement uses atomic numbers and both
+virtual species (`sp2_C`, `sp3_C`) share atomic number 6.  The two
+characteristic bond lengths still split the first peak: a sharp
+contribution at 1.42 Å (sp² in-plane) and a sharper one at 1.54 Å
+(sp³ tetrahedral), with the relative peak heights tracking the
+``(w_graphite, w_diamond)`` regime weights.
 
 <iframe src="../../_static/g2_compare/carbon.html"
         width="100%" height="480"
@@ -48,7 +53,7 @@ atoms_diamond  = read("docs/structures/C_diamond.cif")   # Fd-3m,  a=3.561 Å
 
 ## Composite shell target
 
-Carbon uses a **composite shell target** - one `CoordinationShellTarget`
+Carbon uses a **composite shell target**: one `CoordinationShellTarget`
 per chemistry, stacked into a single object with two virtual species
 (``sp2_C`` and ``sp3_C``) that share atomic number 6 but carry
 distinct coordination + bond-angle targets:
@@ -65,7 +70,7 @@ shell_target = tc.CoordinationShellTarget.from_targets(
 
 The relaxer consults each atom's **virtual species index** (assigned
 per grain during construction) so sp² atoms develop 3 bonds at 120°
-and sp³ atoms develop 4 bonds at 109.5° - inside the same cell.
+and sp³ atoms develop 4 bonds at 109.5°, inside the same cell.
 
 ## Grain-level sp²/sp³ mixing
 
@@ -88,7 +93,7 @@ cell.generate(
 )
 ```
 
-Atom count scales naturally with the regime's phase mix - diamond is
+Atom count scales naturally with the regime's phase mix; diamond is
 denser than graphite (0.177 vs 0.098 atoms/Å³), so diamond-dominant
 regimes carry more atoms at the same box size.
 
@@ -112,14 +117,21 @@ diamond
 
 | Regime | w_graphite | w_diamond | grain_size (Å) | num_steps |
 |---|---|---|---|---|
-| `graphite_nc`  | 1.00 | 0.00 | 14.0 | 150 |
-| `sp2_rich`     | 0.80 | 0.20 | 14.0 | 150 |
-| `sp2_leaning`  | 0.60 | 0.40 | 14.0 | 150 |
-| `sp3_leaning`  | 0.40 | 0.60 | 14.0 | 150 |
-| `sp3_rich`     | 0.20 | 0.80 | 14.0 | 150 |
-| `diamond_nc`   | 0.00 | 1.00 | 14.0 | 150 |
+| `graphite_nc`  | 1.00 | 0.00 | 18.0 | 250 |
+| `sp2_rich`     | 0.80 | 0.20 | 18.0 | 250 |
+| `sp2_leaning`  | 0.60 | 0.40 | 18.0 | 250 |
+| `sp3_leaning`  | 0.40 | 0.60 | 18.0 | 250 |
+| `sp3_rich`     | 0.20 | 0.80 | 18.0 | 250 |
+| `diamond_nc`   | 0.00 | 1.00 | 18.0 | 250 |
 
 Shell-relax weights are identical across regimes:
 ``bond_weight=2.5, angle_weight=1.2, repulsion_weight=2.0,
 hard_core_scale=0.92, nonbond_push_scale=0.85,
 displacement_sigma=0.02``.
+
+Grain size grew 14 → 18 Å in 2026-05 (with `num_steps` 150 → 250)
+to reduce the fraction of atoms at sp²/sp³ grain boundaries — those
+boundary atoms cannot pass either the triangle (3-coord, 120°) or
+the tetrahedron (4-coord, 109.5°) detector regardless of relaxation,
+so growing the crystalline interior is the only lever for visible
+ordering in the mixed regimes.

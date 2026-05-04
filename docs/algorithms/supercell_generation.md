@@ -58,7 +58,7 @@ skips steps 1-6 (the random-position initial cell from
    (step 4) is tiled per source; the grain's atoms are cut from that
    source's master block and tagged with the source's
    `species_offset` as their virtual-species index.  This is the
-   mechanism behind the carbon sp²/sp³ ladder - graphite grains get
+   mechanism behind the carbon sp²/sp³ ladder: graphite grains get
    virtual species 0 (sp²), diamond grains get virtual species 1
    (sp³), and the density target is a weight-averaged blend so the
    denser phase (diamond) isn't trimmed to the sparse phase's
@@ -111,11 +111,11 @@ After grain construction, the resulting initial atom block is handed
 off to **shell relaxation** to refine bond lengths, bond angles, and
 non-bonded distances against the first-shell targets:
 
-- [Orientation refinement](orientation_refinement.md) — optional
+- [Orientation refinement](orientation_refinement.md): optional
   per-grain SO(3) coordinate search that runs **before** the FIRE
   quench, picking rotations that align each grain's lattice with its
   local neighbourhood.  Enabled with `refine_orientations=True`.
-- [Static relaxation](static_relaxation.md) — FIRE-style gradient
+- [Static relaxation](static_relaxation.md): FIRE-style gradient
   descent on the spring-network energy.  Default for
   `Supercell.generate()`.
 
