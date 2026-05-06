@@ -3,10 +3,21 @@
 ## Installation
 
 ```bash
+pip install tricor
+```
+
+Or to install the development checkout:
+
+```bash
 git clone https://github.com/ophusgroup/tricor.git
 cd tricor
-uv sync
+uv sync                # or: pip install -e '.[test]'
 ```
+
+`tricor` requires Python ≥ 3.10.  ``numba`` is a hard dependency
+(installed automatically) and powers both the parallel ``measure_g3``
+kernel and the ``thermal_relax`` / grain-orientation-refinement
+features.
 
 ## Minimal example
 

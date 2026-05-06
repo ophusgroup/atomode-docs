@@ -43,6 +43,27 @@ $(k, j)$ are added separately when the two neighbour species differ
 (symmetrising the $(r_{01}, r_{02})$ plane); when they are the same
 species the diagonal is masked so no atom pairs with itself.
 
+### Acceleration backend
+
+`measure_g3(backend="auto")` (the default) uses the numba-parallel
+kernel.  ``numba`` is a hard dependency of ``tricor`` (installed by
+``pip install tricor``), so the fast path is always available; the
+pure-numpy reference loop remains in the source as a self-check and
+runs when ``backend="python"`` is passed explicitly.  Both backends
+produce **bit-identical** ``g3count`` and ``g2count`` (verified by
+`tests/test_g3_numba.py`).
+
+| `backend`  | speed (40 Å SrTiO₃, 5125 atoms) | when to use |
+|------------|---------------------------------|-------------|
+| `"numba"`  | **~1.2 s** (≈ 25 × faster)      | default |
+| `"python"` | ~30 s                            | reference / debugging |
+| `"auto"`   | numba                            | the default; same as ``"numba"`` |
+
+The first call pays a one-time JIT compile cost (~1–2 s); subsequent
+calls hit the cached kernel.  The kernel uses ``prange`` over origin
+atoms with per-thread accumulators reduced at the end — no atomic
+adds, no GIL.
+
 ## Reduced coordinates
 
 The random-limit (ideal gas) g3 scales as $r_{01}^2 \, r_{02}^2 \,
