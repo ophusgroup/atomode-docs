@@ -195,6 +195,9 @@ multi-panel overview, g(r), g3).
   interactive viewers embedded.
 - [Generating order variety](order_variety.md): batch generation of
   every disorder regime for a single material.
+- [Generating very large cells](large_cells.md): the `bond_relax`
+  shortcut + MC-subsampled g(r) / g3 measurement for production cells
+  at 100³ Å and beyond.
 - [Algorithms](algorithms/index.md): mathematical details of grain
   construction, shell relaxation, and target-g3 construction.
 - [API reference](api/index.md): every public class and function.

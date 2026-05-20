@@ -5,6 +5,13 @@ nanocrystalline, from a single reference crystal. The pattern below is a
 good starting point for studying how the g3 distribution evolves as
 structural order increases.
 
+```{tip}
+The pattern on this page uses the default full-FIRE pipeline at 40³ Å
+(~5 k atoms / regime).  For production cells (100³ Å and larger), see
+[Generating very large cells](large_cells.md) for the shortcut
+pipeline and the subsampled g(r) / g3 measurement helpers.
+```
+
 ## Setup
 
 ```python

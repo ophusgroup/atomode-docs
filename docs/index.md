@@ -29,6 +29,7 @@ quickstart
 examples/index
 examples_refined/index
 order_variety
+large_cells
 algorithms/index
 visualization/index
 api/index
