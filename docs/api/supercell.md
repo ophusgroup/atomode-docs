@@ -25,6 +25,8 @@ relaxation), measurement, visualisation, and HTML-export helpers.
 
    .. rubric:: Relaxation
    .. automethod:: shell_relax
+   .. automethod:: bond_relax
+   .. automethod:: enforce_hard_core
    .. automethod:: thermal_relax
    .. automethod:: monte_carlo
 

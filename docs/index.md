@@ -1,6 +1,6 @@
 # tricor
 
-Generate disordered atomic supercells guided by three-body (g3) distributions, spanning the full spectrum from liquid to nanocrystalline. Designed for machine-learning training data generation.
+Generate disordered atomic supercells guided by three-body (g3) distributions, spanning the full spectrum from liquid to nanocrystalline.
 
 Silicon, liquid → nanocrystalline. See [Static Examples → Silicon](examples/silicon/index.md).
 

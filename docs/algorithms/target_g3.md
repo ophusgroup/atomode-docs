@@ -1,6 +1,6 @@
 # Target g3 Construction
 
-A target g3 distribution represents the desired structural correlations for a supercell. It is built from a crystalline reference measurement by blurring and blending toward the random limit. Target construction is independent of supercell generation and is used for comparison or as input to ML training.
+A target g3 distribution represents the desired structural correlations for a supercell. It is built from a crystalline reference measurement by blurring and blending toward the random limit. Target construction is independent of supercell generation and is used for comparison.
 
 ## Construction pipeline
 
