@@ -75,7 +75,7 @@ SIO2_REGIMES = {
         # Standard nanocrystalline preset is 35 \xc5; shrunk further
         # here so the grain fits inside the 15\xb3 \xc5 example cell.
         # Document this choice in the per-regime page.
-        grain_size=13.0, num_steps=200,
+        grain_size=22.0, num_steps=200,
         bond_weight=1.65, angle_weight=1.35, repulsion_weight=1.3,
         hard_core_scale=0.82, nonbond_push_scale=0.72,
         displacement_sigma=0.004,
@@ -518,7 +518,7 @@ def _run_pipeline(regime, kw, box, rng_seed, skip_dftb=False):
                       trajectory=str(traj_path),
                       maxstep=0.03)
         try:
-            opt.run(fmax=1.0, steps=40)
+            opt.run(fmax=1.0, steps=60)
         except Exception as exc:  # noqa: BLE001
             warnings.warn(
                 f"DFTB+ relax stopped early at {regime!r}: {exc!s}.\n"

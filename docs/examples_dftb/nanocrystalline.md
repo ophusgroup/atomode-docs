@@ -1,15 +1,17 @@
-# Nanocrystalline SiO₂ — DFTB+ refinement
+# Nanocrystalline SiO₂
 
-A 20 Å cubic SiO₂ supercell (609 atoms) built with the
-nanocrystalline regime (`grain_size = 13 Å` — shrunk from the
-standard 35 Å so a full grain fits comfortably inside the 20 Å cell;
-the structural character of "large internal crystalline region +
-amorphous boundary" is preserved).
+A 30 Å cubic SiO₂ supercell (2052 atoms) built with the
+nanocrystalline regime (`grain_size = 22 Å` — closer to the standard
+35 Å preset, fits cleanly inside the 30 Å cell with ~4 Å of
+amorphous boundary on each face).  This is the realistic
+"large-interior-crystal + amorphous-boundary" scenario; the earlier
+15 Å / 20 Å examples used a 13 Å grain to fit smaller cells and
+filled essentially the whole cell with one grain.
 
 To re-generate:
 
 ```bash
-python scripts/regen_dftb_examples.py --regime nanocrystalline --box 20.0
+python scripts/regen_dftb_examples.py --regime nanocrystalline --box 30.0
 ```
 
 ## g(r) per stage
@@ -28,15 +30,15 @@ python scripts/regen_dftb_examples.py --regime nanocrystalline --box 20.0
 
 | stage | Si–O peak (Å) | ⟨r⟩ (Å) | σ (Å) | # Si–O bonds |
 |---|---:|---:|---:|---:|
-| Voronoi | 1.61 | 1.61 | 0.067 | 671 |
-| after orient | 1.61 | 1.61 | 0.067 | 671 |
-| after FIRE | 1.73 | 1.70 | 0.094 | 732 |
-| **after DFTB+ (40 steps)** | **1.67** | **1.72** | **0.068** | **717** |
+| Voronoi | 1.61 | 1.61 | 0.052 | 2409 |
+| after orient | 1.61 | 1.61 | 0.052 | 2409 |
+| after FIRE | 1.69 | 1.70 | 0.069 | 2546 |
+| **after DFTB+ (60 steps)** | **1.65** | **1.71** | **0.066** | **2502** |
 
-DFTB+ pulls the peak back from the FIRE-broadened 1.73 Å to 1.67 Å
-and narrows σ by ~28 % (0.094 → 0.068 Å).  Residual fmax at step 40
-is 7.5 eV/Å — the lowest of the three regimes, because the
-mostly-crystalline interior contributes near-zero forces.
+DFTB+ pulls the peak back from the FIRE-broadened 1.69 Å to 1.65 Å
+and slightly narrows σ.  Residual fmax at step 60 is 8.65 eV/Å — the
+60-step cap stops the relax short of the 1.0 eV/Å target, but the
+energy descent across all 60 steps is monotonic.
 
 ## Angle distributions
 
@@ -49,32 +51,41 @@ mostly-crystalline interior contributes near-zero forces.
 
 | stage | E_total (eV) | ΔE vs previous |
 |---|---:|---:|
-| Voronoi | -41897.96 | — |
-| after orient | -41897.96 | 0 |
-| after FIRE | -43211.76 | -1314 |
-| **after DFTB+ relax** | **-43351.54** | **-140** (≈ -0.23 eV/atom) |
+| Voronoi | -142619.07 | — |
+| after orient | -142619.07 | 0 |
+| after FIRE | -145906.27 | -3287 |
+| **after DFTB+ relax** | **-146096.28** | **-190** (≈ -0.09 eV/atom) |
 
-Cell volume change Voronoi → DFTB+: +0.1 %.  DFTB+ total at 40 steps
-is -71.2 eV/atom, matching the amorphous and SRO results at the same
-cell size.
+Cell volume change Voronoi → DFTB+: +0.1 %.  DFTB+ total at 60 steps
+is -71.2 eV/atom, matching the smaller-cell results.
 
-DFTB+ relax wallclock: 396 s for the seed SP + 40 FIRE+UCF steps
-(~6.6 min total, ~9.9 s/step on average — the crystalline interior
-converges in very few SCC iterations per FIRE step, making this the
-fastest regime).
+DFTB+ relax wallclock: 13,689 s = 3.8 hr for the seed SP (~48 min) +
+60 FIRE+UCF steps (~2 min/step average).
+
+```{note}
+The `after orient` row is identical to `Voronoi` because the
+Voronoi tile in tricor already assigns each grain an orientation
+that locally minimises the pair-distance score at grain boundaries.
+A swept SO(3) coordinate search over 4400 trial rotations (11 grains
+× 4 amplitudes × 2 rounds × 50 trials/grain) finds zero
+improvements: every perturbation *worsens* the score.  The step
+still runs (~12 s); it just produces no change.  This was confirmed
+to hold across `grain_size ∈ {16, 17, 18, 22} Å`,
+`displacement_sigma ∈ {0.004, 0.008, 0.012}`, and 7 RNG seeds.
+```
 
 ## Reproduction summary
 
 | knob | value |
 |---|---|
-| cell side | 20 Å |
-| atoms | 609 |
-| grain_size | 13 Å (shrunk from standard 35 Å to fit the 20 Å cell) |
+| cell side | 30 Å |
+| atoms | 2052 |
+| grain_size | 22 Å |
 | FIRE steps (tricor stage 3) | 200 |
 | pre-DFTB cleanup | bond_relax(20) + enforce_hard_core(40) |
 | DFTB+ optimizer | ASE FIRE, maxstep = 0.03 Å |
 | DFTB+ cell DOFs | volume only (`hydrostatic_strain=True`) |
-| DFTB+ fmax target | 1.0 eV/Å, 40-step cap |
+| DFTB+ fmax target | 1.0 eV/Å, 60-step cap |
 | charge restart | seed SP + `ReadInitialCharges=Yes` |
 | SK set | matsci-0-3 |
 | k-points | (1, 1, 1) Γ-only |

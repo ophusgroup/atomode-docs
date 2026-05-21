@@ -1,37 +1,37 @@
 {
-  "nanocrystalline": {
-    "box_angstrom": 20.0,
-    "n_atoms": 609,
+  "amorphous": {
+    "box_angstrom": 30.0,
+    "n_atoms": 2052,
     "timings_s": {
-      "voronoi": 0.015295982360839844,
-      "orient": 1.7890441417694092,
-      "fire": 0.7345988750457764,
-      "dftb_relax": 395.84400510787964
+      "voronoi": 0.051187992095947266,
+      "orient": 4.026854991912842,
+      "fire": 1.7201111316680908,
+      "dftb_relax": 12937.263440847397
     },
-    "regime": "nanocrystalline",
+    "regime": "amorphous",
     "voronoi": {
-      "si_o_peak": 1.6124999999999998,
-      "si_o_mean": 1.6092668714627796,
-      "si_o_std": 0.06706664366112194,
-      "n_si_o_bonds": 671
+      "si_o_peak": 1.6075,
+      "si_o_mean": 1.6129611572498512,
+      "si_o_std": 0.06736364258784354,
+      "n_si_o_bonds": 2174
     },
     "orient": {
-      "si_o_peak": 1.6124999999999998,
-      "si_o_mean": 1.6092668714627796,
-      "si_o_std": 0.06706664366112194,
-      "n_si_o_bonds": 671
+      "si_o_peak": 1.6075,
+      "si_o_mean": 1.6129611572498512,
+      "si_o_std": 0.06736364258784354,
+      "n_si_o_bonds": 2174
     },
     "fire": {
-      "si_o_peak": 1.7325,
-      "si_o_mean": 1.7026756298356298,
-      "si_o_std": 0.09435703210812205,
-      "n_si_o_bonds": 732
+      "si_o_peak": 1.6925,
+      "si_o_mean": 1.7031775254601222,
+      "si_o_std": 0.09243937158099622,
+      "n_si_o_bonds": 2415
     },
     "dftb_relax": {
-      "si_o_peak": 1.6724999999999999,
-      "si_o_mean": 1.7242194826651742,
-      "si_o_std": 0.06794979250465535,
-      "n_si_o_bonds": 717
+      "si_o_peak": 1.6675,
+      "si_o_mean": 1.7190791753779757,
+      "si_o_std": 0.07649267186679616,
+      "n_si_o_bonds": 2313
     }
   }
 }

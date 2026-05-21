@@ -76,16 +76,19 @@ Prints around `-101 eV` for the 2-atom bulk Si cell with matsci SK.
 ## Run the examples
 
 ```bash
-# All three regimes at the default 20 Å / 609 atoms (~55 min total)
+# All three regimes at the default 30 Å / 2052 atoms (~15 hr total)
+python scripts/regen_dftb_examples.py --box 30.0
+
+# Single regime (nano is fastest, ~4 hr; amorphous is slowest, ~5 hr)
+python scripts/regen_dftb_examples.py --regime amorphous --box 30.0
+
+# Smaller cell for a quick sanity-check (~55 min for all three, ~609 atoms)
 python scripts/regen_dftb_examples.py --box 20.0
 
-# Single regime
-python scripts/regen_dftb_examples.py --regime amorphous --box 20.0
-
-# Smaller cell for a quick sanity-check (~5 min total, ~258 atoms)
+# Even smaller smoke test (~5 min total, ~258 atoms)
 python scripts/regen_dftb_examples.py --box 15.0
 
-# Smoke test without DFTB+ (tricor stages only — seconds)
+# tricor stages only — DFTB+ skipped (seconds)
 python scripts/regen_dftb_examples.py --skip-dftb
 ```
 
@@ -105,9 +108,9 @@ Output files per regime live in `docs/_static/dftb/`:
 
 | knob | value |
 |---|---|
-| cell side | 20 Å (≈ 609 atoms) |
+| cell side | 30 Å (≈ 2050 atoms) |
 | regimes | amorphous, SRO, nanocrystalline |
-| `grain_size` for nano | 13 Å (shrunk from standard 35 Å to fit the 20 Å cell) |
+| `grain_size` for nano | 22 Å (close to the standard 35 Å, with ~4 Å of amorphous boundary on each face) |
 | `kpts` | (1, 1, 1) Γ-only |
 | SK set | matsci-0-3 |
 | SCC tolerance | 1e-2 |
@@ -117,7 +120,7 @@ Output files per regime live in `docs/_static/dftb/`:
 | DFTB+ optimizer | ASE FIRE, `maxstep = 0.03 Å` |
 | DFTB+ cell DOFs | volume only (`UnitCellFilter(hydrostatic_strain=True)`) |
 | DFTB+ fmax target | 1.0 eV/Å |
-| DFTB+ step cap | 40 |
+| DFTB+ step cap | 60 |
 
 The pre-DFTB cleanup (`bond_relax` + `enforce_hard_core`) gives DFTB+ a
 geometry with no sub-hard-core pair overlaps and bonded pairs already
