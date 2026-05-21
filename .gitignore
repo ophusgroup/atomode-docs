@@ -6,3 +6,16 @@ __pycache__/
 .DS_Store
 .venv/
 *.egg-info/
+
+# DFTB+ runtime artifacts (written into CWD by the ASE Dftb calculator)
+band.out
+charges.bin
+detailed.out
+dftb_in.hsd
+dftb_pin.hsd
+dftb_sio2.out
+geo_end.gen
+
+# ASE binary trajectories from the DFTB+ regen script
+# (users re-generate via scripts/regen_dftb_examples.py rather than ship them)
+docs/_static/dftb/*_dftb_traj.traj

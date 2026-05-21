@@ -28,6 +28,7 @@ tricor builds periodic supercells with controllable disorder, from fully liquid 
 quickstart
 examples/index
 examples_refined/index
+examples_dftb/index
 order_variety
 large_cells
 algorithms/index

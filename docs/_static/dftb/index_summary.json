@@ -1,0 +1,37 @@
+{
+  "nanocrystalline": {
+    "box_angstrom": 20.0,
+    "n_atoms": 609,
+    "timings_s": {
+      "voronoi": 0.015295982360839844,
+      "orient": 1.7890441417694092,
+      "fire": 0.7345988750457764,
+      "dftb_relax": 395.84400510787964
+    },
+    "regime": "nanocrystalline",
+    "voronoi": {
+      "si_o_peak": 1.6124999999999998,
+      "si_o_mean": 1.6092668714627796,
+      "si_o_std": 0.06706664366112194,
+      "n_si_o_bonds": 671
+    },
+    "orient": {
+      "si_o_peak": 1.6124999999999998,
+      "si_o_mean": 1.6092668714627796,
+      "si_o_std": 0.06706664366112194,
+      "n_si_o_bonds": 671
+    },
+    "fire": {
+      "si_o_peak": 1.7325,
+      "si_o_mean": 1.7026756298356298,
+      "si_o_std": 0.09435703210812205,
+      "n_si_o_bonds": 732
+    },
+    "dftb_relax": {
+      "si_o_peak": 1.6724999999999999,
+      "si_o_mean": 1.7242194826651742,
+      "si_o_std": 0.06794979250465535,
+      "n_si_o_bonds": 717
+    }
+  }
+}

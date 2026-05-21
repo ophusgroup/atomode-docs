@@ -153,6 +153,9 @@ tail is preferable; the projection is opt-in.
 
 ## See also
 
+- [Large-cell shortcut](algorithms/large_cell_shortcut.md) — math
+  and pseudocode for the `bond_relax` and `enforce_hard_core`
+  sweeps.
 - [Static relaxation](algorithms/static_relaxation.md) — FIRE force-term
   definitions used by both `shell_relax` and the finisher pass.
 - [Generating order variety](order_variety.md) — the small-cell

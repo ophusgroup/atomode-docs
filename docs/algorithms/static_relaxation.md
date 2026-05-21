@@ -163,8 +163,10 @@ state and would otherwise saturate the scale.
 - [Supercell generation](supercell_generation.md) for the Voronoi
   grain construction that produces the initial atom block fed into
   this relaxer.
-- [Generating very large cells](../large_cells.md) for
-  `Supercell.bond_relax` — the cKDTree-based attract-to-peak +
-  repel-from-hard-core sweep used as a faster alternative to a full
-  FIRE quench for the Voronoi-tile → bond-correct transition at
-  100³ Å and larger.
+- [Large-cell shortcut](large_cell_shortcut.md) — algorithmic
+  description of `Supercell.bond_relax` and
+  `Supercell.enforce_hard_core`, the cKDTree-based sweeps used as
+  a faster alternative to a full FIRE quench at 100³ Å and larger.
+- [Generating very large cells](../large_cells.md) for the matching
+  how-to (when to use the shortcut, regime-aware branching, g(r) /
+  g3 measurement on the result).
