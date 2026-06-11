@@ -1,0 +1,266 @@
+{
+  "liquid": {
+    "material": "copper",
+    "regime": "liquid",
+    "box_angstrom": 40.0,
+    "n_atoms": 5202,
+    "timings_s": {
+      "voronoi": 0.0005407333374023438,
+      "orient": 0.0,
+      "cleanup": 0.9056141376495361,
+      "mace_relax": 1066.2161648273468
+    },
+    "energies": {
+      "voronoi": 277771.59375,
+      "orient": 277771.59375,
+      "cleanup": -20181.228515625,
+      "mace": -19896.169921875
+    },
+    "n_orient_accepts": 0,
+    "n_mace_steps": 82,
+    "voronoi": {
+      "bond_peak": 3.28374999999999,
+      "bond_mean": 2.7590421705187347,
+      "bond_std": 0.3632655529592038,
+      "n_bonds": 24501
+    },
+    "orient": {
+      "bond_peak": 3.28374999999999,
+      "bond_mean": 2.7590421705187347,
+      "bond_std": 0.3632655529592038,
+      "n_bonds": 24501
+    },
+    "cleanup": {
+      "bond_peak": 2.4279166666666634,
+      "bond_mean": 2.625573101361048,
+      "bond_std": 0.2781315355278819,
+      "n_bonds": 31045
+    },
+    "mace": {
+      "bond_peak": 2.547083333333329,
+      "bond_mean": 2.639642259223017,
+      "bond_std": 0.2790304661275183,
+      "n_bonds": 31911
+    }
+  },
+  "amorphous": {
+    "material": "copper",
+    "regime": "amorphous",
+    "box_angstrom": 40.0,
+    "n_atoms": 5202,
+    "timings_s": {
+      "voronoi": 0.0006477832794189453,
+      "orient": 0.0,
+      "cleanup": 0.9397938251495361,
+      "mace_relax": 667.6206619739532
+    },
+    "energies": {
+      "voronoi": 277771.59375,
+      "orient": 277771.59375,
+      "cleanup": -20181.228515625,
+      "mace": -20672.0234375
+    },
+    "n_orient_accepts": 0,
+    "n_mace_steps": 52,
+    "voronoi": {
+      "bond_peak": 3.28374999999999,
+      "bond_mean": 2.7590421705187347,
+      "bond_std": 0.3632655529592038,
+      "n_bonds": 24501
+    },
+    "orient": {
+      "bond_peak": 3.28374999999999,
+      "bond_mean": 2.7590421705187347,
+      "bond_std": 0.3632655529592038,
+      "n_bonds": 24501
+    },
+    "cleanup": {
+      "bond_peak": 2.4279166666666634,
+      "bond_mean": 2.625573101361048,
+      "bond_std": 0.2781315355278819,
+      "n_bonds": 31045
+    },
+    "mace": {
+      "bond_peak": 2.4712499999999964,
+      "bond_mean": 2.6373244029075775,
+      "bond_std": 0.22787142519175352,
+      "n_bonds": 32445
+    }
+  },
+  "sro": {
+    "material": "copper",
+    "regime": "sro",
+    "box_angstrom": 40.0,
+    "n_atoms": 5202,
+    "timings_s": {
+      "voronoi": 16.140487909317017,
+      "orient": 569.4728472232819,
+      "cleanup": 0.9531497955322266,
+      "mace_relax": 626.6168768405914
+    },
+    "energies": {
+      "voronoi": -17049.0234375,
+      "orient": -16857.828125,
+      "cleanup": -20310.328125,
+      "mace": -20706.103515625
+    },
+    "n_orient_accepts": 1,
+    "n_mace_steps": 52,
+    "voronoi": {
+      "bond_peak": 2.5579166666666624,
+      "bond_mean": 2.622754497066549,
+      "bond_std": 0.25852934384421616,
+      "n_bonds": 28873
+    },
+    "orient": {
+      "bond_peak": 2.5579166666666624,
+      "bond_mean": 2.6250430245429723,
+      "bond_std": 0.25888292486094017,
+      "n_bonds": 28827
+    },
+    "cleanup": {
+      "bond_peak": 2.4279166666666634,
+      "bond_mean": 2.617622981144209,
+      "bond_std": 0.26193133563974746,
+      "n_bonds": 30919
+    },
+    "mace": {
+      "bond_peak": 2.5145833333333294,
+      "bond_mean": 2.633948821049405,
+      "bond_std": 0.22238432643666214,
+      "n_bonds": 32288
+    }
+  },
+  "mro": {
+    "material": "copper",
+    "regime": "mro",
+    "box_angstrom": 40.0,
+    "n_atoms": 5202,
+    "timings_s": {
+      "voronoi": 9.648520946502686,
+      "orient": 457.61070013046265,
+      "cleanup": 0.8989357948303223,
+      "mace_relax": 636.2941889762878
+    },
+    "energies": {
+      "voronoi": -17924.82421875,
+      "orient": -18132.2578125,
+      "cleanup": -20471.158203125,
+      "mace": -20793.25390625
+    },
+    "n_orient_accepts": 2,
+    "n_mace_steps": 52,
+    "voronoi": {
+      "bond_peak": 2.5579166666666624,
+      "bond_mean": 2.6077667665822677,
+      "bond_std": 0.21848092287286144,
+      "n_bonds": 29206
+    },
+    "orient": {
+      "bond_peak": 2.5579166666666624,
+      "bond_mean": 2.605504892444304,
+      "bond_std": 0.21538167732086202,
+      "n_bonds": 29217
+    },
+    "cleanup": {
+      "bond_peak": 2.4279166666666634,
+      "bond_mean": 2.6015584458491,
+      "bond_std": 0.2336301361459056,
+      "n_bonds": 30578
+    },
+    "mace": {
+      "bond_peak": 2.5254166666666626,
+      "bond_mean": 2.6247942077323843,
+      "bond_std": 0.2043812402245115,
+      "n_bonds": 31976
+    }
+  },
+  "lro": {
+    "material": "copper",
+    "regime": "lro",
+    "box_angstrom": 40.0,
+    "n_atoms": 5202,
+    "timings_s": {
+      "voronoi": 4.815916061401367,
+      "orient": 412.66586685180664,
+      "cleanup": 0.9051661491394043,
+      "mace_relax": 643.04700922966
+    },
+    "energies": {
+      "voronoi": -18958.6953125,
+      "orient": -19301.431640625,
+      "cleanup": -20621.189453125,
+      "mace": -20887.419921875
+    },
+    "n_orient_accepts": 4,
+    "n_mace_steps": 52,
+    "voronoi": {
+      "bond_peak": 2.5579166666666624,
+      "bond_mean": 2.5919367256676447,
+      "bond_std": 0.1746680939392306,
+      "n_bonds": 29463
+    },
+    "orient": {
+      "bond_peak": 2.5579166666666624,
+      "bond_mean": 2.59086249081449,
+      "bond_std": 0.17310099894797318,
+      "n_bonds": 29604
+    },
+    "cleanup": {
+      "bond_peak": 2.4279166666666634,
+      "bond_mean": 2.5828692209110113,
+      "bond_std": 0.19671533288671736,
+      "n_bonds": 30166
+    },
+    "mace": {
+      "bond_peak": 2.547083333333329,
+      "bond_mean": 2.61054609402461,
+      "bond_std": 0.17778734082849185,
+      "n_bonds": 31442
+    }
+  },
+  "nanocrystalline": {
+    "material": "copper",
+    "regime": "nanocrystalline",
+    "box_angstrom": 40.0,
+    "n_atoms": 5202,
+    "timings_s": {
+      "voronoi": 3.288810968399048,
+      "orient": 215.7333025932312,
+      "cleanup": 0.9038140773773193,
+      "mace_relax": 658.3626732826233
+    },
+    "energies": {
+      "voronoi": -19763.49609375,
+      "orient": -20175.9140625,
+      "cleanup": -20793.6875,
+      "mace": -20988.421875
+    },
+    "n_orient_accepts": 5,
+    "n_mace_steps": 52,
+    "voronoi": {
+      "bond_peak": 2.5579166666666624,
+      "bond_mean": 2.57915819027743,
+      "bond_std": 0.14501923053637916,
+      "n_bonds": 29649
+    },
+    "orient": {
+      "bond_peak": 2.5579166666666624,
+      "bond_mean": 2.5790842462062638,
+      "bond_std": 0.1395629771021736,
+      "n_bonds": 29770
+    },
+    "cleanup": {
+      "bond_peak": 2.536249999999996,
+      "bond_mean": 2.563325311625884,
+      "bond_std": 0.14359225671573636,
+      "n_bonds": 29763
+    },
+    "mace": {
+      "bond_peak": 2.5687499999999956,
+      "bond_mean": 2.602577976119818,
+      "bond_std": 0.15288785877770142,
+      "n_bonds": 31254
+    }
+  }
+}

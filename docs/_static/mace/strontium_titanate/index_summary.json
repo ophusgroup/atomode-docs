@@ -1,0 +1,266 @@
+{
+  "liquid": {
+    "material": "strontium_titanate",
+    "regime": "liquid",
+    "box_angstrom": 40.0,
+    "n_atoms": 5130,
+    "timings_s": {
+      "voronoi": 0.0005600452423095703,
+      "orient": 0.0,
+      "cleanup": 1.2943968772888184,
+      "mace_relax": 993.3053498268127
+    },
+    "energies": {
+      "voronoi": 182670.4375,
+      "orient": 182670.4375,
+      "cleanup": -32611.787109375,
+      "mace": -35473.59765625
+    },
+    "n_orient_accepts": 0,
+    "n_mace_steps": 82,
+    "voronoi": {
+      "bond_peak": 2.366250000000007,
+      "bond_mean": 2.0209669270211057,
+      "bond_std": 0.2523257750469333,
+      "n_bonds": 2188
+    },
+    "orient": {
+      "bond_peak": 2.366250000000007,
+      "bond_mean": 2.0209669270211057,
+      "bond_std": 0.2523257750469333,
+      "n_bonds": 2188
+    },
+    "cleanup": {
+      "bond_peak": 1.9312500000000035,
+      "bond_mean": 1.9599060754926363,
+      "bond_std": 0.22963857313999167,
+      "n_bonds": 4141
+    },
+    "mace": {
+      "bond_peak": 1.9087500000000033,
+      "bond_mean": 1.9634250492274932,
+      "bond_std": 0.20229798976286612,
+      "n_bonds": 4858
+    }
+  },
+  "amorphous": {
+    "material": "strontium_titanate",
+    "regime": "amorphous",
+    "box_angstrom": 40.0,
+    "n_atoms": 5130,
+    "timings_s": {
+      "voronoi": 0.0005600452423095703,
+      "orient": 0.0,
+      "cleanup": 1.2894878387451172,
+      "mace_relax": 625.8239398002625
+    },
+    "energies": {
+      "voronoi": 182670.4375,
+      "orient": 182670.4375,
+      "cleanup": -32611.787109375,
+      "mace": -38820.234375
+    },
+    "n_orient_accepts": 0,
+    "n_mace_steps": 52,
+    "voronoi": {
+      "bond_peak": 2.366250000000007,
+      "bond_mean": 2.0209669270211057,
+      "bond_std": 0.2523257750469333,
+      "n_bonds": 2188
+    },
+    "orient": {
+      "bond_peak": 2.366250000000007,
+      "bond_mean": 2.0209669270211057,
+      "bond_std": 0.2523257750469333,
+      "n_bonds": 2188
+    },
+    "cleanup": {
+      "bond_peak": 1.9312500000000035,
+      "bond_mean": 1.9599060754926363,
+      "bond_std": 0.22963857313999167,
+      "n_bonds": 4141
+    },
+    "mace": {
+      "bond_peak": 1.8487500000000028,
+      "bond_mean": 1.9375615190576698,
+      "bond_std": 0.1442786466572191,
+      "n_bonds": 5206
+    }
+  },
+  "sro": {
+    "material": "strontium_titanate",
+    "regime": "sro",
+    "box_angstrom": 40.0,
+    "n_atoms": 5130,
+    "timings_s": {
+      "voronoi": 0.09428715705871582,
+      "orient": 169.84626579284668,
+      "cleanup": 1.2624869346618652,
+      "mace_relax": 629.3833231925964
+    },
+    "energies": {
+      "voronoi": -31886.21875,
+      "orient": -32386.75,
+      "cleanup": -35032.29296875,
+      "mace": -39519.4453125
+    },
+    "n_orient_accepts": 25,
+    "n_mace_steps": 52,
+    "voronoi": {
+      "bond_peak": 1.9537500000000037,
+      "bond_mean": 1.96575291300198,
+      "bond_std": 0.08250709264056372,
+      "n_bonds": 5090
+    },
+    "orient": {
+      "bond_peak": 1.9537500000000037,
+      "bond_mean": 1.9669697266814852,
+      "bond_std": 0.08278476862928412,
+      "n_bonds": 5103
+    },
+    "cleanup": {
+      "bond_peak": 1.8037500000000024,
+      "bond_mean": 1.9447377745189196,
+      "bond_std": 0.19646793044066335,
+      "n_bonds": 4779
+    },
+    "mace": {
+      "bond_peak": 1.871250000000003,
+      "bond_mean": 1.9403164832398494,
+      "bond_std": 0.14281851189734812,
+      "n_bonds": 5371
+    }
+  },
+  "mro": {
+    "material": "strontium_titanate",
+    "regime": "mro",
+    "box_angstrom": 40.0,
+    "n_atoms": 5130,
+    "timings_s": {
+      "voronoi": 0.06041693687438965,
+      "orient": 35.14646506309509,
+      "cleanup": 1.2575621604919434,
+      "mace_relax": 627.804604768753
+    },
+    "energies": {
+      "voronoi": -35005.54296875,
+      "orient": -35683.9609375,
+      "cleanup": -37007.1875,
+      "mace": -39921.8671875
+    },
+    "n_orient_accepts": 10,
+    "n_mace_steps": 52,
+    "voronoi": {
+      "bond_peak": 1.9537500000000037,
+      "bond_mean": 1.9625601224085252,
+      "bond_std": 0.06918011227418758,
+      "n_bonds": 5411
+    },
+    "orient": {
+      "bond_peak": 1.9537500000000037,
+      "bond_mean": 1.9607889339757332,
+      "bond_std": 0.056902561287815207,
+      "n_bonds": 5381
+    },
+    "cleanup": {
+      "bond_peak": 1.9012500000000032,
+      "bond_mean": 1.92964415757988,
+      "bond_std": 0.15695088606829405,
+      "n_bonds": 5156
+    },
+    "mace": {
+      "bond_peak": 1.8562500000000028,
+      "bond_mean": 1.9419647556154656,
+      "bond_std": 0.13249522736287456,
+      "n_bonds": 5514
+    }
+  },
+  "lro": {
+    "material": "strontium_titanate",
+    "regime": "lro",
+    "box_angstrom": 40.0,
+    "n_atoms": 5130,
+    "timings_s": {
+      "voronoi": 0.05999279022216797,
+      "orient": 17.259562730789185,
+      "cleanup": 1.2849161624908447,
+      "mace_relax": 634.2718060016632
+    },
+    "energies": {
+      "voronoi": -35645.23046875,
+      "orient": -36610.625,
+      "cleanup": -37818.12109375,
+      "mace": -40105.62890625
+    },
+    "n_orient_accepts": 8,
+    "n_mace_steps": 52,
+    "voronoi": {
+      "bond_peak": 1.9537500000000037,
+      "bond_mean": 1.9614194120339894,
+      "bond_std": 0.05982860142098814,
+      "n_bonds": 5518
+    },
+    "orient": {
+      "bond_peak": 1.9537500000000037,
+      "bond_mean": 1.9605517545843516,
+      "bond_std": 0.053601549386890934,
+      "n_bonds": 5517
+    },
+    "cleanup": {
+      "bond_peak": 1.886250000000003,
+      "bond_mean": 1.9277805130339087,
+      "bond_std": 0.13677826072862215,
+      "n_bonds": 5305
+    },
+    "mace": {
+      "bond_peak": 1.8937500000000032,
+      "bond_mean": 1.946356530429453,
+      "bond_std": 0.13071363842033729,
+      "n_bonds": 5612
+    }
+  },
+  "nanocrystalline": {
+    "material": "strontium_titanate",
+    "regime": "nanocrystalline",
+    "box_angstrom": 40.0,
+    "n_atoms": 5130,
+    "timings_s": {
+      "voronoi": 0.09958887100219727,
+      "orient": 8.389657020568848,
+      "cleanup": 1.2639031410217285,
+      "mace_relax": 636.6246190071106
+    },
+    "energies": {
+      "voronoi": -37156.2578125,
+      "orient": -37367.3515625,
+      "cleanup": -38436.71875,
+      "mace": -40211.734375
+    },
+    "n_orient_accepts": 6,
+    "n_mace_steps": 52,
+    "voronoi": {
+      "bond_peak": 1.9537500000000037,
+      "bond_mean": 1.9585808160949214,
+      "bond_std": 0.04831221129967286,
+      "n_bonds": 5586
+    },
+    "orient": {
+      "bond_peak": 1.9537500000000037,
+      "bond_mean": 1.959587173720379,
+      "bond_std": 0.048595411161863465,
+      "n_bonds": 5595
+    },
+    "cleanup": {
+      "bond_peak": 1.9012500000000032,
+      "bond_mean": 1.9217101875266203,
+      "bond_std": 0.11169173660509715,
+      "n_bonds": 5379
+    },
+    "mace": {
+      "bond_peak": 1.878750000000003,
+      "bond_mean": 1.9454745674836305,
+      "bond_std": 0.12564930748404327,
+      "n_bonds": 5641
+    }
+  }
+}

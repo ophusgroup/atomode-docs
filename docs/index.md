@@ -29,6 +29,7 @@ quickstart
 examples/index
 examples_refined/index
 examples_dftb/index
+examples_mace/index
 order_variety
 large_cells
 algorithms/index

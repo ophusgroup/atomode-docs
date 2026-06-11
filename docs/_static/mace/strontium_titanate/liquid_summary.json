@@ -1,0 +1,44 @@
+{
+  "material": "strontium_titanate",
+  "regime": "liquid",
+  "box_angstrom": 40.0,
+  "n_atoms": 5130,
+  "timings_s": {
+    "voronoi": 0.0005600452423095703,
+    "orient": 0.0,
+    "cleanup": 1.2943968772888184,
+    "mace_relax": 993.3053498268127
+  },
+  "energies": {
+    "voronoi": 182670.4375,
+    "orient": 182670.4375,
+    "cleanup": -32611.787109375,
+    "mace": -35473.59765625
+  },
+  "n_orient_accepts": 0,
+  "n_mace_steps": 82,
+  "voronoi": {
+    "bond_peak": 2.366250000000007,
+    "bond_mean": 2.0209669270211057,
+    "bond_std": 0.2523257750469333,
+    "n_bonds": 2188
+  },
+  "orient": {
+    "bond_peak": 2.366250000000007,
+    "bond_mean": 2.0209669270211057,
+    "bond_std": 0.2523257750469333,
+    "n_bonds": 2188
+  },
+  "cleanup": {
+    "bond_peak": 1.9312500000000035,
+    "bond_mean": 1.9599060754926363,
+    "bond_std": 0.22963857313999167,
+    "n_bonds": 4141
+  },
+  "mace": {
+    "bond_peak": 1.9087500000000033,
+    "bond_mean": 1.9634250492274932,
+    "bond_std": 0.20229798976286612,
+    "n_bonds": 4858
+  }
+}
