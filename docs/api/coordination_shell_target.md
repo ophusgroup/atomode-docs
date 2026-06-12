@@ -11,7 +11,6 @@ drives the bond-length, angle, and repulsion springs in
 .. currentmodule:: tricor
 
 .. autoclass:: CoordinationShellTarget
-   :no-index:
    :show-inheritance:
 
    .. rubric:: Construction
@@ -31,15 +30,16 @@ drives the bond-length, angle, and repulsion springs in
 
 ## Restricting the bond graph
 
-By default every species pair with a first-shell peak contributes bond
-and angle springs.  In multi-element compounds where only a subset of
-pairs represent *actual* chemical bonds (e.g. Si-O in silica;
-Ti-O in perovskites), the `angle_mode_deg` values extracted for the
-other pairs are geometric artefacts of the reference sampling rather
-than physical targets, and relaxing against them can destroy the
-coordination geometry you're trying to preserve.  Two helpers
-produce a modified target where the unwanted pairs are set to
-zero coordination:
+In multi-element compounds only a subset of species pairs represent
+*actual* chemical bonds (e.g. Si-O in silica; Ti-O and Sr-O in
+perovskites) — the other pairs' first-shell peaks are lattice
+separations through a bridging atom, and relaxing against them can
+destroy the coordination geometry.  `from_atoms` zeroes those
+lattice-artefact pairs automatically
+(`auto_filter_lattice_artifacts=True`): any pair whose `pair_peak`
+is not the smallest in either its row or column is excluded.  Two
+helpers set the bond graph explicitly when the automatic rule is not
+what you want:
 
 ```python
 # SiO2: only Si-O is a real bond (equivalent to the two-species helper)

@@ -1,0 +1,43 @@
+{
+  "material": "strontium_titanate",
+  "regime": "liquid",
+  "box_angstrom": 40.0,
+  "n_atoms": 5130,
+  "timings_s": {
+    "voronoi": 0.0005650520324707031,
+    "orient": 0.0,
+    "cleanup": 1.3064720630645752,
+    "fire": 53.62322497367859
+  },
+  "calibrated": true,
+  "n_orient_accepts": 0,
+  "mace_sp_eV": -35744.3359375,
+  "thermal": {
+    "T": 0.0524342949800689,
+    "sweeps": 400
+  },
+  "voronoi": {
+    "bond_peak": 2.366250000000007,
+    "bond_mean": 2.0209669270211057,
+    "bond_std": 0.2523257750469333,
+    "n_bonds": 2188
+  },
+  "orient": {
+    "bond_peak": 2.366250000000007,
+    "bond_mean": 2.0209669270211057,
+    "bond_std": 0.2523257750469333,
+    "n_bonds": 2188
+  },
+  "cleanup": {
+    "bond_peak": 1.9312500000000035,
+    "bond_mean": 1.9599060754926363,
+    "bond_std": 0.22963857313999167,
+    "n_bonds": 4141
+  },
+  "fire": {
+    "bond_peak": 1.878750000000003,
+    "bond_mean": 1.9903734646935738,
+    "bond_std": 0.19987410327292085,
+    "n_bonds": 4762
+  }
+}

@@ -1,42 +1,42 @@
 # Strontium titanate
 
-SrTiO₃ cells (40 × 40 × 40 Å) in three disorder regimes (amorphous,
-MRO, nanocrystalline) built with
-`Supercell.generate(refine_orientations=True)`.
+Strontium titanate supercells (40 × 40 × 40 Å) across the amorphous → nanocrystalline axis, relaxed with the FIRE spring network.
 
-## Static vs refined
+## Final FIRE structures
 
-Top row is `Supercell.generate()` with the static-relaxation pipeline
-only (FIRE quench, no orientation search); bottom row is the same
-cell with `refine_orientations=True` enabled. The SO(3) coordinate
-search that aligns each grain's lattice to its local environment
-before the same final FIRE quench runs.  Drag any panel to orbit;
-all six rotate in sync.
+<iframe src="../../_static/fire/strontium_titanate/overview.html"
+        width="100%" height="660"
+        style="border: 1px solid rgba(0,0,0,0.1); border-radius: 6px;" loading="lazy"></iframe>
 
-<iframe src="../../_static/refined/overview/strontium_titanate.html"
-        width="100%" height="640"
-        style="border: 1px solid rgba(0,0,0,0.1); border-radius: 6px;"
-        loading="lazy"></iframe>
+## Energy across regimes
 
-## g(r) overlay: static vs refined, all 6 cases
+MACE-MP0 single-point energy of each FIRE-relaxed structure — directly comparable to the [MACE refinement](../../examples_mace/strontium_titanate/index.md) ladder.
 
-Six g(r) curves on a single radial axis: each regime's static and
-refined post-FIRE state, overlaid for direct comparison.
+```{image} ../../_static/fire/strontium_titanate/regime_ladder.png
+:alt: Strontium titanate FIRE structures scored with MACE
+:width: 100%
+```
 
-<iframe src="../../_static/refined/g2_compare/strontium_titanate.html"
-        width="100%" height="480"
-        style="border: 1px solid rgba(0,0,0,0.1); border-radius: 6px;"
-        loading="lazy"></iframe>
+## Summary
 
-## Per-regime trajectories
+| regime | atoms | orient accepts | bond σ (Å) | MACE SP (eV/atom) |
+|---|---:|---:|---:|---:|
+| [Liquid](liquid.md) | 5130 | 0 | 0.200 | -6.968 |
+| [Amorphous](amorphous.md) | 5130 | 17 | 0.207 | -7.004 |
+| [SRO](sro.md) | 5130 | 25 | 0.203 | -7.143 |
+| [MRO](mro.md) | 5130 | 10 | 0.183 | -7.373 |
+| [LRO](lro.md) | 5130 | 8 | 0.173 | -7.467 |
+| [Nanocrystalline](nanocrystalline.md) | 5130 | 6 | 0.166 | -7.517 |
 
-Click any regime for the orientation-refinement movie, the FIRE
-quench movie, the cost trace, and the final-state polyhedra view.
+## Per-regime pages
 
 ```{toctree}
 :maxdepth: 1
 
+liquid
 amorphous
-medium_range_order
+sro
+mro
+lro
 nanocrystalline
 ```

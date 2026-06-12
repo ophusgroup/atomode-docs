@@ -78,25 +78,23 @@ on the silicon examples page for the full parameter values.
 
 ## Multi-species materials
 
-For binary / ternary materials the default `CoordinationShellTarget`
-allows bonds between every species pair, which lets `shell_relax`
-develop spurious second-shell bonds (e.g. Si-Si in SiO₂, Ti-Ti in
-SrTiO₃).  Restrict bonds to the real chemical connections before
-calling `generate`:
+For binary / ternary materials, `from_atoms` keeps only the real
+chemical bonds: species pairs whose first-shell peak is a lattice
+separation through a bridging atom (Si-Si in SiO₂, Ti-Ti in SrTiO₃)
+are zeroed automatically (`auto_filter_lattice_artifacts=True`), so
+`shell_relax` cannot develop spurious second-shell bonds.
+`with_cross_species_bonds_only()` and `with_bonded_species_pairs(...)`
+set the bond graph explicitly when the automatic rule is not what
+you want.
+
+Multi-modal shells need an explicit angle whitelist.  In SrTiO₃ the
+SrO₁₂ cuboctahedron has O-Sr-O modes at 60°/90°/120°/180° — no single
+target angle fits — so keep only the single-mode Ti-centred 90° and
+Ti-O-Ti 180° springs:
 
 ```python
-# SiO2: every bond is cross-species (Si-O)
-shell_target = (
-    tc.CoordinationShellTarget.from_atoms(atoms_sio2, phi_num_bins=90)
-    .with_cross_species_bonds_only()
-)
-
-# SrTiO3: both Ti-O and Sr-O are real bonds; silence the
-# multi-modal Sr-centered cuboctahedral angle springs so only the
-# single-mode Ti-centered 90° and Ti-O-Ti 180° remain.
 shell_target = (
     tc.CoordinationShellTarget.from_atoms(atoms_sto, phi_num_bins=90)
-    .with_bonded_species_pairs([("Ti", "O"), ("Sr", "O")])
     .with_angle_triplets([("Ti", "O", "O"), ("O", "Ti", "Ti")])
 )
 ```
@@ -195,9 +193,6 @@ multi-panel overview, g(r), g3).
   interactive viewers embedded.
 - [Generating order variety](order_variety.md): batch generation of
   every disorder regime for a single material.
-- [Generating very large cells](large_cells.md): the `bond_relax`
-  shortcut + MC-subsampled g(r) / g3 measurement for production cells
-  at 100³ Å and beyond.
 - [Algorithms](algorithms/index.md): mathematical details of grain
   construction, shell relaxation, and target-g3 construction.
 - [API reference](api/index.md): every public class and function.

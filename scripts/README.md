@@ -1,55 +1,65 @@
 # Regen scripts
 
-These scripts regenerate the static HTML / PNG artefacts under
-`docs/_static/` that the Sphinx pages embed via `<iframe>`. Sphinx
-itself does **not** run them — they're committed pre-built so the
-docs build is fast and free of heavy compute dependencies.
+These scripts regenerate the pre-rendered artefacts under
+`docs/_static/` (interactive HTML viewers, movies, figures) and the
+generated Markdown pages that embed them. Sphinx itself does **not**
+run them — the artefacts are committed pre-built so the docs build is
+fast and free of heavy compute dependencies.
 
-## Layout
+## Scripts by docs section
+
+| docs section | regenerate artefacts | regenerate pages |
+|---|---|---|
+| Static Examples (`docs/examples/`) | `regen_static_full.py`, `regen_static_overview.py` | hand-written pages |
+| MACE-MP0 Refinement (`docs/examples_mace/`) | `regen_mace_examples.py` | `build_mace_docs.py` |
+| Fast FIRE Refinement (`docs/examples_refined/`) | `regen_fire_examples.py` | `build_fire_docs.py` |
+| DFTB+ (hidden, `docs/examples_dftb/`) | `regen_dftb_examples.py` | hand-written pages |
+
+`_wall_calculator.py` is a shared helper (soft minimum-distance wall
+for MACE relaxations); `regen_fire_examples.py` and
+`build_fire_docs.py` import the per-material registry from
+`regen_mace_examples.py`, so the MACE and FIRE sections share a
+single source of truth for material parameters. The cross-imports use
+`sys.path.insert(0, scripts/)` — no `PYTHONPATH` setup required.
+
+## Output layout
 
 ```
 docs/_static/
-  trajectories/           ← per-regime FIRE quench movies (static path)
-  overview/               ← per-material 6-panel overview (static path)
-  g3/                     ← per-regime g3 distribution viewers (static)
-  g2_compare/             ← per-material stacked g(r) overlay (static)
-  refined/
-    trajectories/         ← per-regime refine + FIRE movies (refined path)
-    overview/             ← per-material 2×3 static-vs-refined overview
-    g3/                   ← per-regime g3 viewers ×3 (initial / after refine / after FIRE)
-    g2_compare/           ← per-material g(r) overlay (3 regimes × {static, refined})
-    cost_history/         ← per-regime cost-history PNGs
+  trajectories/    ← per-regime FIRE quench movies (Static Examples)
+  overview/        ← per-material 6-panel overviews (Static Examples)
+  g3/              ← per-regime g3 viewers (Static Examples)
+  g2_compare/      ← per-material stacked g(r) overlays (Static Examples)
+  mace/            ← MACE-MP0 section artefacts (movies, figures, JSON summaries)
+  fire/            ← FIRE section artefacts (movies, figures, JSON summaries)
+  dftb/            ← DFTB+ section artefacts (section hidden via conf.py)
 ```
 
 ## How to run
 
-All four scripts find `tricor` (the library) automatically:
-1. preferred: `import tricor` (pip-installed in active env)
-2. fallback: sibling repo at `../tricor/src/`
-
-Run from anywhere:
+All scripts find `tricor` (the library) automatically: preferred is
+`import tricor` from the active environment, with a fallback to the
+sibling repo at `../tricor/src/`. The MACE and FIRE regen scripts
+additionally need `mace-torch` (the FIRE pipeline falls back to
+uncalibrated springs without it, but the MACE single-point scores in
+the pages require it).
 
 ```bash
-# Full regen (static + refined, all materials)
-python scripts/regen_static_full.py
-python scripts/regen_static_overview.py
-python scripts/regen_refined_full.py
-python scripts/regen_refined_overview.py
+# Full regen of one section's artefacts, then its pages
+python scripts/regen_mace_examples.py
+python scripts/build_mace_docs.py
 
-# Single material/regime (static_full + refined_full only)
-python scripts/regen_static_full.py --material silicon_dioxide --regime medium_range_order
-python scripts/regen_refined_full.py --material carbon --regime sp3_nc
+python scripts/regen_fire_examples.py
+python scripts/build_fire_docs.py
+
+# Single material / regime
+python scripts/regen_fire_examples.py --material silicon_dioxide --regime sro
 ```
 
-Wall-time on 2026 hardware (rng_seed=42, 40 Å cell):
-- `regen_static_full.py` (5 mat × 6 regimes = 30 cells): **~25 min**
-- `regen_static_overview.py` (5 mat × 6 regimes): **~15 min**
-- `regen_refined_full.py` (5 mat × 3 regimes = 15 cells with refinement): **~30 min**
-- `regen_refined_overview.py` (5 mat × 3 regimes × {static, refined}): **~25 min**
-
-The refined runs take longer because of the SO(3) orientation-refinement
-search (50 trials × 4 amplitudes × 2 rounds per grain) before the FIRE
-quench.
+Expect hours for a full 5-material regen of either refinement section
+on CPU (the MACE relaxations and single points dominate); the
+`build_*.py` page generators only read the committed JSON summaries
+and run in seconds.
 
 ## Why scripts live here, not in tricor itself
 
@@ -57,19 +67,8 @@ These are **demo scripts** that exercise the public API to produce the
 docs artefacts. They are intentionally outside the library so:
 - A user installing `tricor` from PyPI doesn't get demo-only paths.
 - The docs repo can iterate on regen logic without bumping `tricor`.
-- Tweaks to per-material parameters (grain ladders, hard-core scales,
-  detector tolerances) live next to the docs they affect, not in the
-  library.
-
-## Cross-imports
-
-`regen_static_overview.py`, `regen_refined_full.py`, and
-`regen_refined_overview.py` all import the per-(material, regime)
-catalogue from `regen_static_full.py` so the static and refined paths
-share a single source of truth for parameters.
-
-The cross-imports use `sys.path.insert(0, scripts/)` at the top of each
-script — no `PYTHONPATH` setup required.
+- Per-material parameters (grain ladders, hard-core scales, weights)
+  live next to the docs they affect, not in the library.
 
 ## Sphinx static-copy gotcha
 

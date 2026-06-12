@@ -1,99 +1,44 @@
 # Nanocrystalline
 
-SiO₂, 40 × 40 × 40 Å, regime preset `"nanocrystalline"` with build-time
-orientation refinement enabled.
+A 40 Å cubic silicon dioxide supercell (~4866 atoms), large crystalline grains with amorphous boundaries.
 
-## Orientation-refinement movie
+## Orientation refinement
 
-Each frame is one accepted grain rotation; the schedule walks
-30° → 15° → 5° → 2° and accepts the best of 50 trials per (amplitude,
-grain).  Discrete steps, no FIRE between accepts.
+<iframe src="../../_static/fire/silicon_dioxide/nanocrystalline_orient_movie.html" width="100%" height="560"
+        style="border: 1px solid rgba(0,0,0,0.1); border-radius: 6px;" loading="lazy"></iframe>
 
-<iframe src="../../_static/refined/trajectories/silicon_dioxide_nanocrystalline_refine.html"
-        width="100%" height="600"
-        style="border: 1px solid rgba(0,0,0,0.1); border-radius: 6px;"
-        loading="lazy"></iframe>
+## FIRE relaxation
 
-## FIRE quench movie
+<iframe src="../../_static/fire/silicon_dioxide/nanocrystalline_fire_movie.html" width="100%" height="560"
+        style="border: 1px solid rgba(0,0,0,0.1); border-radius: 6px;" loading="lazy"></iframe>
 
-Continuous atomic relaxation after rotation refinement.  The starting
-state is whatever the rotation search settled on; FIRE then converges
-all atoms into the basin.
+| stage | bond mean (Å) | bond σ (Å) |
+|---|---:|---:|
+| Voronoi | 1.615 | 0.026 |
+| after orient | 1.615 | 0.024 |
+| after cleanup | 1.618 | 0.029 |
+| after FIRE | 1.697 | 0.058 |
 
-<iframe src="../../_static/refined/trajectories/silicon_dioxide_nanocrystalline_fire.html"
-        width="100%" height="600"
-        style="border: 1px solid rgba(0,0,0,0.1); border-radius: 6px;"
-        loading="lazy"></iframe>
+MACE-MP0 single point of the final structure: **-7.416 eV/atom**.
 
-## Cost trace: refinement + FIRE
+## g₃ distribution — after FIRE
 
-Total / bond / angle / repulsion components.  Left of the dashed
-line: rotation refinement (one point per accepted rotation).  Right:
-FIRE convergence (downsampled).
+<iframe src="../../_static/fire/silicon_dioxide/nanocrystalline_g3_fire.html" width="100%" height="480"
+        style="border: 1px solid rgba(0,0,0,0.1); border-radius: 6px;" loading="lazy"></iframe>
 
-![Cost trace for SiO₂ Nanocrystalline](../../_static/refined/cost_history/silicon_dioxide_nanocrystalline.png)
+## Bond length and angle distributions
 
-## g3 distribution: initial · after refine · after FIRE
+```{image} ../../_static/fire/silicon_dioxide/nanocrystalline_bond_hist.png
+:alt: Silicon dioxide Nanocrystalline bond length distribution
+:width: 100%
+```
 
-Three rooted three-body distributions captured at three points along
-the pipeline so the algorithmic effect of each stage is visible.
+```{image} ../../_static/fire/silicon_dioxide/nanocrystalline_angle_hist.png
+:alt: Silicon dioxide Nanocrystalline angle distributions
+:width: 100%
+```
 
-**Initial** (post-build, post-retile): grain interiors are perfect
-crystal slabs at random orientations.
-
-<iframe src="../../_static/refined/g3/silicon_dioxide_nanocrystalline_initial.html"
-        width="100%" height="520"
-        style="border: 1px solid rgba(0,0,0,0.1); border-radius: 6px;"
-        loading="lazy"></iframe>
-
-**After refinement** (pre-FIRE): SO(3) coordinate descent has
-walked each grain into a better-aligned basin against its
-neighbours.  Differences from the initial g3 are concentrated at
-grain boundaries.
-
-<iframe src="../../_static/refined/g3/silicon_dioxide_nanocrystalline_after_refine.html"
-        width="100%" height="520"
-        style="border: 1px solid rgba(0,0,0,0.1); border-radius: 6px;"
-        loading="lazy"></iframe>
-
-**After FIRE** (final): all atoms relaxed.  A small post-FIRE
-thermal jitter (σ scaled by regime grain density) is applied
-before measurement so the peaks have realistic finite-T width
-rather than the perfectly sharp 0K-FIRE-quench result.
-
-<iframe src="../../_static/refined/g3/silicon_dioxide_nanocrystalline_after_fire.html"
-        width="100%" height="520"
-        style="border: 1px solid rgba(0,0,0,0.1); border-radius: 6px;"
-        loading="lazy"></iframe>
-
-## Code
-
-```python
-from ase.build import bulk
-import tricor as tc
-
-atoms = bulk("Si", "diamond", a=5.431)  # use the right reference for SiO₂
-shell_target = tc.CoordinationShellTarget.from_atoms(atoms, phi_num_bins=90)
-
-cell = tc.Supercell.from_atoms(
-    atoms,
-    cell_dim_angstroms=(40, 40, 40),
-    r_max=10, r_step=0.1, phi_num_bins=90,
-    rng_seed=42,
-)
-cell.generate(
-    shell_target,
-    **tc.Supercell.PRESETS["nanocrystalline"],
-    refine_orientations=True,
-    refine_orientations_kwargs=dict(
-        amplitudes_deg=(30.0, 15.0, 5.0, 2.0),
-        trials_per_amplitude_per_grain=50,
-        max_rounds_per_amplitude=2,
-        cost_function="pair_distance",
-        score_cutoff_factor=1.5,
-        time_budget_sec=180.0,
-        capture_trajectory=True,
-    ),
-    capture_trajectory=True,
-)
+```{image} ../../_static/fire/silicon_dioxide/nanocrystalline_gr.png
+:alt: Silicon dioxide Nanocrystalline pairwise g(r)
+:width: 100%
 ```

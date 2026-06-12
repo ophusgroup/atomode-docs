@@ -1,0 +1,40 @@
+{
+  "material": "copper",
+  "regime": "lro",
+  "box_angstrom": 40.0,
+  "n_atoms": 5202,
+  "timings_s": {
+    "voronoi": 4.783100128173828,
+    "orient": 414.61135697364807,
+    "cleanup": 0.9086730480194092,
+    "fire": 13.709723234176636
+  },
+  "calibrated": true,
+  "n_orient_accepts": 4,
+  "mace_sp_eV": -20580.43359375,
+  "thermal": null,
+  "voronoi": {
+    "bond_peak": 2.5579166666666624,
+    "bond_mean": 2.5919367256676447,
+    "bond_std": 0.1746680939392306,
+    "n_bonds": 29463
+  },
+  "orient": {
+    "bond_peak": 2.5579166666666624,
+    "bond_mean": 2.59086249081449,
+    "bond_std": 0.17310099894797318,
+    "n_bonds": 29604
+  },
+  "cleanup": {
+    "bond_peak": 2.4279166666666634,
+    "bond_mean": 2.5828692209110113,
+    "bond_std": 0.19671533288671736,
+    "n_bonds": 30166
+  },
+  "fire": {
+    "bond_peak": 2.579583333333329,
+    "bond_mean": 2.6066905255988,
+    "bond_std": 0.18324691581168537,
+    "n_bonds": 31279
+  }
+}

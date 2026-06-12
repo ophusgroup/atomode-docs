@@ -57,18 +57,12 @@ culled at ``0.9 × hard_min``.
 ```python
 import tricor as tc
 
-# Only Si-O is a real chemical bond in SiO2.  ``from_atoms`` auto-detects
-# this since 2026-05 (``auto_filter_lattice_artifacts=True`` by default):
-# the second-shell Si-Si (3.06 Å) and O-O (2.64 Å) peaks go through a
-# bridging atom and would install conflicting bond springs that prevent
-# FIRE convergence.  The auto-filter zeroes ``coordination_target`` for
-# any pair whose ``pair_peak`` is not the smallest in either its row or
-# column.  The chained ``with_cross_species_bonds_only()`` below is a
-# now-redundant safeguard that produces the same shell target.
-shell_target = (
-    tc.CoordinationShellTarget.from_atoms(atoms_ref, phi_num_bins=90)
-    .with_cross_species_bonds_only()
-)
+# Only Si-O is a real chemical bond in SiO2.  The second-shell
+# Si-Si (3.06 Å) and O-O (2.64 Å) peaks are lattice separations
+# through a bridging atom; ``from_atoms`` zeroes their coordination
+# targets automatically (``auto_filter_lattice_artifacts=True``), so
+# they install no bond springs.
+shell_target = tc.CoordinationShellTarget.from_atoms(atoms_ref, phi_num_bins=90)
 
 cell = tc.Supercell.from_atoms(
     atoms_ref,
@@ -107,17 +101,15 @@ The liquid panel uses `angle_weight=0` so the random starting positions
 aren't pulled into tetrahedral coordination by the angle spring; every
 other regime keeps the angle spring on so SiO₄ tetrahedra form.
 
-SRO through NC share the same bond + angle weights (1.65 / 1.35, the
-FIRE sweet spot for SiO₂ at this density). The order ladder is built
-by progressively growing the grain (15 → 20 → 26 → 35 Å) and the
-relaxation budget (250 → 300 → 350 → 400 steps) while tightening
-``displacement_sigma`` (0.010 → 0.008 → 0.006 → 0.003). Larger
-crystalline grain interiors and longer FIRE budgets give the
-boundary atoms more time to settle into tetrahedral coordination.
-Pushing weights past 1.65 / 1.35 saturates around the same number of
-detected SiO₄ tetrahedra as the sweet-spot recipe, but introduces
-distortion in the boundary atoms that the 0.10 / 18° tetrahedra
-detector then rejects.
+SRO through NC share the same bond + angle weights (1.65 / 1.35).
+The order ladder is built by progressively growing the grain
+(15 → 20 → 26 → 35 Å) and the relaxation budget (250 → 300 → 350 →
+400 steps) while tightening ``displacement_sigma`` (0.010 → 0.008 →
+0.006 → 0.003). Larger crystalline grain interiors and longer FIRE
+budgets give the boundary atoms more time to settle into tetrahedral
+coordination.  Larger weights saturate at the same number of
+detected SiO₄ tetrahedra while distorting boundary atoms past the
+0.10 / 18° detector tolerance.
 
 The benchmark ladder (rng seed 42, 40 Å cell, 0.10 / 18° detector)
 walks ≈ 668 (amorphous) → 788 (SRO) → 895 (MRO) → 1022 (LRO) → 1141

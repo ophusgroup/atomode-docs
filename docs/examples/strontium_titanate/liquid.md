@@ -8,7 +8,7 @@ octahedra survive.
 ## Parameters
 
 See [Strontium titanate](index.md#supercell) for the reference crystal
-and `with_bonded_species_pairs([('Ti', 'O')])` setup. Then:
+and shell-target setup. Then:
 
 ```python
 cell.generate(

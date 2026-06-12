@@ -39,14 +39,11 @@ atoms_ref = read('structures/SrTiO3.cif')   # 1 Sr + 1 Ti + 3 O
 SrTiO₃ has **two** real chemical bonds: short covalent **Ti–O**
 (1.96 Å, the TiO₆ octahedron) and longer ionic **Sr–O** (2.77 Å, the
 SrO₁₂ cuboctahedron).  The Sr–Sr / Ti–Ti / Sr–Ti peaks at *a* =
-3.91 Å are pure lattice separations through the bonded bridge atoms.
-Since 2026-05 the auto-filter in
+3.91 Å are pure lattice separations through the bonded bridge atoms;
 ``CoordinationShellTarget.from_atoms`` zeroes those lattice-artefact
 pairs automatically (any pair whose ``pair_peak`` is not the smallest
-in either its row or column), so the explicit
-``with_bonded_species_pairs(...)`` chain below is redundant but
-harmless.  The angle whitelist is still required: the SrO₁₂
-cuboctahedron is multi-modal (60° / 90° / 120° / 180°), so no
+in either its row or column).  The angle whitelist is required: the
+SrO₁₂ cuboctahedron is multi-modal (60° / 90° / 120° / 180°), so no
 single-target Sr-centred angle spring would converge.
 
 ```python
@@ -54,7 +51,6 @@ import tricor as tc
 
 shell_target = (
     tc.CoordinationShellTarget.from_atoms(atoms_ref, phi_num_bins=90)
-    .with_bonded_species_pairs([('Ti', 'O'), ('Sr', 'O')])
     .with_angle_triplets([('Ti', 'O', 'O'), ('O', 'Ti', 'Ti')])
 )
 
@@ -67,7 +63,7 @@ cell = tc.Supercell.from_atoms(
 cell.generate(shell_target, grain_size=None)  # liquid; see regime pages
 ```
 
-The second line, `with_angle_triplets(...)`, silences every
+The `with_angle_triplets(...)` modifier silences every
 Sr-centered angle spring (and every triplet involving Sr as a
 neighbour).  Reason: **SrO₁₂ is geometrically identical to the Cu-FCC
 cuboctahedron**, so the O-Sr-O distribution is quadri-modal at
@@ -105,12 +101,11 @@ nanocrystalline
 | long-range order            | 450 | 28.0 | 1.0  | 0.7  | 1.2  | 0.0015 |
 | nanocrystalline             | 500 | 35.0 | 1.0  | 0.7  | 1.2  | 0.001 |
 
-SRO through NC share the same bond + angle weights (1.0 / 0.7, the
-FIRE sweet spot for SrTiO₃ at this density). The order ladder is
-built by progressively growing the grain (14 → 22 → 28 → 35 Å) and
-the relaxation budget (350 → 400 → 450 → 500 steps) while tightening
-``displacement_sigma`` (0.005 → 0.001).  Pushing weights past 1.0 / 0.7
-saturates and then *reduces* the count of detected TiO₆ octahedra by
+SRO through NC share the same bond + angle weights (1.0 / 0.7).
+The order ladder is built by progressively growing the grain
+(14 → 22 → 28 → 35 Å) and the relaxation budget (350 → 400 → 450 →
+500 steps) while tightening ``displacement_sigma`` (0.005 → 0.001).
+Larger weights *reduce* the count of detected TiO₆ octahedra by
 20–30 % — the angle springs over-constrain and conflict with the
 remaining cuboctahedral O-Sr-O modes.
 

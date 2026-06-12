@@ -1,0 +1,40 @@
+{
+  "material": "carbon",
+  "regime": "sp3_rich",
+  "box_angstrom": 40.0,
+  "n_atoms": 9905,
+  "timings_s": {
+    "voronoi": 0.1821880340576172,
+    "orient": 146.19729709625244,
+    "cleanup": 0.9983019828796387,
+    "fire": 12.364619016647339
+  },
+  "calibrated": false,
+  "n_orient_accepts": 22,
+  "mace_sp_eV": -80473.125,
+  "thermal": null,
+  "voronoi": {
+    "bond_peak": 1.5479166666666655,
+    "bond_mean": 1.5260175717127946,
+    "bond_std": 0.06123775898358273,
+    "n_bonds": 17486
+  },
+  "orient": {
+    "bond_peak": 1.5395833333333322,
+    "bond_mean": 1.5285412143578938,
+    "bond_std": 0.05930582576010413,
+    "n_bonds": 17318
+  },
+  "cleanup": {
+    "bond_peak": 1.5395833333333322,
+    "bond_mean": 1.533426478471291,
+    "bond_std": 0.03964846009720848,
+    "n_bonds": 17595
+  },
+  "fire": {
+    "bond_peak": 1.5479166666666655,
+    "bond_mean": 1.5376424712391619,
+    "bond_std": 0.08229683444791591,
+    "n_bonds": 16204
+  }
+}

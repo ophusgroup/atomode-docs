@@ -137,8 +137,6 @@ which keeps per-step cost at ~2.5 s.
 - {doc}`amorphous` — short-range tetrahedral network
 - {doc}`sro` — short-range-ordered SiO₂
 - {doc}`nanocrystalline` — crystalline interior + amorphous boundary
-- [Generating very large cells](../large_cells.md) — the tricor-only
-  pipeline used as stages 1–3 here
 
 ```{toctree}
 :hidden:

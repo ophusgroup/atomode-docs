@@ -7,9 +7,9 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent / "tricor" / "src"))
 
 project = "tricor"
-copyright = "2025, Colin Ophus"
+copyright = "2025-2026, Colin Ophus"
 author = "Colin Ophus"
-release = "0.1.0"
+release = "0.1.1"
 
 extensions = [
     "sphinx.ext.autodoc",
@@ -31,7 +31,10 @@ myst_enable_extensions = [
 # ``[text](path.md#preset-summary)`` resolve.
 myst_heading_anchors = 3
 templates_path = ["_templates"]
-exclude_patterns = ["_build", "_static/README.md"]
+# ``examples_dftb`` is temporarily hidden: MACE-MP0 refinement is more
+# accurate and is the recommended pipeline, so the DFTB+ examples are
+# excluded from the build for now (files kept for later re-enabling).
+exclude_patterns = ["_build", "_static/README.md", "examples_dftb"]
 
 # Static assets (trajectory viewers, etc.)
 html_static_path = ["_static"]

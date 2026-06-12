@@ -9,7 +9,6 @@ relaxation), measurement, visualisation, and HTML-export helpers.
 .. currentmodule:: tricor
 
 .. autoclass:: Supercell
-   :no-index:
    :show-inheritance:
 
    .. rubric:: Construction

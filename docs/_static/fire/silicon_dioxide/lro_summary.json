@@ -1,0 +1,40 @@
+{
+  "material": "silicon_dioxide",
+  "regime": "lro",
+  "box_angstrom": 40.0,
+  "n_atoms": 4866,
+  "timings_s": {
+    "voronoi": 0.05460405349731445,
+    "orient": 16.367193937301636,
+    "cleanup": 0.7172720432281494,
+    "fire": 7.879690170288086
+  },
+  "calibrated": true,
+  "n_orient_accepts": 12,
+  "mace_sp_eV": -35992.390625,
+  "thermal": null,
+  "voronoi": {
+    "bond_peak": 1.6174999999999933,
+    "bond_mean": 1.6145850936592454,
+    "bond_std": 0.028156754201608836,
+    "n_bonds": 5759
+  },
+  "orient": {
+    "bond_peak": 1.6124999999999934,
+    "bond_mean": 1.6148048035338896,
+    "bond_std": 0.029493889766986456,
+    "n_bonds": 5762
+  },
+  "cleanup": {
+    "bond_peak": 1.6124999999999934,
+    "bond_mean": 1.620228790137415,
+    "bond_std": 0.0344857216267463,
+    "n_bonds": 5632
+  },
+  "fire": {
+    "bond_peak": 1.7024999999999915,
+    "bond_mean": 1.69694468742125,
+    "bond_std": 0.05747838736575176,
+    "n_bonds": 6084
+  }
+}

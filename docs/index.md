@@ -22,16 +22,33 @@ tricor builds periodic supercells with controllable disorder, from fully liquid 
 - Rotating MP4 / GIF movie export for publication figures
 - Works with any crystal structure (Si, SiC, oxides, metals, etc.)
 
+## Refining generated structures
+
+tricor generates the initial supercell; a separate relaxation step
+turns it into a physically realistic structure. Two worked pipelines
+are documented, in order of accuracy:
+
+- **[MACE-MP0 refinement](examples_mace/index.md)** *(recommended)* —
+  relax with a universal machine-learning potential. Near-DFT
+  accuracy, minutes per ~5000-atom cell on a laptop CPU.
+- **[Fast FIRE refinement](examples_refined/index.md)** — the built-in
+  spring-network FIRE quench. Orders of magnitude faster than MACE at
+  reduced accuracy, and the only option that stays practical at
+  100³ Å and larger.
+  Optionally calibrate the springs against MACE with one call
+  (`shell.calibrate_to_mace()`) — Morse anharmonicity, per-pair
+  stiffness, and the hard-core wall are measured from the MACE
+  potential on the reference crystal, improving accuracy at zero
+  extra relaxation cost.
+
 ```{toctree}
-:maxdepth: 2
+:hidden:
 
 quickstart
 examples/index
 examples_refined/index
-examples_dftb/index
 examples_mace/index
 order_variety
-large_cells
 algorithms/index
 visualization/index
 api/index

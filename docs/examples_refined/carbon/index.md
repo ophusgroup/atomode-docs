@@ -1,62 +1,42 @@
 # Carbon
 
-C cells (40 × 40 × 40 Å) walking the **sp² ↔ sp³ axis** rather than
-the disorder axis the other materials walk.  Each Voronoi grain is
-sampled from either graphite (sp², 3-coordinated, 120°) or diamond
-(sp³, 4-coordinated, 109.5°) and the regime sets the mix:
+Carbon supercells (40 × 40 × 40 Å) across the sp²/sp³ mixing axis, relaxed with the FIRE spring network.
 
-| Regime | w_graphite | w_diamond | character |
-|---|---|---|---|
-| `sp2_nc`   | 1.00 | 0.00 | nanocrystalline graphite (all sp²) |
-| `mixed_nc` | 0.50 | 0.50 | sp²/sp³ mixed nanocrystalline |
-| `sp3_nc`   | 0.00 | 1.00 | nanocrystalline diamond (all sp³) |
+## Final FIRE structures
 
-Every regime is nanocrystalline (`grain_size = 18 Å`); the variable
-is the grain chemistry, not the grain size.  Shell-relax weights are
-fixed at `bond_weight=2.5, angle_weight=1.2, repulsion_weight=2.0`.
-The
-composite shell target carries two virtual species (`sp2_C`,
-`sp3_C`); each grain's atoms inherit the species index of the master
-they came from, so 3-coordinated graphite atoms develop bonds at
-120° and 4-coordinated diamond atoms develop bonds at 109.5°
-*inside the same cell*.
+<iframe src="../../_static/fire/carbon/overview.html"
+        width="100%" height="660"
+        style="border: 1px solid rgba(0,0,0,0.1); border-radius: 6px;" loading="lazy"></iframe>
 
-## Static vs refined
+## Energy across regimes
 
-Top row is `Supercell.generate()` with the static-relaxation
-pipeline only (FIRE quench, no orientation search); bottom row is
-the same cell with `refine_orientations=True` enabled. The SO(3)
-coordinate search that aligns each grain's lattice to its local
-environment before the same final FIRE quench runs.  Drag any panel
-to orbit; all six rotate in sync.
+MACE-MP0 single-point energy of each FIRE-relaxed structure — directly comparable to the [MACE refinement](../../examples_mace/carbon/index.md) ladder.
 
-<iframe src="../../_static/refined/overview/carbon.html"
-        width="100%" height="640"
-        style="border: 1px solid rgba(0,0,0,0.1); border-radius: 6px;"
-        loading="lazy"></iframe>
+```{image} ../../_static/fire/carbon/regime_ladder.png
+:alt: Carbon FIRE structures scored with MACE
+:width: 100%
+```
 
-## g(r) overlay: static vs refined, all 6 cases
+## Summary
 
-Six g(r) curves on a single radial axis: each regime's static and
-refined post-FIRE state, overlaid for direct comparison.  The pair
-dropdown below the plot lets you switch between the sp²-C and
-sp³-C channels.
+| regime | atoms | orient accepts | bond σ (Å) | MACE SP (eV/atom) |
+|---|---:|---:|---:|---:|
+| [Graphite](graphite.md) | 5974 | 25 | 0.067 | -8.501 |
+| [sp²-rich](sp2_rich.md) | 6957 | 21 | 0.089 | -8.158 |
+| [sp²-leaning](sp2_leaning.md) | 7939 | 30 | 0.087 | -8.178 |
+| [sp³-leaning](sp3_leaning.md) | 8922 | 22 | 0.089 | -8.125 |
+| [sp³-rich](sp3_rich.md) | 9905 | 22 | 0.082 | -8.124 |
+| [Diamond](diamond.md) | 10887 | 20 | 0.073 | -8.285 |
 
-<iframe src="../../_static/refined/g2_compare/carbon.html"
-        width="100%" height="480"
-        style="border: 1px solid rgba(0,0,0,0.1); border-radius: 6px;"
-        loading="lazy"></iframe>
-
-## Per-regime trajectories
-
-Click any regime for the orientation-refinement movie, the FIRE
-quench movie (with sp³ tetrahedra rendered at the final state),
-the cost trace, and the g3 distribution.
+## Per-regime pages
 
 ```{toctree}
 :maxdepth: 1
 
-sp2_nc
-mixed_nc
-sp3_nc
+graphite
+sp2_rich
+sp2_leaning
+sp3_leaning
+sp3_rich
+diamond
 ```

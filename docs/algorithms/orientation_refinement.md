@@ -4,17 +4,19 @@
 grain through a sequence of progressively-finer SO(3) rotation
 perturbations, accepting any rotation that lowers a fast topology-free
 score against the grain's local environment.  It runs **between** the
-Voronoi build and the final FIRE quench, so the quench starts from a
-configuration where every grain's lattice is already aligned with the
-neighbours it actually has, rather than the random orientation the seed
-draw happened to produce.
+Voronoi build and the final relaxation — whether that is the built-in
+FIRE quench or a downstream MACE relaxation — so the relaxation starts
+from a configuration where every grain's lattice is already aligned
+with the neighbours it actually has, rather than the random
+orientation the seed draw happened to produce.
 
-The algorithm is most useful for **directional-bond** materials
-(diamond, silicon, graphite, …) where a small mis-rotation of a grain
-adds large angle-spring strain across its boundary.  FCC metals like
-copper are nearly invariant under SO(3) (high crystallographic
-symmetry → many indistinguishable orientations) so the search is a
-near no-op there.
+The algorithm helps most for **directional-bond** materials (diamond,
+silicon, graphite, …), where a small mis-rotation of a grain adds large
+angle-spring strain across its boundary.  FCC metals like copper are
+nearly invariant under SO(3) (high crystallographic symmetry → many
+indistinguishable orientations), so orientation has little effect on
+their energy; their crystalline character comes from grain size, not
+alignment.
 
 The integrated entry point is
 `Supercell.generate(refine_orientations=True,
@@ -44,116 +46,108 @@ cannot find.  The orientation refinement supplies it explicitly.
 
 ## Algorithm
 
-For each grain $g$ and each rotation amplitude $a \in
-\{30°, 15°, 5°, 2°\}$ (the default schedule), the refinement repeats:
+The search re-runs the **full grain-assembly procedure** for every
+trial — the same Voronoi fill + boundary-overlap removal + push-apart
+pass that the initial build uses (see
+[Supercell generation](supercell_generation.md)) — changing only the
+per-grain SO(3) rotations.  A fixed RNG seed makes two assemblies with
+identical rotations bit-identical, so a trial differs from the current
+state only by the one rotation under test, and the trial geometry is
+always as clean as a fresh build (no short boundary bonds).
+
+For each rotation amplitude $a \in \{30°, 15°, 5°, 2°\}$ (the default
+schedule) and each grain $g$:
 
 1. **Propose.**  Draw $T$ random rotations
    $\mathbf R_t \in \mathrm{SO(3)}$ with axis uniform on $S^2$ and
-   angle uniform in $[-a, +a]$ (Haar-uniform truncated bounded
-   rotations).  Default $T = 50$.
-2. **Score.**  For each candidate, retile the grain $g$ to its master
-   block under $\mathbf R_t \cdot \mathbf R_g^{(0)}$ and compute the
-   *pair-distance* score (defined below) against the atoms in $g$'s
-   neighbourhood.  No FIRE is run per trial; the scoring kernel is
-   pure geometry.
-3. **Accept the best.**  If the lowest-scoring candidate beats the
-   current orientation by more than `score_cutoff_factor`, commit it:
-   update $\mathbf R_g$ and $\mathbf{r}_g$, refresh species indices
-   for multi-species grains.  Otherwise the grain stays put.
-4. **Iterate within an amplitude.**  Repeat the above for
-   `max_rounds_per_amplitude` rounds (default 2), so every grain gets
-   another shot now that its neighbours have moved too.
-5. **Step down the schedule.**  Move to the next (smaller) amplitude
-   and repeat.  Smaller amplitudes refine the basin chosen at coarser
-   amplitudes.
+   angle uniform in $[0, a]$.  Default $T = 50$.
+2. **Re-assemble + score.**  For each candidate, set grain $g$'s
+   rotation to $\mathbf R_t \cdot \mathbf R_g^{(0)}$, re-run the whole
+   grain assembly with the fixed seed, and evaluate the **global**
+   first-shell pair-distance cost (below) on the resulting cell.
+3. **Accept if lower.**  Keep the candidate only if it strictly lowers
+   the global cost; commit its rotation and the re-assembled cell.
+   Because the baseline and every trial pass through the identical
+   procedure, the cost decreases monotonically at every accept.
+4. **Iterate within an amplitude.**  Repeat for
+   `max_rounds_per_amplitude` rounds, so every grain gets another shot
+   after its neighbours have moved.
+5. **Step down the schedule.**  Move to the next (smaller) amplitude.
 
-Total work is **trials × amplitudes × rounds × grains**, which sounds
-expensive but is dominated by the per-trial score that's
-sub-millisecond on a typical grain (no FIRE inner loop, no neighbour
-list, just $O(K)$ pair distances).
+The full-reassembly approach is what keeps the trial geometry honest:
+an earlier single-grain "retile" that skipped the boundary cleanup
+left short overlapping bonds at grain faces, which made the cost
+non-monotonic and could *raise* the energy of the accepted state.
 
 ## Pair-distance score
 
-The score quantifies how well a grain's atoms match the lattice
-spacing of its environment, *without* needing a bond list:
+The cost quantifies how well every atom's first-shell neighbours sit
+at the species-pair bond peak, *without* needing a bond list:
 
 $$
-S_g(\mathbf R) = \sum_{i \in g} \sum_{j \in N(i)}
-                 \left( d_{ij}(\mathbf R) - r^\star_{s_i s_j} \right)^2
+S(\mathbf R) = \frac{1}{N}\!\!\sum_{(i,j)\,:\,d_{ij} < r_{\text{cut}}}
+   \Big[\,\big(d_{ij} - r^\star_{s_i s_j}\big)^2
+   + 50\,\big(\max(0,\, r^{\text{hard}}_{s_i s_j} - d_{ij})\big)^2\Big]
 $$
 
-where $N(i)$ is the geometric neighbourhood of $i$ within
-`pair_outer`, $d_{ij}$ is the post-rotation min-image distance, and
-$r^\star_{s_i s_j}$ is the species-pair peak from `shell_target`.
-Two crucial properties:
+summed over all min-image neighbour pairs within
+$r_{\text{cut}} = 1.5\,\max(r^\star)$, where $r^\star_{s_i s_j}$ is the
+species-pair peak and $r^{\text{hard}}_{s_i s_j}$ the hard-core
+distance from `shell_target`.  The stiff hard-core penalty guarantees
+any sub-hard-core pair is heavily penalised, so overlapping geometry is
+never accepted.  It is evaluated globally via a single ``cKDTree``
+neighbour query — $O(N)$ per trial.
 
-- **Topology-free.**  No bond graph is built; the kernel just sums
-  over geometric neighbour pairs.  This is what makes per-trial
-  scoring sub-millisecond, which matters because the bottleneck of any
-  retile-then-FIRE-test alternative is the bond rebuild.
-- **Boundary-weighted.**  Atoms deep inside a grain see only same-
-  grain neighbours and contribute a constant baseline to $S_g$ for
-  any rotation.  Atoms on the grain boundary see foreign neighbours
-  and dominate the score.  The accepted rotation is the one that
-  best aligns the boundary against its environment, which is exactly
-  where the cost lives.
-
-A grain near a perfect crystal boundary scores
-$S_g \approx \mathrm{const} \cdot (a - r^\star)^2$ where $a$ is the
-grain's lattice spacing.  Tilting the grain by $\theta$ adds
-roughly $\theta^2 \cdot K$ for some prefactor, so the score is locally
-quadratic in mis-rotation, which is what makes the coordinate-descent
-schedule converge predictably.
+- **Topology-free.**  No bond graph is built; only geometric neighbour
+  pairs are summed.
+- **Boundary-driven.**  Grain interiors are rigid under rotation and
+  contribute a constant baseline; only boundary pairs change, so the
+  accepted rotation is the one that best aligns each grain's surface
+  against its neighbours.
 
 ## Multi-species grains
 
-For grains drawn from a multi-species master (SiO₂'s SiO₄
-tetrahedra, SrTiO₃'s perovskite cube, …) the retile operation must
-permute *both* `atoms.numbers` and `species_idx` along with positions;
-otherwise an O slot can land at a Si index and the species-pair
-shell-target lookups produce nonsense.  This is handled automatically
-by the kernel.
+For grains drawn from a multi-species master (SiO₂'s SiO₄ tetrahedra,
+SrTiO₃'s perovskite cube, …) the re-assembly carries the per-atom
+species offsets through the rotation, so an O slot never lands at a Si
+index and the species-pair shell-target lookups stay correct.
 
 ## What gets tuned
 
 - `amplitudes_deg` (default `(30, 15, 5, 2)`): rotation schedule.
-  Larger first amplitude lets the search escape mis-oriented basins
+  The large first amplitude lets the search escape mis-oriented basins
   drawn by the seed RNG.
-- `trials_per_amplitude_per_grain` (default 50): number of
-  candidate rotations sampled per (grain, amplitude).  Higher gives
-  a denser SO(3) sampling at the cost of wall time.
-- `max_rounds_per_amplitude` (default 2): number of full passes
-  over all grains within one amplitude phase.  More rounds let
-  late-touched grains revisit their own orientations after their
-  neighbours moved.
-- `cost_function` (default `"pair_distance"`): the score above.
-  Alternative `"bond_angle"` builds a topology per trial; usually
-  not worth the slowdown.
-- `score_cutoff_factor` (default 1.5): accept threshold relative to
-  the per-trial baseline.  Larger values accept more aggressively.
-- `time_budget_sec`: wall-time guard rail; the search bails after
-  this even if amplitudes remain.
+- `trials_per_amplitude_per_grain` (default 50): candidate rotations
+  per (grain, amplitude).
+- `max_rounds_per_amplitude` (default 2): full passes over all grains
+  within one amplitude phase.
+- `time_budget_sec` (default 120): wall-time guard rail; the search
+  stops at the next grain boundary once this is exceeded.
 
-## Cost of the search vs the FIRE that follows
+## Cost of the search
 
-Empirically (40 × 40 × 40 Å cells, 2026 hardware):
+Each trial re-runs the whole grain assembly, so the work scales as
+**trials × amplitudes × rounds × (grains per assembly)** — effectively
+*quadratic* in grain count, since one trial that rotates a single
+grain still rebuilds all of them.  Regimes with large grains (few per
+cell) finish quickly and converge; regimes with many small grains can
+exhaust `time_budget_sec` after visiting only a handful of grains, so
+the accept count is low.  A future optimisation that rebuilds only the
+rotated grain and re-cleans just its boundary would make each trial
+$O(1)$ in grain count.
 
-- **Pure FIRE quench** ($T = 0$, no refinement): 30–250 s depending
-  on material.
-- **Refinement + FIRE**: adds 5–60 s for the SO(3) search (longer
-  for multi-species or many-grain regimes).  FIRE itself runs ~the
-  same wall time but converges to a noticeably lower energy basin.
-
-The visual effect is most dramatic on Si and SiO₂; see
-[Refined Examples](../examples_refined/index.md) for the per-material
-side-by-side comparison.
+The structural benefit is largest for directional-bond materials
+(Si, SiO₂); see [Fast FIRE Refinement](../examples_refined/index.md)
+for the per-material side-by-side comparison, and the
+[MACE-MP0 Refinement Examples](../examples_mace/index.md), where the
+same orientation step precedes a MACE relaxation.
 
 ## Where to read the code
 
 - `src/tricor/_resample.py`: `refine_initial_orientations`,
-  `_pair_distance_cost`, `_so3_bounded_rotation`,
-  `_retile_grain`.
-- `src/tricor/supercell.py`: `Supercell.generate`'s integration
-  block (the `if refine_orientations:` branch around the FIRE call).
-- `src/tricor/_thermal_mc.py`: the numba kernel that runs the
-  per-trial pair-distance evaluation.
+  `_so3_bounded_rotation`.
+- `src/tricor/_grain.py`: `_build_grain_atoms` (accepts a
+  `rotations_override` so the refiner can re-assemble with trial
+  rotations).
+- `src/tricor/supercell.py`: `Supercell.generate` caches the build
+  parameters and runs the refiner when `refine_orientations=True`.

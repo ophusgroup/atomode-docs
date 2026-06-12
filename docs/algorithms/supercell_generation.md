@@ -2,7 +2,7 @@
 
 Disordered supercells are built in two stages: **Voronoi-grain
 construction** (this page) sets the initial atom positions, and
-**spring-network relaxation** ([static FIRE](static_relaxation.md))
+**spring-network relaxation** ([FIRE relaxation](fire_relaxation.md))
 refines the local geometry against first-shell targets.  An
 optional [orientation refinement](orientation_refinement.md) pass
 between the two stages walks each grain through small SO(3)
@@ -115,7 +115,7 @@ non-bonded distances against the first-shell targets:
   per-grain SO(3) coordinate search that runs **before** the FIRE
   quench, picking rotations that align each grain's lattice with its
   local neighbourhood.  Enabled with `refine_orientations=True`.
-- [Static relaxation](static_relaxation.md): FIRE-style gradient
+- [FIRE relaxation](fire_relaxation.md): FIRE-style gradient
   descent on the spring-network energy.  Default for
   `Supercell.generate()`.
 

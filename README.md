@@ -11,18 +11,17 @@ The hosted documentation is built by ReadTheDocs and available at:
 docs/
   index.md
   quickstart.md
-  algorithm/           - mathematical description
-  generation.md        - code examples
-  visualization.md
-  examples.md
-  cases/               - per-regime case studies
-    si/
-    sio2/
+  examples/            - static (generate-only) per-material case studies
+  examples_mace/       - MACE-MP0 refinement examples (recommended)
+  examples_refined/    - fast FIRE refinement (orientation + cleanup + FIRE)
+  examples_dftb/       - DFTB+ refinement (temporarily hidden via conf.py)
+  order_variety.md     - generate the full liquid → nanocrystalline ladder
+  algorithms/          - mathematical description of each pipeline stage
+  visualization/       - viewer + exporter reference
   api/                 - auto-generated API reference
-  _static/
-    trajectories/      - pre-rendered interactive 3D relaxation viewers
-    figures/           - pre-rendered Plotly figures
+  _static/             - pre-rendered interactive HTML viewers + figures
   conf.py
+scripts/               - regeneration scripts (see scripts/README.md)
 .readthedocs.yaml
 pyproject.toml
 ```

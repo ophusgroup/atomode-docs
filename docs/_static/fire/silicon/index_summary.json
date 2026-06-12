@@ -1,0 +1,245 @@
+{
+  "liquid": {
+    "material": "silicon",
+    "regime": "liquid",
+    "box_angstrom": 40.0,
+    "n_atoms": 3068,
+    "timings_s": {
+      "voronoi": 0.0003609657287597656,
+      "orient": 0.0,
+      "cleanup": 0.28536200523376465,
+      "fire": 17.338624954223633
+    },
+    "calibrated": true,
+    "n_orient_accepts": 0,
+    "mace_sp_eV": -14771.970703125,
+    "thermal": {
+      "T": 0.004,
+      "sweeps": 400
+    },
+    "voronoi": {
+      "bond_peak": 2.8887499999999813,
+      "bond_mean": 2.5118168890974975,
+      "bond_std": 0.25477537500357483,
+      "n_bonds": 5042
+    },
+    "orient": {
+      "bond_peak": 2.8887499999999813,
+      "bond_mean": 2.5118168890974975,
+      "bond_std": 0.25477537500357483,
+      "n_bonds": 5042
+    },
+    "cleanup": {
+      "bond_peak": 2.348749999999993,
+      "bond_mean": 2.4666891697110653,
+      "bond_std": 0.1791139614908181,
+      "n_bonds": 7615
+    },
+    "fire": {
+      "bond_peak": 2.3562499999999926,
+      "bond_mean": 2.4134597771343023,
+      "bond_std": 0.15463309494478414,
+      "n_bonds": 6780
+    }
+  },
+  "amorphous": {
+    "material": "silicon",
+    "regime": "amorphous",
+    "box_angstrom": 40.0,
+    "n_atoms": 3068,
+    "timings_s": {
+      "voronoi": 0.0003719329833984375,
+      "orient": 0.0,
+      "cleanup": 0.2880399227142334,
+      "fire": 2.81101393699646
+    },
+    "calibrated": true,
+    "n_orient_accepts": 0,
+    "mace_sp_eV": -14981.896484375,
+    "thermal": null,
+    "voronoi": {
+      "bond_peak": 2.8887499999999813,
+      "bond_mean": 2.5118168890974975,
+      "bond_std": 0.25477537500357483,
+      "n_bonds": 5042
+    },
+    "orient": {
+      "bond_peak": 2.8887499999999813,
+      "bond_mean": 2.5118168890974975,
+      "bond_std": 0.25477537500357483,
+      "n_bonds": 5042
+    },
+    "cleanup": {
+      "bond_peak": 2.348749999999993,
+      "bond_mean": 2.4666891697110653,
+      "bond_std": 0.1791139614908181,
+      "n_bonds": 7615
+    },
+    "fire": {
+      "bond_peak": 2.296249999999994,
+      "bond_mean": 2.4075460837849123,
+      "bond_std": 0.15559094458176387,
+      "n_bonds": 6681
+    }
+  },
+  "sro": {
+    "material": "silicon",
+    "regime": "sro",
+    "box_angstrom": 40.0,
+    "n_atoms": 3068,
+    "timings_s": {
+      "voronoi": 0.24580597877502441,
+      "orient": 401.1717917919159,
+      "cleanup": 0.28266000747680664,
+      "fire": 3.2583680152893066
+    },
+    "calibrated": true,
+    "n_orient_accepts": 38,
+    "mace_sp_eV": -15139.0234375,
+    "thermal": null,
+    "voronoi": {
+      "bond_peak": 2.348749999999993,
+      "bond_mean": 2.432434807025589,
+      "bond_std": 0.20500338992698824,
+      "n_bonds": 5898
+    },
+    "orient": {
+      "bond_peak": 2.3637499999999925,
+      "bond_mean": 2.4341415841997294,
+      "bond_std": 0.205369355133829,
+      "n_bonds": 5962
+    },
+    "cleanup": {
+      "bond_peak": 2.348749999999993,
+      "bond_mean": 2.44326088035724,
+      "bond_std": 0.16333496709046932,
+      "n_bonds": 6707
+    },
+    "fire": {
+      "bond_peak": 2.3262499999999933,
+      "bond_mean": 2.4097972057785717,
+      "bond_std": 0.1450715302715489,
+      "n_bonds": 6491
+    }
+  },
+  "mro": {
+    "material": "silicon",
+    "regime": "mro",
+    "box_angstrom": 40.0,
+    "n_atoms": 3068,
+    "timings_s": {
+      "voronoi": 0.09142494201660156,
+      "orient": 265.090784072876,
+      "cleanup": 0.28298211097717285,
+      "fire": 3.5003268718719482
+    },
+    "calibrated": true,
+    "n_orient_accepts": 60,
+    "mace_sp_eV": -15335.22265625,
+    "thermal": null,
+    "voronoi": {
+      "bond_peak": 2.3562499999999926,
+      "bond_mean": 2.409307623901876,
+      "bond_std": 0.17145264919223305,
+      "n_bonds": 5939
+    },
+    "orient": {
+      "bond_peak": 2.3562499999999926,
+      "bond_mean": 2.4019087710547353,
+      "bond_std": 0.1677507894934068,
+      "n_bonds": 5901
+    },
+    "cleanup": {
+      "bond_peak": 2.348749999999993,
+      "bond_mean": 2.4146600394065585,
+      "bond_std": 0.1428435474315222,
+      "n_bonds": 6357
+    },
+    "fire": {
+      "bond_peak": 2.3562499999999926,
+      "bond_mean": 2.4102588311040036,
+      "bond_std": 0.1374097887502937,
+      "n_bonds": 6334
+    }
+  },
+  "lro": {
+    "material": "silicon",
+    "regime": "lro",
+    "box_angstrom": 40.0,
+    "n_atoms": 3068,
+    "timings_s": {
+      "voronoi": 0.05296015739440918,
+      "orient": 93.49315118789673,
+      "cleanup": 0.28511691093444824,
+      "fire": 3.780819892883301
+    },
+    "calibrated": true,
+    "n_orient_accepts": 21,
+    "mace_sp_eV": -15473.849609375,
+    "thermal": null,
+    "voronoi": {
+      "bond_peak": 2.3562499999999926,
+      "bond_mean": 2.3962244023306285,
+      "bond_std": 0.15467492521428167,
+      "n_bonds": 5847
+    },
+    "orient": {
+      "bond_peak": 2.348749999999993,
+      "bond_mean": 2.398919573921942,
+      "bond_std": 0.1554419590923668,
+      "n_bonds": 5940
+    },
+    "cleanup": {
+      "bond_peak": 2.348749999999993,
+      "bond_mean": 2.4045424760724674,
+      "bond_std": 0.13215414920933624,
+      "n_bonds": 6237
+    },
+    "fire": {
+      "bond_peak": 2.3637499999999925,
+      "bond_mean": 2.3980470223013,
+      "bond_std": 0.12539573527144993,
+      "n_bonds": 6106
+    }
+  },
+  "nanocrystalline": {
+    "material": "silicon",
+    "regime": "nanocrystalline",
+    "box_angstrom": 40.0,
+    "n_atoms": 3068,
+    "timings_s": {
+      "voronoi": 0.035710811614990234,
+      "orient": 22.38346004486084,
+      "cleanup": 0.27843713760375977,
+      "fire": 4.138561964035034
+    },
+    "calibrated": true,
+    "n_orient_accepts": 20,
+    "mace_sp_eV": -15647.01953125,
+    "thermal": null,
+    "voronoi": {
+      "bond_peak": 2.3562499999999926,
+      "bond_mean": 2.379452586570224,
+      "bond_std": 0.123641255791403,
+      "n_bonds": 5842
+    },
+    "orient": {
+      "bond_peak": 2.348749999999993,
+      "bond_mean": 2.384863163457323,
+      "bond_std": 0.13232378818795584,
+      "n_bonds": 5946
+    },
+    "cleanup": {
+      "bond_peak": 2.348749999999993,
+      "bond_mean": 2.393148771266738,
+      "bond_std": 0.12172394496633146,
+      "n_bonds": 6147
+    },
+    "fire": {
+      "bond_peak": 2.3637499999999925,
+      "bond_mean": 2.392502606112456,
+      "bond_std": 0.11076329638347106,
+      "n_bonds": 6039
+    }
+  }
+}

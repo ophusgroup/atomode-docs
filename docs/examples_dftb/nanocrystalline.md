@@ -63,15 +63,11 @@ DFTB+ relax wallclock: 13,689 s = 3.8 hr for the seed SP (~48 min) +
 60 FIRE+UCF steps (~2 min/step average).
 
 ```{note}
-The `after orient` row is identical to `Voronoi` because the
-Voronoi tile in tricor already assigns each grain an orientation
-that locally minimises the pair-distance score at grain boundaries.
-A swept SO(3) coordinate search over 4400 trial rotations (11 grains
-× 4 amplitudes × 2 rounds × 50 trials/grain) finds zero
-improvements: every perturbation *worsens* the score.  The step
-still runs (~12 s); it just produces no change.  This was confirmed
-to hold across `grain_size ∈ {16, 17, 18, 22} Å`,
-`displacement_sigma ∈ {0.004, 0.008, 0.012}`, and 7 RNG seeds.
+The `after orient` row is identical to `Voronoi`: the Voronoi tile
+already assigns each grain an orientation that locally minimises the
+pair-distance score at grain boundaries, and the SO(3) orientation
+search finds no rotation that improves on it for this configuration.
+The step runs (~12 s) but produces no change.
 ```
 
 ## Reproduction summary

@@ -10,7 +10,6 @@ against a non-cell ASE atoms object.
 .. currentmodule:: tricor
 
 .. autoclass:: G3Distribution
-   :no-index:
    :show-inheritance:
 
    .. rubric:: Measurement

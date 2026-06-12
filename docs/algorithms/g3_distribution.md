@@ -64,6 +64,24 @@ calls hit the cached kernel.  The kernel uses ``prange`` over origin
 atoms with per-thread accumulators reduced at the end — no atomic
 adds, no GIL.
 
+### Subsampled measurement (large cells)
+
+Measuring g3 directly on a very large cell (100³ Å and beyond) takes
+minutes even with the numba kernel.  `measure_g3` accepts a
+`sample_fraction` knob that uniformly subsamples **origin** atoms
+while keeping the full neighbour set intact — periodicity and
+histogram shape are preserved while the cost drops linearly:
+
+```python
+# ~1% of origins — same statistics as a full measurement at 40³ Å
+cell.measure_g3(sample_fraction=0.01, sample_rng_seed=2026)
+```
+
+The subsampled histogram correlates > 0.998 with the full measurement
+for any `sample_fraction ≥ 1/64` (validated on 60³ Å SiO₂), and the
+bond-peak position is unchanged to three decimals.  `plot_g2_compare`
+accepts the same kwargs for g(r) overlays on large cells.
+
 ## Reduced coordinates
 
 The random-limit (ideal gas) g3 scales as $r_{01}^2 \, r_{02}^2 \,
@@ -103,8 +121,16 @@ layout.
 
 ### Bond restrictions
 
-Two helpers zero entries of `coordination_target` to enforce
-species-pair selectivity during `shell_relax`:
+Pairs with zero `coordination_target` install no bond springs and
+cannot be bonded during `shell_relax`.  `from_atoms` zeroes
+lattice-artefact pairs automatically
+(`auto_filter_lattice_artifacts=True`): a species pair whose
+first-shell peak is not the smallest in either its row or column of
+`pair_peak` is a lattice separation through a bridging atom, not a
+chemical bond.  This is what keeps SiO₂ / SrTiO₃ from developing a
+spurious Si-Si or Ti-Ti bond at the second-shell distance.
+
+Two helpers set the bond graph explicitly instead:
 
 ```python
 shell_target.with_cross_species_bonds_only()          # zero diagonal: only A–B bonds
@@ -112,8 +138,6 @@ shell_target.with_bonded_species_pairs([('Ti', 'O')]) # keep listed pairs, zero 
 ```
 
 Both return a new `CoordinationShellTarget`; the original is unchanged.
-This is the mechanism that keeps SiO₂ / SrTiO₃ from developing a
-spurious Si-Si or Ti-Ti bond at the second-shell distance.
 
 ### Angle-spring masking (multi-modal shells)
 

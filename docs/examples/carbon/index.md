@@ -129,9 +129,9 @@ Shell-relax weights are identical across regimes:
 hard_core_scale=0.92, nonbond_push_scale=0.85,
 displacement_sigma=0.02``.
 
-Grain size grew 14 → 18 Å in 2026-05 (with `num_steps` 150 → 250)
-to reduce the fraction of atoms at sp²/sp³ grain boundaries — those
-boundary atoms cannot pass either the triangle (3-coord, 120°) or
-the tetrahedron (4-coord, 109.5°) detector regardless of relaxation,
-so growing the crystalline interior is the only lever for visible
-ordering in the mixed regimes.
+All regimes use 18 Å grains with `num_steps = 250` to limit the
+fraction of atoms at sp²/sp³ grain boundaries — those boundary atoms
+cannot pass either the triangle (3-coord, 120°) or the tetrahedron
+(4-coord, 109.5°) detector regardless of relaxation, so a large
+crystalline interior is the only lever for visible ordering in the
+mixed regimes.

@@ -195,7 +195,11 @@ MATERIALS = {
         angle_triplets=[("Ti", "O", "O"), ("O", "Ti", "Ti")],
         regimes={
             "liquid":          dict(grain_size=None, displacement_sigma=0.008, bond_weight=0.50, angle_weight=0.4, repulsion_weight=1.1, hard_core_scale=1.10, nonbond_push_scale=0.65, mace_mode="md"),
-            "amorphous":       dict(grain_size=None, displacement_sigma=0.008, bond_weight=0.50, angle_weight=0.4, repulsion_weight=1.1, hard_core_scale=1.10, nonbond_push_scale=0.65),
+            # Grain-free random STO is unreachable for the spring
+            # network (Sr placement is chemistry, not geometry); small
+            # grains restore a physical amorphous network (validated
+            # against the MACE reference).
+            "amorphous":       dict(grain_size=16.0, displacement_sigma=0.008, bond_weight=0.50, angle_weight=0.4, repulsion_weight=1.1, hard_core_scale=1.10, nonbond_push_scale=0.65),
             "sro":             dict(grain_size=14.0, displacement_sigma=0.005, bond_weight=1.0, angle_weight=0.7, repulsion_weight=1.2, hard_core_scale=1.10, nonbond_push_scale=0.75),
             "mro":             dict(grain_size=22.0, displacement_sigma=0.002, bond_weight=1.0, angle_weight=0.7, repulsion_weight=1.2, hard_core_scale=1.10, nonbond_push_scale=0.75),
             "lro":             dict(grain_size=28.0, displacement_sigma=0.0015, bond_weight=1.0, angle_weight=0.7, repulsion_weight=1.2, hard_core_scale=1.10, nonbond_push_scale=0.75),
@@ -215,22 +219,26 @@ MATERIALS = {
             diamond=_cif("C_diamond.cif"),
         ),
         regimes={
-            # weight tuples (graphite, diamond); grain 18, strong springs.
-            "sp2_nc":   dict(grain_size=18.0, displacement_sigma=0.02, w_graphite=1.0, w_diamond=0.0, bond_weight=2.5, angle_weight=1.2, repulsion_weight=2.0, hard_core_scale=0.92, nonbond_push_scale=0.85),
-            "mixed_nc": dict(grain_size=18.0, displacement_sigma=0.02, w_graphite=0.5, w_diamond=0.5, bond_weight=2.5, angle_weight=1.2, repulsion_weight=2.0, hard_core_scale=0.92, nonbond_push_scale=0.85),
-            "sp3_nc":   dict(grain_size=18.0, displacement_sigma=0.02, w_graphite=0.0, w_diamond=1.0, bond_weight=2.5, angle_weight=1.2, repulsion_weight=2.0, hard_core_scale=0.92, nonbond_push_scale=0.85),
+            # weight pairs (graphite, diamond) mirroring the static
+            # catalogue's six-point sp²/sp³ ladder; grain 18 Å.
+            "graphite":    dict(grain_size=18.0, displacement_sigma=0.02, w_graphite=1.0, w_diamond=0.0, bond_weight=2.5, angle_weight=1.2, repulsion_weight=2.0, hard_core_scale=0.92, nonbond_push_scale=0.85),
+            "sp2_rich":    dict(grain_size=18.0, displacement_sigma=0.02, w_graphite=0.8, w_diamond=0.2, bond_weight=2.5, angle_weight=1.2, repulsion_weight=2.0, hard_core_scale=0.92, nonbond_push_scale=0.85),
+            "sp2_leaning": dict(grain_size=18.0, displacement_sigma=0.02, w_graphite=0.6, w_diamond=0.4, bond_weight=2.5, angle_weight=1.2, repulsion_weight=2.0, hard_core_scale=0.92, nonbond_push_scale=0.85),
+            "sp3_leaning": dict(grain_size=18.0, displacement_sigma=0.02, w_graphite=0.4, w_diamond=0.6, bond_weight=2.5, angle_weight=1.2, repulsion_weight=2.0, hard_core_scale=0.92, nonbond_push_scale=0.85),
+            "sp3_rich":    dict(grain_size=18.0, displacement_sigma=0.02, w_graphite=0.2, w_diamond=0.8, bond_weight=2.5, angle_weight=1.2, repulsion_weight=2.0, hard_core_scale=0.92, nonbond_push_scale=0.85),
+            "diamond":     dict(grain_size=18.0, displacement_sigma=0.02, w_graphite=0.0, w_diamond=1.0, bond_weight=2.5, angle_weight=1.2, repulsion_weight=2.0, hard_core_scale=0.92, nonbond_push_scale=0.85),
         },
     ),
 }
 
 
 def _carbon_viz(regime):
-    if regime == "sp2_nc":
+    if regime in ("sp2_nc", "graphite"):
         return dict(polyhedra_groups=[dict(
             kind="triangles", center_symbol="C", vertex_symbol="C",
             bond_length=1.42, bond_length_tol=0.10, angle_tol_deg=15.0,
             color=(0.20, 0.65, 0.30), opacity=0.55)])
-    if regime == "sp3_nc":
+    if regime in ("sp3_nc", "diamond"):
         return dict(tetrahedra=dict(center_symbol="C", vertex_symbol="C",
                                     bond_length=1.54, bond_length_tol=0.10,
                                     angle_tol_deg=15.0),
@@ -250,6 +258,9 @@ REGIME_TITLES = {
     "mro": "MRO", "lro": "LRO", "nanocrystalline": "Nanocrystalline",
     "sp2_nc": "sp² nanocrystalline", "mixed_nc": "Mixed sp²/sp³",
     "sp3_nc": "sp³ nanocrystalline",
+    "graphite": "Graphite", "sp2_rich": "sp²-rich",
+    "sp2_leaning": "sp²-leaning", "sp3_leaning": "sp³-leaning",
+    "sp3_rich": "sp³-rich", "diamond": "Diamond",
 }
 
 

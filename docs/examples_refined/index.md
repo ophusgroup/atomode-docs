@@ -1,23 +1,20 @@
-# Refined Examples
+# Fast FIRE Refinement
 
-Per-material side-by-side comparisons of the static-only build path
-(`Supercell.generate(...)` → FIRE quench) against the build-time
-**orientation-refinement** path
-(`Supercell.generate(refine_orientations=True, ...)`), at a common
-40 × 40 × 40 Å cell size.  Each material walks three regimes; for
-Cu / Si / SiO₂ / SrTiO₃ the axis is disorder
-(amorphous → MRO → nanocrystalline), for Carbon the axis is sp²/sp³
-mixing (graphite → mixed → diamond, all at NC grain size).
+tricor-generated supercells relaxed with the built-in [FIRE spring network](../algorithms/fire_relaxation.md).  FIRE is orders of magnitude faster than [MACE-MP0 refinement](../examples_mace/index.md) at lower accuracy, and is the practical option for cells of 100³ Å and larger (see [cost and convergence](../algorithms/fire_relaxation.md#cost-and-convergence)).  Each final structure is scored with a MACE-MP0 single point, so the FIRE and MACE pipelines can be compared directly.
 
-Per-material pages embed the static-vs-refined 2 × 3 panel and the
-six-curve g(r) overlay.  Per-regime pages embed the orientation-
-refinement movie, the FIRE-quench movie (with material-appropriate
-polyhedra), the cost trace, and three g3 distributions captured at
-the build, post-refine, and post-FIRE states so the algorithmic
-effect of each stage is visible.
+The pipeline per (material, regime) is:
 
-See [Orientation refinement](../algorithms/orientation_refinement.md)
-for the algorithm description.
+```
+1. Voronoi tile          (cell.generate(num_steps=0))
+2. Orientation refine    (cell.refine_initial_orientations)
+3. Cleanup               (bond_relax + enforce_hard_core)
+4. FIRE relaxation       (cell.shell_relax), or
+   thermostatted sampling (cell.thermal_relax) for liquid
+```
+
+Shell targets are **MACE-calibrated** when the optional `mace-torch` dependency is installed (`shell.calibrate_to_mace()`): per-pair bond stiffness, per-triplet angle stiffness, Morse anharmonicity, and the hard-core wall are measured from the MACE-MP0 potential on the reference crystal, which improves accuracy over the hand-tuned defaults.  Without `mace-torch` the pipeline runs identically on the registry weights.  Carbon's composite sp²/sp³ target runs uncalibrated.
+
+## Materials
 
 ```{toctree}
 :maxdepth: 1
