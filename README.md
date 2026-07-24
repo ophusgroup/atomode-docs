@@ -1,45 +1,35 @@
-# tricor-docs
+# atomode-docs
 
-Documentation source and pre-rendered figures for [tricor](https://github.com/ophusgroup/tricor).
+Documentation site for [atomode](https://github.com/ophusgroup/atomode), built
+with [MyST](https://mystmd.org) and deployed to GitHub Pages at
+<https://ophusgroup.github.io/atomode-docs>.
 
-The hosted documentation is built by ReadTheDocs and available at:
-**<https://tricor.readthedocs.io>**
+## Local preview
 
-## Repository structure
-
-```
-docs/
-  index.md
-  quickstart.md
-  examples/            - static (generate-only) per-material case studies
-  examples_mace/       - MACE-MP0 refinement examples (recommended)
-  examples_refined/    - fast FIRE refinement (orientation + cleanup + FIRE)
-  examples_dftb/       - DFTB+ refinement (temporarily hidden via conf.py)
-  order_variety.md     - generate the full liquid → nanocrystalline ladder
-  algorithms/          - mathematical description of each pipeline stage
-  visualization/       - viewer + exporter reference
-  api/                 - auto-generated API reference
-  _static/             - pre-rendered interactive HTML viewers + figures
-  conf.py
-scripts/               - regeneration scripts (see scripts/README.md)
-.readthedocs.yaml
-pyproject.toml
-```
-
-## Why a separate repo?
-
-The pre-rendered HTML figures for each case are ~1 MB each. Keeping them separate from the main `tricor` code repo prevents the main repo from accumulating history as figures are regenerated.
-
-## Building locally
+Requires [Node.js](https://nodejs.org) (for the MyST CLI):
 
 ```bash
-cd /path/to/tricor-docs
-pip install -e .
-pip install git+https://github.com/ophusgroup/tricor.git
-sphinx-build -b html docs docs/_build
-open docs/_build/index.html
+npm install -g mystmd
+myst start          # live preview at http://localhost:3000
 ```
 
-## Regenerating figures
+Build the static site:
 
-Interactive trajectory viewers and Plotly figures are generated locally (not during RTD build) and committed as HTML files in `docs/_static/`. See `docs/_static/README.md` for the regeneration workflow.
+```bash
+myst build          # download the theme
+python3 scripts/patch_theme.py   # expand top-level TOC sections
+myst build --html   # output in _build/html
+```
+
+## Deploy
+
+Pushes to `main` are built and deployed by
+[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). Enable it once
+under **Settings → Pages → Source: GitHub Actions**.
+
+## Structure
+
+- `myst.yml` — site config and table of contents
+- `index.md`, `get-started/`, `user-guide/`, `reference/` — content
+- `style.css` — theme customization (shared with the quantEM docs theme)
+- `scripts/patch_theme.py` — post-build theme patch

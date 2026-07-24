@@ -1,0 +1,45 @@
+# MyST configuration for the atomode documentation site.
+# See: https://mystmd.org/guide/frontmatter
+version: 1
+project:
+  id: atomode-docs
+  title: atomode
+  description: Documentation for atomode, atomistic structure generation across the order–disorder spectrum.
+  keywords:
+    - atomistic structure generation
+    - amorphous
+    - nanocrystalline
+    - short-range order
+    - supercells
+    - disordered materials
+  github: https://github.com/ophusgroup/atomode
+  license: MIT
+  exclude:
+    - README.md
+  toc:
+    - file: index.md
+    - title: Get Started
+      children:
+        - file: get-started/overview.md
+        - file: get-started/installation.md
+    - title: User Guide
+      children:
+        - file: user-guide/index.md
+    - title: Reference
+      children:
+        - file: reference/api.md
+site:
+  template: book-theme
+  title: atomode
+  options:
+    # Custom theming — see ./style.css (shared with the quantEM docs theme)
+    style: ./style.css
+    logo_text: atomode
+    folders: true
+    outline_maxdepth: 2
+    hide_footer_links: true
+  nav:
+    - title: Install
+      url: https://pypi.org/project/atomode/
+    - title: Code
+      url: https://github.com/ophusgroup/atomode
