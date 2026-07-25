@@ -117,21 +117,28 @@ html.dark :not(pre) > code {
   height: 1.1rem;
   width: 1.1rem;
 }
-/* Top-level sections (Get Started, User Guide, ...) in bold */
-.myst-toc > div > .myst-toc-item {
-  font-weight: 700;
+/* Sidebar items are all normal weight — only the selected page is bold. */
+.myst-primary-sidebar-toc .myst-toc-item {
+  font-weight: 400;
 }
-/* book-theme marks the section containing the current page in blue; make it
-   bold red instead, and keep the page links themselves red when active. */
+/* book-theme marks the section containing the current page in blue; recolour it
+   to the accent (no bold) as a subtle "current section" cue. */
 .myst-primary-sidebar-toc .text-blue-800,
 html.dark .myst-primary-sidebar-toc .dark\:text-blue-200 {
   color: var(--qem-accent) !important;
-  font-weight: 700;
+  font-weight: 400;
 }
+/* The exact selected page: accent colour + bold (the only bold item). */
 .myst-primary-sidebar-toc a.myst-toc-item-exact,
 .myst-primary-sidebar-toc a.myst-toc-item.active {
   color: var(--qem-accent) !important;
   font-weight: 700;
+}
+/* Snappy sidebar: remove the janky expand/collapse + hover transitions. */
+.myst-primary-sidebar-toc,
+.myst-primary-sidebar-toc * {
+  transition-duration: 0s !important;
+  animation-duration: 0s !important;
 }
 /* The site title is already in the top bar; drop the duplicate
    root entry at the top of the sidebar. */
