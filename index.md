@@ -1,4 +1,6 @@
-# atomode - atomic order-to-disorder engine
+# atomode
+
+ATOMic Order-to-Disorder Engine
 
 Generate atomistic supercells across the full order-to-disorder spectrum (amorphous, short- and medium-range order, nanocrystalline, and single crystal) at any size, by seeding Voronoi grains and refining them into physically realistic structures with a machine-learning potential (MACE-MP0) or a fast spring-network quench.
 
