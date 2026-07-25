@@ -6,40 +6,212 @@ project:
   title: atomode
   description: Documentation for atomode, atomistic structure generation across the order–disorder spectrum.
   keywords:
-    - atomistic structure generation
-    - amorphous
-    - nanocrystalline
-    - short-range order
-    - supercells
-    - disordered materials
+  - atomistic structure generation
+  - amorphous
+  - nanocrystalline
+  - short-range order
+  - supercells
+  - disordered materials
   github: https://github.com/ophusgroup/atomode
   license: MIT
   exclude:
-    - README.md
+  - README.md
   toc:
-    - file: index.md
-    - title: Get Started
+  - file: index.md
+  - title: Get Started
+    children:
+    - file: quickstart.md
+    - file: get-started/installation.md
+    - file: order_variety.md
+  - title: Static Examples
+    children:
+    - file: examples/index.md
+    - title: Silicon
       children:
-        - file: get-started/overview.md
-        - file: get-started/installation.md
-    - title: User Guide
+      - file: examples/silicon/index.md
+      - file: examples/silicon/liquid.md
+      - file: examples/silicon/amorphous.md
+      - file: examples/silicon/short_range_order.md
+      - file: examples/silicon/medium_range_order.md
+      - file: examples/silicon/long_range_order.md
+      - file: examples/silicon/nanocrystalline.md
+    - title: Copper
       children:
-        - file: user-guide/index.md
-    - title: Reference
+      - file: examples/copper/index.md
+      - file: examples/copper/liquid.md
+      - file: examples/copper/amorphous.md
+      - file: examples/copper/short_range_order.md
+      - file: examples/copper/medium_range_order.md
+      - file: examples/copper/long_range_order.md
+      - file: examples/copper/nanocrystalline.md
+    - title: Carbon
       children:
-        - file: reference/api.md
+      - file: examples/carbon/index.md
+      - file: examples/carbon/sp3_rich.md
+      - file: examples/carbon/sp2_rich.md
+      - file: examples/carbon/sp2_leaning.md
+      - file: examples/carbon/diamond.md
+      - file: examples/carbon/sp3_leaning.md
+      - file: examples/carbon/graphite.md
+    - title: Silicon Dioxide
+      children:
+      - file: examples/silicon_dioxide/index.md
+      - file: examples/silicon_dioxide/liquid.md
+      - file: examples/silicon_dioxide/amorphous.md
+      - file: examples/silicon_dioxide/short_range_order.md
+      - file: examples/silicon_dioxide/medium_range_order.md
+      - file: examples/silicon_dioxide/long_range_order.md
+      - file: examples/silicon_dioxide/nanocrystalline.md
+    - title: Strontium Titanate
+      children:
+      - file: examples/strontium_titanate/index.md
+      - file: examples/strontium_titanate/liquid.md
+      - file: examples/strontium_titanate/amorphous.md
+      - file: examples/strontium_titanate/short_range_order.md
+      - file: examples/strontium_titanate/medium_range_order.md
+      - file: examples/strontium_titanate/long_range_order.md
+      - file: examples/strontium_titanate/nanocrystalline.md
+  - title: Fast FIRE Refinement
+    children:
+    - file: examples_refined/index.md
+    - title: Silicon
+      children:
+      - file: examples_refined/silicon/index.md
+      - file: examples_refined/silicon/liquid.md
+      - file: examples_refined/silicon/amorphous.md
+      - file: examples_refined/silicon/sro.md
+      - file: examples_refined/silicon/mro.md
+      - file: examples_refined/silicon/lro.md
+      - file: examples_refined/silicon/nanocrystalline.md
+    - title: Copper
+      children:
+      - file: examples_refined/copper/index.md
+      - file: examples_refined/copper/liquid.md
+      - file: examples_refined/copper/amorphous.md
+      - file: examples_refined/copper/sro.md
+      - file: examples_refined/copper/mro.md
+      - file: examples_refined/copper/lro.md
+      - file: examples_refined/copper/nanocrystalline.md
+    - title: Carbon
+      children:
+      - file: examples_refined/carbon/index.md
+      - file: examples_refined/carbon/sp3_rich.md
+      - file: examples_refined/carbon/sp2_rich.md
+      - file: examples_refined/carbon/sp2_leaning.md
+      - file: examples_refined/carbon/diamond.md
+      - file: examples_refined/carbon/sp3_leaning.md
+      - file: examples_refined/carbon/graphite.md
+    - title: Silicon Dioxide
+      children:
+      - file: examples_refined/silicon_dioxide/index.md
+      - file: examples_refined/silicon_dioxide/liquid.md
+      - file: examples_refined/silicon_dioxide/amorphous.md
+      - file: examples_refined/silicon_dioxide/sro.md
+      - file: examples_refined/silicon_dioxide/mro.md
+      - file: examples_refined/silicon_dioxide/lro.md
+      - file: examples_refined/silicon_dioxide/nanocrystalline.md
+    - title: Strontium Titanate
+      children:
+      - file: examples_refined/strontium_titanate/index.md
+      - file: examples_refined/strontium_titanate/liquid.md
+      - file: examples_refined/strontium_titanate/amorphous.md
+      - file: examples_refined/strontium_titanate/sro.md
+      - file: examples_refined/strontium_titanate/mro.md
+      - file: examples_refined/strontium_titanate/lro.md
+      - file: examples_refined/strontium_titanate/nanocrystalline.md
+  - title: MACE-MP0 Refinement
+    children:
+    - file: examples_mace/index.md
+    - title: Silicon
+      children:
+      - file: examples_mace/silicon/index.md
+      - file: examples_mace/silicon/liquid.md
+      - file: examples_mace/silicon/amorphous.md
+      - file: examples_mace/silicon/sro.md
+      - file: examples_mace/silicon/mro.md
+      - file: examples_mace/silicon/lro.md
+      - file: examples_mace/silicon/nanocrystalline.md
+    - title: Copper
+      children:
+      - file: examples_mace/copper/index.md
+      - file: examples_mace/copper/liquid.md
+      - file: examples_mace/copper/amorphous.md
+      - file: examples_mace/copper/sro.md
+      - file: examples_mace/copper/mro.md
+      - file: examples_mace/copper/lro.md
+      - file: examples_mace/copper/nanocrystalline.md
+    - title: Carbon
+      children:
+      - file: examples_mace/carbon/index.md
+      - file: examples_mace/carbon/sp2_nc.md
+      - file: examples_mace/carbon/sp3_nc.md
+      - file: examples_mace/carbon/mixed_nc.md
+    - title: Silicon Dioxide
+      children:
+      - file: examples_mace/silicon_dioxide/index.md
+      - file: examples_mace/silicon_dioxide/liquid.md
+      - file: examples_mace/silicon_dioxide/amorphous.md
+      - file: examples_mace/silicon_dioxide/sro.md
+      - file: examples_mace/silicon_dioxide/mro.md
+      - file: examples_mace/silicon_dioxide/lro.md
+      - file: examples_mace/silicon_dioxide/nanocrystalline.md
+    - title: Strontium Titanate
+      children:
+      - file: examples_mace/strontium_titanate/index.md
+      - file: examples_mace/strontium_titanate/liquid.md
+      - file: examples_mace/strontium_titanate/amorphous.md
+      - file: examples_mace/strontium_titanate/sro.md
+      - file: examples_mace/strontium_titanate/mro.md
+      - file: examples_mace/strontium_titanate/lro.md
+      - file: examples_mace/strontium_titanate/nanocrystalline.md
+  - title: DFTB+ Refinement
+    children:
+    - file: examples_dftb/index.md
+    - file: examples_dftb/amorphous.md
+    - file: examples_dftb/sro.md
+    - file: examples_dftb/nanocrystalline.md
+  - title: Methods & Algorithms
+    children:
+    - file: algorithms/index.md
+    - file: algorithms/supercell_generation.md
+    - file: algorithms/orientation_refinement.md
+    - file: algorithms/fire_relaxation.md
+    - file: algorithms/cleanup_sweeps.md
+    - file: algorithms/mace_mp0.md
+    - file: algorithms/fire_vs_mace.md
+    - file: algorithms/target_g3.md
+    - file: algorithms/g3_distribution.md
+    - file: algorithms/glossary.md
+  - title: Visualization
+    children:
+    - file: visualization/index.md
+    - file: visualization/structure_viewer.md
+    - file: visualization/trajectory_viewer.md
+    - file: visualization/rotating_movie.md
+    - file: visualization/g3_explorer.md
+    - file: visualization/g3_static.md
+    - file: visualization/g3_comparison.md
+    - file: visualization/g2_viewer.md
+    - file: visualization/overview_viewer.md
+    - file: visualization/relaxation_history.md
+  - title: API Reference
+    children:
+    - file: api/index.md
+    - file: api/supercell.md
+    - file: api/coordination_shell_target.md
+    - file: api/g3_distribution.md
+    - file: api/overview.md
 site:
   template: book-theme
   title: atomode
   options:
-    # Custom theming — see ./style.css (shared with the quantEM docs theme)
     style: ./style.css
     logo_text: atomode
     folders: true
     outline_maxdepth: 2
     hide_footer_links: true
   nav:
-    - title: Install
-      url: https://pypi.org/project/atomode/
-    - title: Code
-      url: https://github.com/ophusgroup/atomode
+  - title: Install
+    url: https://pypi.org/project/atomode/
+  - title: Code
+    url: https://github.com/ophusgroup/atomode

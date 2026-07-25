@@ -1,46 +1,41 @@
----
-title: atomode
----
-
 # atomode
 
-**atomode** generates atomistic supercells across the full **order–disorder
-spectrum** — from fully amorphous, through short- and medium-range order (SRO,
-MRO) and nanocrystalline (NC) structures, to long-range-ordered (LRO) crystals —
-at any size.
+Generate disordered atomic supercells guided by three-body (g3) distributions, spanning the full spectrum from liquid to nanocrystalline.
 
-Structures are built to match prescribed local structural correlations
-(pair and three-body distributions, coordination shells) via Voronoi grain
-construction and spring-network relaxation.
+Silicon, liquid → nanocrystalline. See [Static Examples → Silicon](examples/silicon/index.md).
 
-::::{grid} 1 1 2 2
-
-:::{card}
-:header: Get started
-:link: get-started/overview.md
-What atomode is for and how it works.
+:::{iframe} https://ophusgroup.github.io/atomode-data/overview/silicon.html
+:width: 100%
 :::
 
-:::{card}
-:header: Install
-:link: get-started/installation.md
-Set up atomode and its dependencies.
-:::
+## Overview
 
-:::{card}
-:header: User Guide
-:link: user-guide/index.md
-Build structures across the order spectrum.
-:::
+atomode builds periodic supercells with controllable disorder, from fully liquid to nanocrystalline, by combining Voronoi grain construction with spring-network relaxation. The resulting structures are characterized by their rooted three-body (g3) distributions, which capture both radial and angular correlations.
 
-:::{card}
-:header: Reference
-:link: reference/api.md
-API and configuration.
-:::
+**Key features:**
 
-::::
+- Rapidly generate structures from liquid to nanocrystalline with a single call
+- Voronoi grain construction with per-species-pair bond topology
+- Interactive g3 distribution widgets for Jupyter (Three.js + anywidget)
+- Self-contained HTML exporters for trajectories, g3 heatmaps, and multi-cell overviews
+- Rotating MP4 / GIF movie export for publication figures
+- Works with any crystal structure (Si, SiC, oxides, metals, etc.)
 
-:::{note}
-This documentation is a fresh scaffold — content is being filled in.
-:::
+## Refining generated structures
+
+atomode generates the initial supercell; a separate relaxation step
+turns it into a physically realistic structure. Two worked pipelines
+are documented, in order of accuracy:
+
+- **[MACE-MP0 refinement](examples_mace/index.md)** *(recommended)* —
+  relax with a universal machine-learning potential. Near-DFT
+  accuracy, minutes per ~5000-atom cell on a laptop CPU.
+- **[Fast FIRE refinement](examples_refined/index.md)** — the built-in
+  spring-network FIRE quench. Orders of magnitude faster than MACE at
+  reduced accuracy, and the only option that stays practical at
+  100³ Å and larger.
+  Optionally calibrate the springs against MACE with one call
+  (`shell.calibrate_to_mace()`) — Morse anharmonicity, per-pair
+  stiffness, and the hard-core wall are measured from the MACE
+  potential on the reference crystal, improving accuracy at zero
+  extra relaxation cost.
