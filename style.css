@@ -135,10 +135,24 @@ html.dark .myst-primary-sidebar-toc .dark\:text-blue-200 {
   font-weight: 700;
 }
 /* Snappy sidebar: remove the janky expand/collapse + hover transitions. */
-.myst-primary-sidebar-toc,
-.myst-primary-sidebar-toc * {
+.myst-primary-sidebar,
+.myst-primary-sidebar * {
   transition-duration: 0s !important;
   animation-duration: 0s !important;
+}
+/* Reserve scrollbar gutters on every scroll container in the layout so a
+   scrollbar appearing (a folder expands, or a taller page loads on nav) never
+   jumps the width. */
+.myst-primary-sidebar,
+.myst-primary-sidebar-nav,
+.myst-primary-sidebar-toc,
+.myst-outline {
+  scrollbar-gutter: stable;
+}
+/* Tighten the per-level indent so deep items ("Medium-range order") stay on one
+   line despite the space reserved for the scrollbar gutter. */
+.myst-primary-sidebar-toc .collapsible-content {
+  padding-left: 0.5rem;
 }
 /* The site title is already in the top bar; drop the duplicate
    root entry at the top of the sidebar. */
