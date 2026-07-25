@@ -28,12 +28,12 @@ Navy tetrahedra decorate every C atom whose four neighbours form a
 109.5° tetrahedron; no triangles because no atoms were flagged as sp²
 during grain construction.
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/trajectories/carbon_diamond_nc.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/trajectories/carbon_diamond_nc.html
 :width: 100%
 :::
 
 ## g3 distribution
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/g3/carbon_diamond_nc.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/g3/carbon_diamond_nc.html
 :width: 100%
 :::

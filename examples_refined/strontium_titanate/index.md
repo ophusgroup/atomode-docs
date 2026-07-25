@@ -4,7 +4,7 @@ Strontium titanate supercells (40 × 40 × 40 Å) across the amorphous → nanoc
 
 ## Final FIRE structures
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/fire/strontium_titanate/overview.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/fire/strontium_titanate/overview.html
 :width: 100%
 :::
 

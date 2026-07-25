@@ -4,7 +4,7 @@ A 40 Å cubic silicon supercell (~3068 atoms), fully disordered, grain-free.
 
 ## FIRE relaxation
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/fire/silicon/amorphous_fire_movie.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/fire/silicon/amorphous_fire_movie.html
 :width: 100%
 :::
 
@@ -19,7 +19,7 @@ MACE-MP0 single point of the final structure: **-4.883 eV/atom**.
 
 ## g₃ distribution — after FIRE
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/fire/silicon/amorphous_g3_fire.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/fire/silicon/amorphous_g3_fire.html
 :width: 100%
 :::
 

@@ -22,12 +22,12 @@ cell.generate(
 
 ## Relaxation trajectory
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/trajectories/srtio3_mro.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/trajectories/srtio3_mro.html
 :width: 100%
 :::
 
 ## g3 distribution
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/g3/srtio3_mro.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/g3/srtio3_mro.html
 :width: 100%
 :::

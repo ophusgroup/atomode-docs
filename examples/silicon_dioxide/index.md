@@ -16,7 +16,7 @@ O-Si-O angles within ±25° of 109.47°).
 All six regimes at an orthogonal 40 × 40 × 40 Å supercell, rotating in
 sync.  Drag any panel to orbit manually.
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/overview/silicon_dioxide.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/overview/silicon_dioxide.html
 :width: 100%
 :::
 
@@ -29,7 +29,7 @@ The Si-O peak at 1.61 Å sharpens monotonically up the ladder; the
 Si-Si and O-O second-shell peaks at 2.64 / 3.06 Å develop crystalline
 fine structure (split shells) only at LRO / NC.
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/g2_compare/silicon_dioxide.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/g2_compare/silicon_dioxide.html
 :width: 100%
 :::
 

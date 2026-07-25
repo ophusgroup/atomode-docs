@@ -57,7 +57,7 @@ The file is fully self-contained and loads Three.js from a CDN, so it can
 be dropped into a Sphinx docs tree and embedded with a plain `<iframe>`:
 
 ```html
-<iframe src="https://ophusgroup.github.io/atomode-data/trajectories/mro.html" width="100%" height="600"
+<iframe src="https://ophusgroup.github.io/atomode-docs/viewers/trajectories/mro.html" width="100%" height="600"
         style="border: 1px solid rgba(0,0,0,0.1); border-radius: 6px;"
         loading="lazy"></iframe>
 ```

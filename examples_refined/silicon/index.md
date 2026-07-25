@@ -4,7 +4,7 @@ Silicon supercells (40 × 40 × 40 Å) across the amorphous → nanocrystalline 
 
 ## Final FIRE structures
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/fire/silicon/overview.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/fire/silicon/overview.html
 :width: 100%
 :::
 

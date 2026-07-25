@@ -9,7 +9,7 @@ reference case for the six disorder regimes.
 All six regimes at 40 × 40 × 40 Å, rotating in sync. Drag any panel to orbit
 manually.
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/overview/silicon.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/overview/silicon.html
 :width: 100%
 :::
 
@@ -17,7 +17,7 @@ g(r) per regime overlaid on a single axis. The dropdown below the
 plot switches species pair; the legend identifies each curve by the
 regime it was measured from:
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/g2_compare/silicon.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/g2_compare/silicon.html
 :width: 100%
 :::
 

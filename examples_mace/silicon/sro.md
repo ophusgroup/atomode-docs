@@ -6,13 +6,13 @@ A 40 Å cubic silicon supercell (~3068 atoms), short-range order.
 
 ## Orientation refinement
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/mace/silicon/sro_orient_movie.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/mace/silicon/sro_orient_movie.html
 :width: 100%
 :::
 
 ## MACE+wall relaxation
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/mace/silicon/sro_mace_movie.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/mace/silicon/sro_mace_movie.html
 :width: 100%
 :::
 
@@ -33,13 +33,13 @@ A 40 Å cubic silicon supercell (~3068 atoms), short-range order.
 
 **After cleanup**
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/mace/silicon/sro_g3_cleanup.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/mace/silicon/sro_g3_cleanup.html
 :width: 100%
 :::
 
 **After MACE**
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/mace/silicon/sro_g3_mace.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/mace/silicon/sro_g3_mace.html
 :width: 100%
 :::
 

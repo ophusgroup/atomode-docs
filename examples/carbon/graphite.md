@@ -28,12 +28,12 @@ cell.generate(
 Green triangles decorate every C atom whose three neighbours form a
 clean 120° trigonal planar motif.
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/trajectories/carbon_graphite_nc.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/trajectories/carbon_graphite_nc.html
 :width: 100%
 :::
 
 ## g3 distribution
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/g3/carbon_graphite_nc.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/g3/carbon_graphite_nc.html
 :width: 100%
 :::

@@ -4,7 +4,7 @@ Strontium titanate supercells (40 × 40 × 40 Å) across the amorphous → nanoc
 
 ## Final MACE structures
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/mace/strontium_titanate/overview.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/mace/strontium_titanate/overview.html
 :width: 100%
 :::
 

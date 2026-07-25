@@ -23,12 +23,12 @@ cell.generate(
 
 ## Relaxation trajectory
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/trajectories/carbon_sp2_leaning.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/trajectories/carbon_sp2_leaning.html
 :width: 100%
 :::
 
 ## g3 distribution
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/g3/carbon_sp2_leaning.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/g3/carbon_sp2_leaning.html
 :width: 100%
 :::

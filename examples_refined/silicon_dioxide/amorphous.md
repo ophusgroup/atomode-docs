@@ -4,13 +4,13 @@ A 40 Å cubic silicon dioxide supercell (~4866 atoms), fully disordered, grain-f
 
 ## Orientation refinement
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/fire/silicon_dioxide/amorphous_orient_movie.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/fire/silicon_dioxide/amorphous_orient_movie.html
 :width: 100%
 :::
 
 ## FIRE relaxation
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/fire/silicon_dioxide/amorphous_fire_movie.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/fire/silicon_dioxide/amorphous_fire_movie.html
 :width: 100%
 :::
 
@@ -25,7 +25,7 @@ MACE-MP0 single point of the final structure: **-7.205 eV/atom**.
 
 ## g₃ distribution — after FIRE
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/fire/silicon_dioxide/amorphous_g3_fire.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/fire/silicon_dioxide/amorphous_g3_fire.html
 :width: 100%
 :::
 

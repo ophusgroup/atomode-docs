@@ -4,13 +4,13 @@ A 40 Å cubic copper supercell (~5202 atoms), large crystalline grains with amor
 
 ## Orientation refinement
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/fire/copper/nanocrystalline_orient_movie.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/fire/copper/nanocrystalline_orient_movie.html
 :width: 100%
 :::
 
 ## FIRE relaxation
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/fire/copper/nanocrystalline_fire_movie.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/fire/copper/nanocrystalline_fire_movie.html
 :width: 100%
 :::
 
@@ -25,7 +25,7 @@ MACE-MP0 single point of the final structure: **-3.994 eV/atom**.
 
 ## g₃ distribution — after FIRE
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/fire/copper/nanocrystalline_g3_fire.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/fire/copper/nanocrystalline_g3_fire.html
 :width: 100%
 :::
 

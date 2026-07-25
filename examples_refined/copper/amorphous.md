@@ -4,7 +4,7 @@ A 40 Å cubic copper supercell (~5202 atoms), fully disordered, grain-free.
 
 ## FIRE relaxation
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/fire/copper/amorphous_fire_movie.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/fire/copper/amorphous_fire_movie.html
 :width: 100%
 :::
 
@@ -19,7 +19,7 @@ MACE-MP0 single point of the final structure: **-3.854 eV/atom**.
 
 ## g₃ distribution — after FIRE
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/fire/copper/amorphous_g3_fire.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/fire/copper/amorphous_g3_fire.html
 :width: 100%
 :::
 

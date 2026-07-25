@@ -4,7 +4,7 @@ Copper supercells (40 × 40 × 40 Å) across the amorphous → nanocrystalline a
 
 ## Final FIRE structures
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/fire/copper/overview.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/fire/copper/overview.html
 :width: 100%
 :::
 

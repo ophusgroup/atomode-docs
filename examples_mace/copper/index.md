@@ -4,7 +4,7 @@ Copper supercells (40 × 40 × 40 Å) across the amorphous → nanocrystalline a
 
 ## Final MACE structures
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/mace/copper/overview.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/mace/copper/overview.html
 :width: 100%
 :::
 

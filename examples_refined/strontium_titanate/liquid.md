@@ -4,7 +4,7 @@ A 40 Å cubic strontium titanate supercell (~5130 atoms), melt (thermostatted sp
 
 ## FIRE relaxation
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/fire/strontium_titanate/liquid_fire_movie.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/fire/strontium_titanate/liquid_fire_movie.html
 :width: 100%
 :::
 
@@ -19,7 +19,7 @@ MACE-MP0 single point of the final structure: **-6.968 eV/atom**.
 
 ## g₃ distribution — after FIRE
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/fire/strontium_titanate/liquid_g3_fire.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/fire/strontium_titanate/liquid_g3_fire.html
 :width: 100%
 :::
 

@@ -23,7 +23,7 @@ planar motif; navy tetrahedra decorate every sp³ atom whose four
 neighbours form a 109.5° tetrahedron.  Drag any panel to orbit
 manually.
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/overview/carbon.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/overview/carbon.html
 :width: 100%
 :::
 
@@ -36,7 +36,7 @@ contribution at 1.42 Å (sp² in-plane) and a sharper one at 1.54 Å
 (sp³ tetrahedral), with the relative peak heights tracking the
 ``(w_graphite, w_diamond)`` regime weights.
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/g2_compare/carbon.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/g2_compare/carbon.html
 :width: 100%
 :::
 

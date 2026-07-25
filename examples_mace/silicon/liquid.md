@@ -6,7 +6,7 @@ A 40 Å cubic silicon supercell (~3068 atoms), melt (Langevin MD at the melting 
 
 ## MACE+wall relaxation
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/mace/silicon/liquid_mace_movie.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/mace/silicon/liquid_mace_movie.html
 :width: 100%
 :::
 
@@ -26,13 +26,13 @@ A 40 Å cubic silicon supercell (~3068 atoms), melt (Langevin MD at the melting 
 
 **After cleanup**
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/mace/silicon/liquid_g3_cleanup.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/mace/silicon/liquid_g3_cleanup.html
 :width: 100%
 :::
 
 **After MACE**
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/mace/silicon/liquid_g3_mace.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/mace/silicon/liquid_g3_mace.html
 :width: 100%
 :::
 

@@ -13,7 +13,7 @@ preservation across the disorder ladder drives everything else.
 All six regimes at an orthogonal 40 × 40 × 40 Å supercell, rotating in
 sync. Drag any panel to orbit manually.
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/overview/strontium_titanate.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/overview/strontium_titanate.html
 :width: 100%
 :::
 
@@ -21,7 +21,7 @@ g(r) per regime overlaid on a single axis. The dropdown below the
 plot switches between the six species pairs (Sr-Sr, Sr-Ti, Sr-O,
 Ti-Ti, Ti-O, O-O):
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/g2_compare/strontium_titanate.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/g2_compare/strontium_titanate.html
 :width: 100%
 :::
 

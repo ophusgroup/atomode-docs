@@ -1,16 +1,16 @@
-# atomode
+# atomode - atomic order-to-disorder engine
 
-Generate disordered atomic supercells guided by three-body (g3) distributions, spanning the full spectrum from liquid to nanocrystalline.
+Generate atomistic supercells across the full order-to-disorder spectrum (amorphous, short- and medium-range order, nanocrystalline, and single crystal) at any size, by seeding Voronoi grains and refining them into physically realistic structures with a machine-learning potential (MACE-MP0) or a fast spring-network quench.
 
 Silicon, liquid → nanocrystalline. See [Static Examples → Silicon](examples/silicon/index.md).
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/overview/silicon.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/overview/silicon.html
 :width: 100%
 :::
 
 ## Overview
 
-atomode builds periodic supercells with controllable disorder, from fully liquid to nanocrystalline, by combining Voronoi grain construction with spring-network relaxation. The resulting structures are characterized by their rooted three-body (g3) distributions, which capture both radial and angular correlations.
+atomode builds periodic supercells across the order-to-disorder spectrum by seeding Voronoi grains and refining them into physically realistic structures, either with a fast spring-network (FIRE) quench or with the MACE-MP0 machine-learning potential for near-DFT accuracy. Grain size and density set the local order, from a single amorphous network up to large, well-aligned crystallites. Pair (g2) and rooted three-body (g3) distributions are provided to characterize the result.
 
 **Key features:**
 

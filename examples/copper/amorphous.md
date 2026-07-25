@@ -45,7 +45,7 @@ characteristic of a metallic glass.
 Interactive 3D viewer of the shell-relaxation trajectory (40 × 40 × 40 Å cell). Drag to rotate, scroll to zoom. Controls below the canvas play,
 scrub, and change playback speed.
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/trajectories/cu_amorphous.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/trajectories/cu_amorphous.html
 :width: 100%
 :::
 
@@ -57,6 +57,6 @@ reduced three-body density in units of the uniform random reference, where white
 profile g(r); the shaded amber band marks the first-neighbour shell used as
 the root-bond integration window for the g3 slice.
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/g3/cu_amorphous.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/g3/cu_amorphous.html
 :width: 100%
 :::

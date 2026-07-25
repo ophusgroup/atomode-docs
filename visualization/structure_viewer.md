@@ -108,7 +108,7 @@ nearest neighbours pass the 109.5° / 2.35 Å first-shell filter, with
 the tets shrunk to half-size so their corners meet at Si-Si bond
 midpoints:
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/trajectories/si_mro.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/trajectories/si_mro.html
 :width: 100%
 :::
 

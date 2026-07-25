@@ -92,6 +92,6 @@ on the [silicon example page](../examples/silicon/index.md).  Pair
 dropdown switches which species pair is shown; the six stacked curves
 identify each regime by colour and inline label.
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/g2_compare/silicon.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/g2_compare/silicon.html
 :width: 100%
 :::

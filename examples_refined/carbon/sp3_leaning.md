@@ -4,13 +4,13 @@ A 40 Å cubic carbon supercell (~8922 atoms), 40 % graphite / 60 % diamond grain
 
 ## Orientation refinement
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/fire/carbon/sp3_leaning_orient_movie.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/fire/carbon/sp3_leaning_orient_movie.html
 :width: 100%
 :::
 
 ## FIRE relaxation
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/fire/carbon/sp3_leaning_fire_movie.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/fire/carbon/sp3_leaning_fire_movie.html
 :width: 100%
 :::
 
@@ -25,7 +25,7 @@ MACE-MP0 single point of the final structure: **-8.125 eV/atom**.
 
 ## g₃ distribution — after FIRE
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/fire/carbon/sp3_leaning_g3_fire.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/fire/carbon/sp3_leaning_g3_fire.html
 :width: 100%
 :::
 

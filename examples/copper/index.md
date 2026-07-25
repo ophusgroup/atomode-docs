@@ -15,14 +15,14 @@ is disabled here because copper's first shell spans many angles, so bonds are
 drawn whenever they fall inside the radial tolerance (any of the twelve
 FCC neighbour distances).
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/overview/copper.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/overview/copper.html
 :width: 100%
 :::
 
 g(r) per regime overlaid on a single axis. The legend identifies
 each curve by the regime it was measured from:
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/g2_compare/copper.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/g2_compare/copper.html
 :width: 100%
 :::
 

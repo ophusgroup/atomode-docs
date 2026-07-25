@@ -4,7 +4,7 @@ Carbon supercells (40 × 40 × 40 Å) across the sp²/sp³ mixing axis, refined 
 
 ## Final MACE structures
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/mace/carbon/overview.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/mace/carbon/overview.html
 :width: 100%
 :::
 

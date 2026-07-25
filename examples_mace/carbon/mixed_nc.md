@@ -6,13 +6,13 @@ A 40 Å cubic carbon supercell (~8431 atoms), interleaved sp²/sp³ grains.
 
 ## Orientation refinement
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/mace/carbon/mixed_nc_orient_movie.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/mace/carbon/mixed_nc_orient_movie.html
 :width: 100%
 :::
 
 ## MACE+wall relaxation
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/mace/carbon/mixed_nc_mace_movie.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/mace/carbon/mixed_nc_mace_movie.html
 :width: 100%
 :::
 
@@ -33,13 +33,13 @@ A 40 Å cubic carbon supercell (~8431 atoms), interleaved sp²/sp³ grains.
 
 **After cleanup**
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/mace/carbon/mixed_nc_g3_cleanup.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/mace/carbon/mixed_nc_g3_cleanup.html
 :width: 100%
 :::
 
 **After MACE**
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/mace/carbon/mixed_nc_g3_mace.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/mace/carbon/mixed_nc_g3_mace.html
 :width: 100%
 :::
 

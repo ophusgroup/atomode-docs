@@ -30,12 +30,6 @@ jobs:
       - name: Install MyST CLI
         run: npm install -g mystmd
 
-      - name: Fetch the site template
-        run: myst build
-
-      - name: Patch theme (expand top-level TOC sections)
-        run: python3 scripts/patch_theme.py
-
       - name: Build static site
         run: myst build --html
         env:
@@ -43,6 +37,9 @@ jobs:
           # (https://ophusgroup.github.io/atomode-docs).
           # Remove if this moves to a custom domain.
           BASE_URL: /atomode-docs
+
+      - name: Copy interactive viewers into the built site
+        run: cp -r viewers _build/html/viewers
 
       - uses: actions/upload-pages-artifact@v3
         with:

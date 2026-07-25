@@ -38,7 +38,7 @@ Interactive 3D viewer of the shell-relaxation trajectory (40 × 40 × 40 Å cell
 Drag to rotate, scroll to zoom. Controls below the canvas play, scrub, and change
 playback speed.
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/trajectories/si_sro.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/trajectories/si_sro.html
 :width: 100%
 :::
 
@@ -51,6 +51,6 @@ profile g(r); the shaded amber band marks the first-neighbour shell used as
 the root-bond integration window for the g3 slice. For silicon there is a
 single Si-Si-Si triplet channel.
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/g3/si_sro.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/g3/si_sro.html
 :width: 100%
 :::

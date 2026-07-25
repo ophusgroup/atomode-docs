@@ -4,13 +4,13 @@ A 40 Å cubic strontium titanate supercell (~5130 atoms), large crystalline grai
 
 ## Orientation refinement
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/fire/strontium_titanate/nanocrystalline_orient_movie.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/fire/strontium_titanate/nanocrystalline_orient_movie.html
 :width: 100%
 :::
 
 ## FIRE relaxation
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/fire/strontium_titanate/nanocrystalline_fire_movie.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/fire/strontium_titanate/nanocrystalline_fire_movie.html
 :width: 100%
 :::
 
@@ -25,7 +25,7 @@ MACE-MP0 single point of the final structure: **-7.517 eV/atom**.
 
 ## g₃ distribution — after FIRE
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/fire/strontium_titanate/nanocrystalline_g3_fire.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/fire/strontium_titanate/nanocrystalline_g3_fire.html
 :width: 100%
 :::
 

@@ -4,7 +4,7 @@ A 40 Å cubic silicon supercell (~3068 atoms), melt (thermostatted spring-networ
 
 ## FIRE relaxation
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/fire/silicon/liquid_fire_movie.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/fire/silicon/liquid_fire_movie.html
 :width: 100%
 :::
 
@@ -19,7 +19,7 @@ MACE-MP0 single point of the final structure: **-4.815 eV/atom**.
 
 ## g₃ distribution — after FIRE
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/fire/silicon/liquid_g3_fire.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/fire/silicon/liquid_g3_fire.html
 :width: 100%
 :::
 

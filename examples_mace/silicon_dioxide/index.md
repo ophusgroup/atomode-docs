@@ -4,7 +4,7 @@ Silicon dioxide supercells (40 × 40 × 40 Å) across the amorphous → nanocrys
 
 ## Final MACE structures
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/mace/silicon_dioxide/overview.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/mace/silicon_dioxide/overview.html
 :width: 100%
 :::
 

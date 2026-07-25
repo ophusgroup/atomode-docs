@@ -6,13 +6,13 @@ A 40 Å cubic copper supercell (~5202 atoms), medium-range order.
 
 ## Orientation refinement
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/mace/copper/mro_orient_movie.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/mace/copper/mro_orient_movie.html
 :width: 100%
 :::
 
 ## MACE+wall relaxation
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/mace/copper/mro_mace_movie.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/mace/copper/mro_mace_movie.html
 :width: 100%
 :::
 
@@ -33,13 +33,13 @@ A 40 Å cubic copper supercell (~5202 atoms), medium-range order.
 
 **After cleanup**
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/mace/copper/mro_g3_cleanup.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/mace/copper/mro_g3_cleanup.html
 :width: 100%
 :::
 
 **After MACE**
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/mace/copper/mro_g3_mace.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/mace/copper/mro_g3_mace.html
 :width: 100%
 :::
 

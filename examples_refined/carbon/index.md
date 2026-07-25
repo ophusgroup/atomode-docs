@@ -4,7 +4,7 @@ Carbon supercells (40 × 40 × 40 Å) across the sp²/sp³ mixing axis, relaxed 
 
 ## Final FIRE structures
 
-:::{iframe} https://ophusgroup.github.io/atomode-data/fire/carbon/overview.html
+:::{iframe} https://ophusgroup.github.io/atomode-docs/viewers/fire/carbon/overview.html
 :width: 100%
 :::
 
