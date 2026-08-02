@@ -30,6 +30,12 @@ jobs:
       - name: Install MyST CLI
         run: npm install -g mystmd
 
+      - name: Fetch the site template
+        run: myst build
+
+      - name: Patch theme (flat search, expanded TOC sections)
+        run: python3 scripts/patch_theme.py
+
       - name: Build static site
         run: myst build --html
         env:
