@@ -17,7 +17,7 @@ Build the static site:
 
 ```bash
 myst build          # download the theme
-python3 scripts/patch_theme.py   # expand top-level TOC sections
+python3 scripts/patch_theme.py   # flat search, expanded TOC sections
 myst build --html   # output in _build/html
 ```
 
